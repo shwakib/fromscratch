@@ -1,12 +1,20 @@
 
-        p {
+        /* p {
             color: blue;
             text-align: center;
             background-color: aquamarine;
-        }
+        } */
 
         a {
             color: black;
             align-items: center;
         }
-    
+
+        /* Table er CSS design */
+
+        table ,td,th{
+
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 15px;   
+        }
