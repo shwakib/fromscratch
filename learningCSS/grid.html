@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RWD</title>
+    <style>
+        *{
+            box-sizing: border-box;
+            /* *means it will be applied to everywhere. */
+        }
+        .header{
+            border: 1px solid red;
+            /* padding: 1px;
+            margin: 1px; */
+            margin: 5px;
+        }
+        .leftMenu{
+            border: 1px solid black;
+            padding: 4px;
+            /* margin: 1px; */
+            float: left;
+            width: 30%;
+            /* margin-top: 5px; */
+        }
+        .main{
+            border: 1px solid purple;
+            padding: 5px;
+            /* margin: 1px; */
+            float: right;
+            width: 70%;
+            /* margin-top: 5px; */
+            /* margin-left: 1px; */
+            /* margin-right: 1px; */
+        }
+
+        @media only screen and (min-width:600px){
+            body{
+                /* background-color: aqua; */
+                background-image: url(/learningCSS/image/pexels-designecologist-1779487.jpg);
+                background-size: contain;
+                background-repeat: no-repeat;
+            }
+            /* .leftMenu:hover{
+                background-color: red;
+            } */
+        }
+
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>This Is the Headline.</h1>
+    </div>
+    <div class="leftMenu">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt explicabo suscipit eos, dolore quae assumenda excepturi nam placeat omnis adipisci. Alias, atque dolores modi laborum, laboriosam id provident consectetur soluta culpa sapiente voluptates odio explicabo cupiditate, minus voluptatem neque facere sunt! Ab voluptas perspiciatis quae nam! Qui, non. Dolorem, excepturi!</p>
+    </div>
+    <div class="main">
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit nesciunt sequi quam reiciendis, voluptatum labore veritatis blanditiis provident autem? Rem dignissimos animi repudiandae! Consectetur, nostrum? Beatae aperiam nemo consequuntur quos, voluptatibus, iusto similique at velit expedita, sapiente porro minima odit. Aliquam voluptates error pariatur. Alias, minus laborum. Earum repellendus magnam quod commodi eos, hic, magni et consectetur labore officia dicta alias id rem reprehenderit illum aperiam recusandae asperiores? Repellendus earum eum facilis nam corporis a fuga sed laudantium saepe optio exercitationem, alias, dolores enim vero explicabo repellat officia modi? Qui quaerat aliquid iure officiis necessitatibus laudantium eius ex repudiandae! Cupiditate.</p>
+    </div>
+</body>
+</html>

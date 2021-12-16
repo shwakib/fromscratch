@@ -1,0 +1,211 @@
+body{
+    /* background-color: lightblue; */
+    background: url(/learningCSS/image/pexels-designecologist-1779487.jpg);
+    /* background-size: 1950px 975px; */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+}
+
+/* p{
+    color: yellow;
+}
+h1{
+
+}
+
+
+h2{
+    color: red;
+}
+
+#secondparagraph{
+    color: darkblue; 
+}
+
+.yellow{
+    border: 2px solid black;
+} */
+
+/* h1,h2,p{
+    background-color: black;
+} */
+
+/* h3{
+    display: inline;
+    color: white;
+    border: 2px dotted black;
+} */
+
+/* .header{
+    
+} */
+
+.header a{
+    border: 3px solid black;
+    font-size: 25px;
+    display: inline-block;
+    color: white;
+    text-decoration: none;
+    margin: 50px 25px 75px;
+    /* margin-left: 50px;
+    margin-top: 40px; */
+    padding: 25px 10px 35px 15px;
+    text-shadow: 4px 4px black;
+}
+
+.navbar{
+    border: 15px solid green;
+    /* height: 50px;
+    width: 200px; */
+    max-width: 500px;
+    /* width: 50%; */
+    background-color: lightgrey;
+    padding: 20px;
+    /* margin: 25px; */
+    margin: auto;
+    /* outline: 5px solid red; */
+    /* font-family: 'Corinthia', cursive,sans-serif; */
+}
+
+.navbar p{
+    text-indent: 50px;
+    /* text-align: center; */
+    text-align: justify;
+    /* text-decoration: underline; */
+    /* line-height: 0.5cm; */
+    letter-spacing: 0.5px;
+}
+
+#innerLink{
+    display: block;
+    width: 200px;
+    margin: auto;
+    padding: 25px;
+    background-color: aqua;
+    border-radius: 10px 10px;
+    text-decoration: none;
+}
+
+#innerLink:link{
+    background-color: blue;
+    color: black;
+}
+
+#innerLink:visited{
+    background-color: red;
+    color: white;
+}
+
+#innerLink:hover{
+    background-color: green;
+    color: blue;
+}
+
+#innerLink:active{
+    background-color: purple;
+    color: green;
+}
+
+.list{
+    width: 30%;
+    margin: auto;
+    background-color: lightskyblue;
+    margin-top: 100px;
+    padding: 50px;
+    /* display: none; */
+    visibility: hidden;
+}
+
+.list ol li{
+    color: white;
+    padding: 10px;
+    margin: 10px;
+    font-size: 20px;
+    background-color: limegreen;
+}
+
+.mytable
+{
+    padding: 200px;
+    background-color: lightgrey;
+    margin-top: 20px;
+    /* opacity: 1; */
+}
+
+.tableContainer{
+    width: 50%;
+    margin: auto;
+    background-color: rgb(151, 142, 151);
+    padding: 50px;
+}
+
+.tableContainer table{
+    border: 2px solid black;
+    border-collapse: collapse;
+}
+
+.tableContainer table th{
+    border: 2px solid black;
+    border-collapse: collapse;
+    padding: 15px;
+    background-color: green;
+    color: white;
+}
+
+.tableContainer table td{
+    border: 2px solid black;
+    border-collapse: collapse;
+    padding: 15px;
+    background-color: white;
+    /* background-color: green; */
+    color: black;
+}
+
+/* .myDisplay{
+    padding: 25px;
+    border: 3px solid red;
+    display: inline;
+} */
+
+.myDisplay{
+    padding: 25px;
+    background-color: aqua;
+    position: sticky;
+    top: 0;
+}
+
+.float{
+    border: 3px solid black;
+    overflow: auto;
+}
+
+#myImage{
+    float: left;
+}
+
+.float p{
+    text-align: center;
+    /* border: 3px solid black;
+    overflow: auto; */
+}
+
+/* .mytable div table tr th{
+    background-color: red;
+} */
+
+/* .mytable div>table{
+    background-color: red;
+} */
+
+/* .mytable ~{
+
+} */
+
+/* .mytable table:hover{
+    opacity: 0.1;
+} */
+
+/* .mytable:hover{
+    opacity: 0.1;
+} */ 
