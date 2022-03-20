@@ -1,0 +1,28 @@
+/* .container{
+    border: 3px solid red;
+    padding: 10px;
+    
+}
+
+.container-fluid{
+    border: 3px solid red;
+    padding: 10px;
+} */
+
+.container{
+    border: 3px solid blue;
+    padding: 10px;
+    
+}
+
+.col{
+    border: 3px solid red;
+}
+
+.col-4{
+    border: 3px solid green;
+}
+
+.col-8{
+    border: 3px solid red;
+}
