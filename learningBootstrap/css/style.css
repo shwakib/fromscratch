@@ -9,6 +9,9 @@
     padding: 10px;
 } */
 
+.mynavbar{
+    background-color: red;
+}
 .container{
     border: 3px solid blue;
     padding: 10px;
