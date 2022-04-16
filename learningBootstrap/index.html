@@ -241,6 +241,19 @@
       <button type="button" class="btn btn-lg btn-danger" data-bs-toggle="popover" title="Popover title" data-bs-content="And here's some amazing content. It's very engaging. Right?">Click to toggle popover</button>  <!--data-bs-hover="popover" title="Popover title" Use hover instead of toggle for hover and pop up and the message in title which you want to show.-->
     </div>
 
+    <!-- this is toast section -->
+    <div class="container">
+      <div class="toast show">
+        <div class="toast-header">
+          Toast Header
+          <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+        </div>
+        <div class="toast-body">
+          Some text inside the toast body
+        </div>
+      </div>
+    </div>
+
 
     
 
@@ -256,7 +269,19 @@
             return new bootstrap.Popover(popoverTriggerEl)
           }
         )
+    </script>
+      <script>
+        document.getElementById("toastbtn").onclick=function()
+        {
+          var toastElList = [].slice.call(document.querySelectorAll('.toast'))
+          var toastList = toastElList.map(function(toastEl) {
+            return new bootstrap.Toast(toastEl)
+          })
+          toastList.forEach(toast => toast.show())
+        }
       </script>
+    
+
 
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--
