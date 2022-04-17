@@ -1,36 +1,78 @@
-body{
+body {
     font-family: 'Open Sans', sans-serif;
 }
 
-.banner-container{
+.banner-container {
     background-color: blue;
 }
 
-.banner-column{
+.banner-column {
     background-color: grey;
 }
-.navbar-container{
+
+.navbar-container {
+    top: 0;
     background-color: #262b37;
+    position: sticky;
+    z-index: 2;
 }
 
-.about-container{
+.about-container {
     background-color: #00BDBD;
 }
-.education-container{
+
+.education-container {
     background-color: #EEEEEE;
 }
-.bg-redtype{
+
+.bg-redtype {
     background-color: #FB857F;
 }
-.redtype-color{
-    color:#FB857F ;
+
+.redtype-color {
+    color: #FB857F;
 }
-.circle{
+
+.circle {
     background-color: #FB857F;
     width: 150px;
     height: 150px;
     border-radius: 50%;
 }
-.project-container{
+
+.project-container {
     background-color: #2BB3DD;
+}
+
+.form-container {
+    background-color: #474D5D;
+}
+
+.inner-form {
+    background-color: #585F73;
+}
+
+.sub-msg-btn {
+    background-color: #28a745;
+}
+
+.sub-msg-btn:hover {
+    background-color: grey;
+}
+
+.footer {
+    background-color: #2BB3DD;
+}
+
+.circle-footer {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: inline-block;
+    background-color: white;
+    font-size: 40px;
+    text-align: center;
+}
+.circle-footer:hover{
+    background-color: #474D5D;
 }
