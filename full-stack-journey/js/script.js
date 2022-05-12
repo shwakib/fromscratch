@@ -35,3 +35,15 @@ var tempinc=prompt("Enter temperature in celsius:");
 var tempinf=(9/5*tempinc+32);
 alert("Temperature in Farenheit: "+tempinf+" degree");
 console.log("Task Complete");
+
+let v=7;
+let u=v;
+v=45;
+console.log(u);
+
+let arr=[1,2,3];
+let newArr=arr;
+console.log(newArr);
+arr[0]=500;
+console.log(arr);
+console.log(newArr);
