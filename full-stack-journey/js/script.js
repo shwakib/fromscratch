@@ -157,7 +157,7 @@ else if (grade >= 70 && grade < 75) {
 else if (grade >= 70 && grade < 75) {
     console.log('Your grade is C+');
 }
-else if (grade>0 && grade < 50) {
+else if (grade > 0 && grade < 50) {
     console.log('Your grade is F');
 }
 else {
@@ -234,3 +234,97 @@ if (num1Con || num2Con || optionCon) {
         console.log("Result: " + result);
     }
 }*/
+
+//loop
+var i = 1;
+var sum = 0; //must be assigned value otherwise, it will be NaN
+var product = 1 //must be assigned 1 for multiplication otherwise it will be 0
+while (i <= 10) {
+    // console.log("Hello World!");
+    // if(i===4)
+    // {
+    //     console.log("Value of i is: "+i);
+    // }\
+    sum += i;
+    product *= i;
+    console.log(i);
+    console.log("The total is: " + sum);
+    console.log("The total is: " + product);
+    i++;
+}
+/*do{
+    console.log("Hello World!");
+    console.log(i);
+    ++i;
+}
+while(i<=5);*/
+
+for (var i1 = 1; i1 <= 5; i1++) {
+    console.log("Hello World!");
+    console.log("Value of i is: " + i1);
+}
+//reverse
+for (var i2 = 5; i2 >= 1; i2--) {
+    console.log("Hello World!");
+    console.log("Value of i is: " + i2);
+}
+
+//break & continue
+for (var i3 = 1; i3 <= 5; i3++) {
+    console.log("Hello World!");
+    console.log("Value of i is: " + i3);
+    if (i3 == 3) {
+        console.log("Break statement executed");
+        break;
+    }
+}
+// console.log("Break statement executed");
+
+for (var i3 = 1; i3 <= 5; i3++) {
+    console.log("Hello World!");
+    console.log("Value of i is: " + i3);
+    if (i3 == 4) {
+        console.log("Continue statement");
+        continue;
+    }
+}
+
+for (var i3 = 1; i3 <= 10; i3++) {
+    // console.log("Hello World!");
+    // console.log("Value of i is: "+i3);
+    if (i3 % 2 == 1) {
+        // console.log("Value of i is: "+i3);
+        continue;
+    }
+    sum += i3;
+    console.log("Value of i is: " + i3);
+    console.log("Value of i is: " + sum);
+}
+
+let name10="Sifathasanwakib";
+for(var i4=0;i4<=name10.length-1;i4++)
+{
+    console.log(`The index is: ${i4}`);
+    console.log(name10[i4]);
+}
+console.log("i++");
+//
+console.log("++i");
+for(var i4=0;i4<=name10.length-1;++i4)
+{
+    console.log(`The index is: ${i4}`);
+    console.log(name10[i4]);
+}
+//Bohubrihi
+for(var i4=0;i4<name10.length;++i4)
+{
+    console.log(`The index is: ${i4}`);
+    console.log(name10[i4]);
+}
+//food array
+let food=["Cake","Coke","Pasta","Pizza"];
+for(var i4=0;i4<food.length;i4++)
+{
+    console.log(`The index is: ${i4}`);
+    console.log(food[i4]);
+}
