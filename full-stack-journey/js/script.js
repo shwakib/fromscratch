@@ -328,3 +328,60 @@ for(var i4=0;i4<food.length;i4++)
     console.log(`The index is: ${i4}`);
     console.log(food[i4]);
 }
+
+//for in & for of
+let person={
+    name:"Shakib Al Hasan",
+    proffession:"Cricketer",
+    team:"Bangladesh",
+    age:33
+}
+
+for(var x in name10)
+{
+    console.log(`The index & item is: ${x}`);
+}
+
+for(var x of name10)
+{
+    console.log(`The index & item is: ${x}`);
+}
+for(var i5 in food);
+{
+    //console.log(`The index & item is: ${i5} & ${food[i5]}`);
+    console.log(i5);
+}
+for(var i5 of food);
+{
+    //console.log(`The index & item is: ${i5} & ${food[i5]}`);
+    console.log(i5);
+}
+
+for(var x in person)
+{
+    console.log(`Property is:${x} and value is:${person[x]}`);
+}
+// for(var x of person)
+// {
+//     console.log(`Property is:${x} and value is:${person[x]}`);
+// } can not iterate objects with for of
+
+//Exercise
+var terms=parseInt(prompt("Enter the number of series: "));
+let sumofproduct2=0;
+var series="";
+for(var square=1;square<=terms;square++)
+{
+    //console.log(square);
+    //let product2=square**2;
+    //console.log(product2);
+    sumofproduct2+=square**2;
+    series+=(square**2).toString();
+    if(square==terms)
+    {
+        continue;
+    }
+    series+=" + ";
+}
+console.log(series);
+console.log(`${series}=${sumofproduct2}`);
