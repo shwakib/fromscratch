@@ -270,16 +270,48 @@
 //     console.log(val);
 // }
 
-document.querySelector('#name').addEventListener('focus',test);
-document.querySelector('#name').addEventListener('keyup',test2)
+document.querySelector('#name').addEventListener('focus',focus);
+document.querySelector('#name').addEventListener('keyup',focus2);
 
-function test(e)
+function focus(e)
 {
     console.log("Focused!");
     this.style.background='grey';
 }
-function test2(e)
+function focus2(e)
 {
     document.getElementById("demo").innerText=this.value;
     //console.log(this.value);
+}
+
+//Error handling
+console.log("Before error!");
+
+try{
+    test();
+}
+catch(err)
+{
+    //console.log(err);
+    console.log(err.message);
+}
+finally
+{
+    console.log("I am inside finally");
+}
+
+console.log("After error!");
+
+//Using Throw
+let a=2;
+
+try{
+    if(a>15)
+    throw "Too big";
+    else if(a<5)
+    throw "Too small";
+}
+catch(err)
+{
+    console.log(err);
 }
