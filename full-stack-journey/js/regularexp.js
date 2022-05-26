@@ -1,37 +1,37 @@
-// //regular expression
+//regular expression
 
-// let re;
-// let str;
+// let re; //Conflicts with
+// let str; //Conflicts with
 
-// // re=/hello/;
-// re = /hello/i; //i=case insentitive
+// re=/hello/;
+re = /hello/i; //i=case insentitive
 
-// console.log(re);
-// console.log(re.source);
+console.log(re);
+console.log(re.source);
 
-// str = "Hello World";
-// str = "Again Hello World";
-// str = "Hell World";
-// str = "sdsHellosds World";
-// str = "Again Hello World Hello";
-// // str = "World";
+str = "Hello World";
+str = "Again Hello World";
+str = "Hell World";
+str = "sdsHellosds World";
+str = "Again Hello World Hello";
+// str = "World";
 
-// //execution exec()-Return result in an array or null
-// let result = re.exec(str);
+//execution exec()-Return result in an array or null
+let result = re.exec(str);
 
-// //test()-true/false
-// result = re.test(str);
+//test()-true/false
+result = re.test(str);
 
-// //match()-Return result in an array or null
-// result = str.match(re);
+//match()-Return result in an array or null
+result = str.match(re);
 
-// //search() - Return index of the first match or -1
-// result = str.search(re); //If gets then the index or not getting then -1
+//search() - Return index of the first match or -1
+result = str.search(re); //If gets then the index or not getting then -1
 
-// //replace()- Return new String
-// result = str.replace(re, "Hi"); //Again Hi World Hello
+//replace()- Return new String
+result = str.replace(re, "Hi"); //Again Hi World Hello
 
-// console.log(result);
+console.log(result);
 
 let re;
 let str;
@@ -100,6 +100,32 @@ re = /^([0-9]x){3}/
 str = "32344354353elllo";
 str = "+8801714049024";
 str = "2x3x7x";
+
+//Shorthand Character Classes -CHecks in full string
+re = /\w/; //Word Character- alpha numeric or _
+re = /\w+/;//One or more
+re = /\W/; //Non Word Character
+re = /\W+/; //One or more non word character
+re = /\d/; //checks digit
+re = /\d+/; //one or more checks digit
+re = /\D/; //checks non digit
+re = /\s/; //checks white space
+re = /\S/; //checks non white space
+re = /Hello\b/; //Word boundary
+re = /\bHello\b/; //Word boundary
+
+str = "+8801714049024";
+str = "(*&^j4";
+str = "jkdbsdjvkbsdvkjsd";
+str = "008 08 0";
+str = " ";
+str = "Hello 78 World";
+
+//assertions
+re = /x(?=y)/; // Matches x only if x is before y
+re = /x(?!y)/;
+
+str = "dsgsdgyxdsgdsggdsg";
 
 console.log(re.exec(str));
 
