@@ -1,4 +1,3 @@
-
 //normal function
 function saySomething() {
     console.log("Hello World");

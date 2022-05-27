@@ -1,4 +1,3 @@
-
 // window.alert("Hello I am Sifat Hasan Wakib");
 // alert("Hello I am Sifat Hasan Wakib");
 document.write("Hello I am Sifat Hasan Wakib");
