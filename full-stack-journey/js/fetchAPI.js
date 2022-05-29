@@ -22,6 +22,6 @@ function getData()
 {
     fetch('http://api.icndb.com/jokes/random/')
     .then(res=>/*console.log(res.text())*/res.json())
-    .then(data=>console.log(data.value.joke))
+    .then(data=>/*console.log(data.value.joke)*/document.getElementById("output").innerHTML=data.value.joke)
     .catch(err=>console.log(err));
 }
