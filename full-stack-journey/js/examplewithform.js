@@ -13,8 +13,8 @@ re=/^(\+)?(88)?01[0-9]{9}$/;
 str="01714049000";
 
 //Email address
-//sifat6460@gmail.com
-re=/^([a-zA-Z0-9]\.?)+[^\.]@([a-zA-Z0-9]\.?)+[^\.]$/;
+//sifat6460@gmail.com sifat.6460[.]er jonne sifat6460.@-> [.]hobe na
+re=/^([a-zA-Z0-9]\.?)/*sifat6460*/+[^\.]/*sifat6460*/@([a-zA-Z0-9]\.?)+[^\.]$/;
 
 str="sifat6460@gmail.com";
 

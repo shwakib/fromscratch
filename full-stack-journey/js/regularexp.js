@@ -60,7 +60,7 @@ re = /^Hello$/i; //Must start & end with
 re = /^h.llo$/i; //Matches any one character in place of .
 re = /h*llo/i; //0 or more times
 re = /he?llo/i;
-re = /he?a?llo/i; //Optional (here e is optional)
+re = /he?a?llo/i; //Optional (here e & a is optional)
 re = /hello\?/i; //escaping (if needs to match ?)
 
 //Character Set using Brackets []
