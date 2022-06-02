@@ -1,0 +1,24 @@
+{
+  "name": "fromscratch",
+  "version": "1.0.0",
+  "description": "learning npm&react",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shwakib/fromscratch.git"
+  },
+  "author": "Wakib",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shwakib/fromscratch/issues"
+  },
+  "homepage": "https://github.com/shwakib/fromscratch#readme",
+  "dependencies": {
+    "bootstrap": "^5.1.3",
+    "date-format": "^4.0.10"
+  },
+  "keywords": []
+}
