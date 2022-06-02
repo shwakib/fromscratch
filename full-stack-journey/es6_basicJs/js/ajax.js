@@ -4,7 +4,7 @@ function loadData() {
     // console.log("Button Clicked");
     var xhr = new XMLHttpRequest();
     // console.log(xhr);
-    xhr.open("GET", "/full-stack-journey/js/datafiles/data.txt", true);
+    xhr.open("GET", "/full-stack-journey/es6_basicJs/js/datafiles/data.txt", true);
 
     // xhr.onprogress=function() -> Uses for show progression
     // {
@@ -12,12 +12,11 @@ function loadData() {
     // }
 
     //1st method
-    xhr.onload=function (){
+    xhr.onload = function () {
         //HTP Status -> 200: OK, 403: Forbidden , 404: Not found
-        if(this.status==200)
-        {
+        if (this.status == 200) {
             console.log(this.responseText);
-            document.getElementById('set_data').innerHTML=`<h2>${this.responseText}</h2>`;
+            document.getElementById('set_data').innerHTML = `<h2>${this.responseText}</h2>`;
         }
     }
 
@@ -34,6 +33,6 @@ function loadData() {
     //         document.getElementById('set_data').innerHTML = `<h2>${this.responseText}</h2>`;
     //     }
     // }
-    
+
     xhr.send();
 }

@@ -72,21 +72,18 @@ xmlhttp.onreadystatechange = function () {
         jsonData(data);
     }
 };
-xmlhttp.open("GET", "/full-stack-journey/js/datafiles/data.json", true);
+xmlhttp.open("GET", "/full-stack-journey/es6_basicJs/js/datafiles/data.json", true);
 xmlhttp.send();
 
-function jsonData(json_obj)
-{
+function jsonData(json_obj) {
     console.log(json_obj);
-    var new_data=JSON.parse(json_obj);
+    var new_data = JSON.parse(json_obj);
     console.log(new_data);
 
-    for(x in new_data.persons)
-    {
-        var persons=new_data.persons;
+    for (x in new_data.persons) {
+        var persons = new_data.persons;
         console.log(persons[x]);
-        for(y in persons[x])
-        {
+        for (y in persons[x]) {
             console.log(persons[x][y]);
         }
     }
