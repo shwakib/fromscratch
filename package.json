@@ -12,6 +12,7 @@
   },
   "author": "Wakib",
   "license": "ISC",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/shwakib/fromscratch/issues"
   },
