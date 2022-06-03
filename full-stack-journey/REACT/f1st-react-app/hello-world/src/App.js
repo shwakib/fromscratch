@@ -1,23 +1,28 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
+import Person from './components/Person.js'
 
-function App() {
-  return ( //-JSX
-    <div className="App">
-      <h1>Hello World</h1>
-      <Person />
-    </div>
-  );
-  // return React.createElement('div', { className: "App" }, React.createElement('h1', null, 'Hello World'), <Person />);
-}
+//Functional Component
+// function App() {
+//   return ( //-JSX
+//     <div className="App">
+//       <h1>Hello World</h1>
+//       <Person />
+//     </div>
+//   );
+//   // return React.createElement('div', { className: "App" }, React.createElement('h1', null, 'Hello World'), <Person />);
+// }
 
-function Person() {
-  return (
-    <div>
-      <h1>I am person component</h1>
-    </div>
-  );
-  // return React.createElement('div', null, React.createElement('h1', null, 'I Am person Component'));
+//Class Component
+class App extends Component {
+  render() {
+    return (
+      <div className="App">
+        <h1>Hello World</h1>
+        <Person name="Rahim" age="30">I am from Comilla </Person>
+      </div>
+    );
+  }
 }
 
 export default App;
