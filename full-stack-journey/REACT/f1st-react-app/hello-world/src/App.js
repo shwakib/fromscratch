@@ -46,11 +46,17 @@ class App extends Component {
   //   this.state = {};
   // }
   render() {
+    const style = {
+      border: "1px solid red",
+      borderRadius: '5px',
+      backgroundColor: 'black',
+      color: 'white'
+    };
     return (
       <div className="App">
         <h1>Hello World</h1>
         {/* <Person name="Rahim" age="30">I am from Comilla </Person> */}
-        <h1>Book List:</h1>
+        <h1 style={style}>Book List:</h1>
         {/* <Book bookName="Harry Potter" bookWriter="George Orwell" />
         <Book bookName="The Da Vinci Code" bookWriter="Dan Brown" />
         <Book bookName="The Alchemist" bookWriter="Paulo Coelho" /> */}
