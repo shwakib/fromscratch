@@ -23,11 +23,11 @@ class App extends Component {
       { bookName: "The Alchemist", bookWriter: "Paulo Coelho" }
     ]
   }
-  changeBookState = () => {
+  changeBookState = (newBookName) => {
     this.setState({
       books: [
         { bookName: "Nineteen Eighty-Four", bookWriter: "George Orwell" },
-        { bookName: "The Da Vinci Code", bookWriter: "Dan Brown" },
+        { bookName: newBookName, bookWriter: "Dan Brown" },
         { bookName: "Metmorphosis", bookWriter: "Franz Kafka" }
       ]
     });
@@ -37,19 +37,18 @@ class App extends Component {
   //   this.state = {};
   // }
   render() {
-    console.log(this.state);
     return (
       <div className="App">
         <h1>Hello World</h1>
         {/* <Person name="Rahim" age="30">I am from Comilla </Person> */}
         <h1>Book List:</h1>
-        <button onClick={this.changeBookState}>Change State</button>
         {/* <Book bookName="Harry Potter" bookWriter="George Orwell" />
         <Book bookName="The Da Vinci Code" bookWriter="Dan Brown" />
         <Book bookName="The Alchemist" bookWriter="Paulo Coelho" /> */}
         <Book bookName={this.state.books[0].bookName} bookWriter={this.state.books[0].bookWriter} />
         <Book bookName={this.state.books[1].bookName} bookWriter={this.state.books[1].bookWriter} />
-        <Book bookName={this.state.books[2].bookName} bookWriter={this.state.books[2].bookWriter} />
+        <Book bookName={this.state.books[2].bookName} bookWriter={this.state.books[2].bookWriter} change={this.changeBookState.bind(this, "Amar Bondhu Rashed")} />
+        <button onClick={() => this.changeBookState("Amar Bondhu CTO")}>Change State</button>
       </div>
     );
   }
