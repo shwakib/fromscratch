@@ -52,6 +52,17 @@ class App extends Component {
       backgroundColor: 'black',
       color: 'white'
     };
+
+    // const booksState = this.state.books;
+    const books = this.state.books.map((book) => {
+      console.log(book.bookName);
+      console.log(book.bookWriter);
+      return (
+        <Book bookName={book.bookName} bookWriter={book.bookWriter} />
+      )
+    });
+    console.log(books);
+
     return (
       <div className="App"> {/*root element should be only one and App.css has been added*/}
         <h1>Hello World</h1>
@@ -60,11 +71,14 @@ class App extends Component {
         {/* <Book bookName="Harry Potter" bookWriter="George Orwell" />
         <Book bookName="The Da Vinci Code" bookWriter="Dan Brown" />
         <Book bookName="The Alchemist" bookWriter="Paulo Coelho" /> */}
-        <Book bookName={this.state.books[0].bookName} bookWriter={this.state.books[0].bookWriter} inputName={this.changeWithInput} /> {/*Sending properties to book function [bookName,bookWriter] & inputName is a variable ={this.changeWithInput} sending an event in parameter*/}
+        {/* <Book bookName={this.state.books[0].bookName} bookWriter={this.state.books[0].bookWriter} inputName={this.changeWithInput} /> 
+        Sending properties to book function [bookName,bookWriter] & inputName is a variable ={this.changeWithInput} sending an event in parameter
         <Book bookName={this.state.books[1].bookName} bookWriter={this.state.books[1].bookWriter} />
-        <Book bookName={this.state.books[2].bookName} bookWriter={this.state.books[2].bookWriter} change={this.changeBookState.bind(this, "Amar Bondhu Rashed")} /> {/*Sending properties to book function [bookName,bookWriter] & change= is a variable {this.changeBookState.bind(this, "Amar Bondhu Rashed")} sending event and value as parameters*/}
+        <Book bookName={this.state.books[2].bookName} bookWriter={this.state.books[2].bookWriter} change={this.changeBookState.bind(this, "Amar Bondhu Rashed")} /> Sending properties to book function [bookName,bookWriter] & change= is a variable {this.changeBookState.bind(this, "Amar Bondhu Rashed")} sending event and value as parameters */}
+        {books}
 
-        <button onClick={() => this.changeBookState("Amar Bondhu CTO")}>Change State</button> {/*onClick={() => this.changeBookState("Amar Bondhu CTO") sending bookName as parameters to an event fuction using an arrow function*/}
+        <button onClick={() => this.changeBookState("Amar Bondhu CTO")}>Change State</button>
+        {/*onClick={() => this.changeBookState("Amar Bondhu CTO") sending bookName as parameters to an event fuction using an arrow function*/}
         <input type="text" onChange={this.changeWithInput}></input>
       </div>
     );
