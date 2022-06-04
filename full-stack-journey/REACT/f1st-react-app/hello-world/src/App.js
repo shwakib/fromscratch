@@ -32,6 +32,15 @@ class App extends Component {
       ]
     });
   }
+  changeWithInput = (event) => {
+    this.setState({
+      books: [
+        { bookName: event.target.value, bookWriter: "George Orwell" },
+        { bookName: "The Da Vinci Code", bookWriter: "Dan Brown" },
+        { bookName: "Metmorphosis", bookWriter: "Franz Kafka" }
+      ]
+    });
+  }
   // constructor() {
   //   super();
   //   this.state = {};
@@ -45,10 +54,12 @@ class App extends Component {
         {/* <Book bookName="Harry Potter" bookWriter="George Orwell" />
         <Book bookName="The Da Vinci Code" bookWriter="Dan Brown" />
         <Book bookName="The Alchemist" bookWriter="Paulo Coelho" /> */}
-        <Book bookName={this.state.books[0].bookName} bookWriter={this.state.books[0].bookWriter} />
+        <Book bookName={this.state.books[0].bookName} bookWriter={this.state.books[0].bookWriter} inputName={this.changeWithInput} />
         <Book bookName={this.state.books[1].bookName} bookWriter={this.state.books[1].bookWriter} />
         <Book bookName={this.state.books[2].bookName} bookWriter={this.state.books[2].bookWriter} change={this.changeBookState.bind(this, "Amar Bondhu Rashed")} />
+
         <button onClick={() => this.changeBookState("Amar Bondhu CTO")}>Change State</button>
+        <input type="text" onChange={this.changeWithInput}></input>
       </div>
     );
   }
