@@ -21,7 +21,8 @@ class App extends Component {
       { id: 1, bookName: "Harry Potter", bookWriter: "George Orwell" },
       { id: 2, bookName: "The Da Vinci Code", bookWriter: "Dan Brown" },
       { id: 3, bookName: "The Alchemist", bookWriter: "Paulo Coelho" }
-    ]
+    ],
+    showBooks: true
   }
   // changeBookState = (newBookName) => {
   //   this.setState({
@@ -32,13 +33,16 @@ class App extends Component {
   //     ]
   //   });
   // }
-  changeWithInput = (event) => {
+  changeWithInput = (event, index) => {
+    const book = {
+      ...this.state.books[index]
+    }
+    book.bookName = event.target.value;
+    const books = [...this.state.books];
+    books[index] = book;
+
     this.setState({
-      books: [
-        { bookName: event.target.value, bookWriter: "George Orwell" },
-        { bookName: "The Da Vinci Code", bookWriter: "Dan Brown" },
-        { bookName: "Metmorphosis", bookWriter: "Franz Kafka" }
-      ]
+      books: books
     });
   }
   deletBookState = (index) => {
@@ -49,6 +53,11 @@ class App extends Component {
     this.setState({
       books: books
     })
+  }
+  toggleBooks = () => {
+    this.setState({
+      showBooks: !this.state.showBooks
+    });
   }
   // constructor() {
   //   super();
@@ -63,19 +72,23 @@ class App extends Component {
     };
 
     // const booksState = this.state.books;
-    const books = this.state.books.map((book, index) => {
-      console.log(book.bookName);
-      console.log(book.bookWriter);
-      console.log(index);
-      return (
-        <Book
-          bookName={book.bookName}
-          bookWriter={book.bookWriter}
-          delete={() => this.deletBookState(index)}
-          key={book.id}
-        />
-      )
-    });
+    let books = null;
+    if (this.state.showBooks) {
+      books = this.state.books.map((book, index) => {
+        console.log(book.bookName);
+        console.log(book.bookWriter);
+        console.log(index);
+        return (
+          <Book
+            bookName={book.bookName}
+            bookWriter={book.bookWriter}
+            delete={() => this.deletBookState(index)}
+            key={book.id}
+            inputName={(event) => this.changeWithInput(event, index)}
+          />
+        )
+      });
+    }
     console.log(books);
 
     return (
@@ -90,6 +103,10 @@ class App extends Component {
         Sending properties to book function [bookName,bookWriter] & inputName is a variable ={this.changeWithInput} sending an event in parameter
         <Book bookName={this.state.books[1].bookName} bookWriter={this.state.books[1].bookWriter} />
         <Book bookName={this.state.books[2].bookName} bookWriter={this.state.books[2].bookWriter} change={this.changeBookState.bind(this, "Amar Bondhu Rashed")} /> Sending properties to book function [bookName,bookWriter] & change= is a variable {this.changeBookState.bind(this, "Amar Bondhu Rashed")} sending event and value as parameters */}
+
+        <button onClick={this.toggleBooks}>Toggle Books</button>
+
+        {/* {books} */}
         {books}
 
         {/* <button onClick={() => this.changeBookState("Amar Bondhu CTO")}>Change State</button> */}
