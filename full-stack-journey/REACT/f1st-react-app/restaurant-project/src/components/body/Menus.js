@@ -16,7 +16,7 @@ class Menus extends Component {
             < div className="container" >
                 <div className="row">
                     <div className="col-6">
-                        {menu};
+                        {menu}
                     </div>
                 </div>
             </div >
