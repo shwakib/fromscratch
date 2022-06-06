@@ -6,7 +6,7 @@ const menuItem = (props) => {
         <div>
             <Card style={{ margin: "10px" }}>
                 <CardBody>
-                    <CardImg width="100%" alt={props.dish.name} src={props.dish.image} style={{ opacity: '0.5' }} />
+                    <CardImg width="100%" alt={props.dish.name} src={props.dish.image} style={{ opacity: '0.7' }} />
                     <CardImgOverlay>
                         <CardTitle onClick={props.DishSelect} style={{ cursor: "pointer" }}>
                             {props.dish.name}
@@ -14,7 +14,7 @@ const menuItem = (props) => {
                     </CardImgOverlay>
                 </CardBody>
             </Card>
-        </div>
+        </div >
     )
 }
 

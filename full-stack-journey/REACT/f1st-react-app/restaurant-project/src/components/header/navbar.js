@@ -5,7 +5,7 @@ const navBar = () => {
     return (
         <div>
             <Navbar dark color="dark">
-                <div className="container"><NavbarBrand href="/">Bohubrihi Restaurant</NavbarBrand></div>
+                <div><NavbarBrand style={{ right: "500px" }} href="/">Bohubrihi Restaurant</NavbarBrand></div>
             </Navbar>
         </div>
     )
