@@ -10,8 +10,10 @@ const dishdetail = (props) => {
                 <CardBody style={{ textAlign: "left" }}>
                     <CardTitle>{props.dish.name}</CardTitle>
                     <CardText style={{ textAlign: "justify" }}>
-                        <p>{props.dish.description}</p>
-                        <p>BDT: {props.dish.price}/=</p>
+                        {props.dish.description}
+                    </CardText>
+                    <CardText style={{ textAlign: "justify" }}>
+                        BDT: {props.dish.price}/=
                     </CardText>
                     <hr />
                     <h3>Review's and Comment's about {props.dish.name} </h3>
