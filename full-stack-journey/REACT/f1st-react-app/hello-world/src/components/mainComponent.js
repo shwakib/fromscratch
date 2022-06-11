@@ -48,9 +48,6 @@ class MainComponent extends Component {
         });
     }
 
-    UNSAFE_componentWillMount() {
-        console.log("MainComponent will mount");
-    }
     componentDidMount() {
         console.log("Main Component Did mount");
     }
@@ -58,11 +55,24 @@ class MainComponent extends Component {
         console.log("U MainComponent shouldComponentUpdate-State", nextProps, nextState);
         return true;
     }
-    UNSAFE_componentWillUpdate(nextProps, nextState) {
-        console.log("U MainComponent WillComponentUpdate-State", nextProps, nextState);
-    }
     componentDidUpdate(nextProps, nextState) {
         console.log("U MainComponent componentDidUpdate-State", nextProps, nextState);
+    }
+    // UNSAFE_componentWillMount() {
+    //     console.log("MainComponent will mount");
+    // }
+    // UNSAFE_componentWillUpdate(nextProps, nextState) {
+    //     console.log("U MainComponent WillComponentUpdate-State", nextProps, nextState);
+    // }
+
+    //Substitute of UNSAFE_componentWillUpdate
+    static getDerivedStateFromProps(nextProps, prevState) {
+        console.log("Main Component getDerivedStateFromProps", nextProps, prevState);
+        return prevState;
+    }
+
+    getSnapshotBeforeUpdate() {
+        console.log("U Main Component getSnapshotBeforeUpdate");
     }
 
     // constructor() {
