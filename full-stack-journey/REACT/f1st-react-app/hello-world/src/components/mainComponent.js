@@ -4,9 +4,13 @@ import bookList from '../assets/books.js';
 import BookList from "./lists/BookList.js";
 
 class MainComponent extends Component {
-    state = {
-        books: bookList,
-        showBooks: true
+    constructor(props) {
+        super(props);
+        this.state = {
+            books: bookList,
+            showBooks: true
+        };
+        console.log("Main Component Constructor");
     }
     // changeBookState = (newBookName) => {
     //   this.setState({
@@ -43,11 +47,21 @@ class MainComponent extends Component {
             showBooks: !this.state.showBooks
         });
     }
+
+    UNSAFE_componentWillMount() {
+        console.log("MainComponent will mount");
+    }
+
+    componentDidMount() {
+        console.log("Main Component Did mount");
+    }
+
     // constructor() {
     //   super();
     //   this.state = {};
     // }
     render() {
+        console.log("Main Component Render");
         const style = { //In React, css codes needs to be written as JS code.
             border: "1px solid red",
             borderRadius: '5px', //border-radius, - will not be used.
