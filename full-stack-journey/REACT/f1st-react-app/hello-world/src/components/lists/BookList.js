@@ -23,18 +23,18 @@ import Book from '../representational/Book'
 class BookList extends Component {
     constructor(props) {
         super(props);
-        console.log("Booklist COnstructor");
+        // console.log("Booklist COnstructor");
     }
-    componentDidMount() {
-        console.log("BookList Component Did mount");
-    }
-    shouldComponentUpdate(nextProps, nextState) {
-        console.log("U BookList shouldComponentUpdate", nextProps, nextState);
-        return false;
-    }
-    componentDidUpdate(nextProps, nextState) {
-        console.log("U BookList componentDidUpdate", nextProps, nextState);
-    }
+    // componentDidMount() {
+    //     console.log("BookList Component Did mount");
+    // }
+    // shouldComponentUpdate(nextProps, nextState) {
+    //     console.log("U BookList shouldComponentUpdate", nextProps, nextState);
+    //     return true;
+    // }
+    // componentDidUpdate(nextProps, nextState) {
+    //     console.log("U BookList componentDidUpdate", nextProps, nextState);
+    // }
     // UNSAFE_componentWillMount() {
     //     console.log("BookList Component will mount");
     // }
@@ -46,17 +46,17 @@ class BookList extends Component {
     // }
 
     //Substitute of UNSAFE_componentWillUpdate
-    static getDerivedStateFromProps(nextProps, prevState) {
-        console.log("BookList getDerivedStateFromProps", nextProps, prevState);
-        return prevState;
-    }
+    // static getDerivedStateFromProps(nextProps, prevState) {
+    //     console.log("BookList getDerivedStateFromProps", nextProps, prevState);
+    //     return prevState;
+    // }
 
-    getSnapshotBeforeUpdate() {
-        console.log("U BookList getSnapshotBeforeUpdate");
-    }
+    // getSnapshotBeforeUpdate() {
+    //     console.log("U BookList getSnapshotBeforeUpdate");
+    // }
 
     render() {
-        console.log("BookList Render will mount");
+        // console.log("BookList Render will mount");
         return (
             this.props.books.map((book, index) => {
                 // console.log(book.bookName);
