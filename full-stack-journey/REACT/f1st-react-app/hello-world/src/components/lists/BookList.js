@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import Book from '../representational/Book'
+import Book from '../representational/Book';
+// import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 // const BookList = (props) => {
 //     return (
@@ -57,19 +59,23 @@ class BookList extends Component {
 
     render() {
         // console.log("BookList Render will mount");
+        console.log(this.props);
         return (
             this.props.books.map((book, index) => {
                 // console.log(book.bookName);
                 // console.log(book.bookWriter);
                 // console.log(index);
                 return (
-                    <Book
-                        bookName={book.bookName}
-                        bookWriter={book.bookWriter}
-                        delete={() => this.props.deletBookState(index)}
-                        key={book.id}
-                        inputName={(event) => this.props.changeWithInput(event, index)}
-                    />
+                    <Link to={"/" + book.id} key={book.id} style={{ textDecoration: 'none', color: 'black' }}>
+                        <Book
+                            bookName={book.bookName}
+                            bookWriter={book.bookWriter}
+                            // description={book.description}
+                            // delete={() => this.props.deletBookState(index)}
+                            // inputName={(event) => this.props.changeWithInput(event, index)}
+                            selectedBookHandler={() => this.props.selectedBookHandler(book.id)}
+                        />
+                    </Link>
                 )
             })
         )

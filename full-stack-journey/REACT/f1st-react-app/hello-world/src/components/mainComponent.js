@@ -4,16 +4,26 @@ import bookList from '../assets/books.js';
 import BookList from "./lists/BookList.js";
 import NewBook from './representational/newBook';
 import { Route, Routes, NavLink } from 'react-router-dom';
+import BookDetails from "./representational/bookDetails.js";
 
 class MainComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
             books: bookList,
-            // showBooks: true
+            // showBooks: true,
+            selectedBook: null
         };
         // console.log("Main Component Constructor");
     }
+
+    selectedBookHandler = bookId => {
+        const book = this.state.books.filter(book => book.id === bookId)[0];
+        this.setState(
+            { selectedBook: book }
+        );
+    }
+
     // changeBookState = (newBookName) => {
     //   this.setState({
     //     books: [
@@ -23,27 +33,27 @@ class MainComponent extends Component {
     //     ]
     //   });
     // }
-    changeWithInput = (event, index) => {
-        const book = {
-            ...this.state.books[index]
-        }
-        book.bookName = event.target.value;
-        const books = [...this.state.books];
-        books[index] = book;
+    // changeWithInput = (event, index) => {
+    //     const book = {
+    //         ...this.state.books[index]
+    //     }
+    //     book.bookName = event.target.value;
+    //     const books = [...this.state.books];
+    //     books[index] = book;
 
-        this.setState({
-            books: books
-        });
-    }
-    deletBookState = (index) => {
-        //const books = this.state.books.slice();
-        //const books = this.state.books.map(item => item);
-        const books = [...this.state.books]
-        books.splice(index, 1);
-        this.setState({
-            books: books
-        })
-    }
+    //     this.setState({
+    //         books: books
+    //     });
+    // }
+    // deletBookState = (index) => {
+    //     //const books = this.state.books.slice();
+    //     //const books = this.state.books.map(item => item);
+    //     const books = [...this.state.books]
+    //     books.splice(index, 1);
+    //     this.setState({
+    //         books: books
+    //     })
+    // }
     // toggleBooks = () => {
     //     this.setState({
     //         showBooks: !this.state.showBooks
@@ -101,15 +111,16 @@ class MainComponent extends Component {
 
         const books = <BookList
             books={this.state.books}
-            deletBookState={this.deletBookState}
-            changeWithInput={this.changeWithInput} />
+            selectedBookHandler={this.selectedBookHandler}
+            /*deletBookState={this.deletBookState}
+            changeWithInput={this.changeWithInput}*/ />
         //console.log(books);
 
         return (
             <div className="App"> {/*root element should be only one and App.css has been added*/}
                 <nav className="nav-bar">
                     <ul>
-                        <li><NavLink to="/" exact>Home</NavLink></li>
+                        <li><NavLink to="/">Home</NavLink></li>
                         <li><NavLink to='/new-book'>New Book</NavLink></li>
                     </ul>
                 </nav>
@@ -131,7 +142,9 @@ class MainComponent extends Component {
                 <Routes>
                     <Route path="/" exact element={books} />
                     <Route path="/new-book" exact element={<NewBook />} />
+                    <Route path="/:id" element={<BookDetails book={this.state.selectedBook} />} />
                 </Routes>
+                {/* <BookDetails book={this.state.selectedBook} /> */}
 
 
                 {/* <button onClick={() => this.changeBookState("Amar Bondhu CTO")}>Change State</button> */}
