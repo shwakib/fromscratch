@@ -1,7 +1,7 @@
 import React from "react";
 
 const bookDetails = (props) => {
-    console.log(props);
+    // console.log(props);
     if (props.book === null) {
         return <div>
 
@@ -12,7 +12,7 @@ const bookDetails = (props) => {
             <div>
                 <h1>{props.book.bookName}</h1>
                 <h3>{props.book.bookWriter}</h3>
-                <p>{props.book.description}</p>
+                <p style={{ textAlign: 'justify' }}>{props.book.description}</p>
             </div>
         )
     }

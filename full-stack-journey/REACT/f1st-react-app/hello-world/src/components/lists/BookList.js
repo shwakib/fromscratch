@@ -59,7 +59,7 @@ class BookList extends Component {
 
     render() {
         // console.log("BookList Render will mount");
-        console.log(this.props);
+        // console.log(this.props);
         return (
             this.props.books.map((book, index) => {
                 // console.log(book.bookName);

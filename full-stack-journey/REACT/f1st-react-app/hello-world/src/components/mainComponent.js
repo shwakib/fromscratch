@@ -3,7 +3,7 @@ import Book from './representational/Book.js';
 import bookList from '../assets/books.js';
 import BookList from "./lists/BookList.js";
 import NewBook from './representational/newBook';
-import { Route, Routes, NavLink } from 'react-router-dom';
+import { Route, Routes, NavLink, Navigate } from 'react-router-dom';
 import BookDetails from "./representational/bookDetails.js";
 
 class MainComponent extends Component {
@@ -140,9 +140,13 @@ class MainComponent extends Component {
                 {/* {books}
                 <NewBook /> */}
                 <Routes>
-                    <Route path="/" exact element={books} />
+                    <Route path="/books" exact element={books} />
                     <Route path="/new-book" exact element={<NewBook />} />
                     <Route path="/:id" element={<BookDetails book={this.state.selectedBook} />} />
+                    <Route
+                        path="/"
+                        element={<Navigate to="/books" replace />}
+                    />
                 </Routes>
                 {/* <BookDetails book={this.state.selectedBook} /> */}
 
