@@ -28,7 +28,7 @@ class navBar extends Component {
     render() {
         return (
             <div>
-                <Navbar dark color="dark" expand="sm">
+                <Navbar dark color="dark" expand="sm" >
                     <NavbarToggler onClick={this.navToggle} />
                     <NavbarBrand href="/">Bohubrihi Restaurant</NavbarBrand>
                     <Collapse navbar isOpen={this.state.isNavOpen}>
