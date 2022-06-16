@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, createRef } from "react";
 
 // const newBook = (props) => {
 //     // console.log(props);
@@ -22,16 +22,23 @@ import React, { Component } from "react";
 class newBook extends Component {
     constructor(props) {
         super(props);
-        this.state = {
+        //Uncontrolled
+        this.bookName = createRef();
+        this.bookWriter = createRef();
+        this.description = createRef();
+
+        //Controlled
+        /*this.state = {
             bookName: "",
             bookWriter: "",
             description: ""
         }
-        this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);*/
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleInputChange = (event) => {
+    //Controlled
+    /*handleInputChange = (event) => {
         // console.log(event.target.value);
         const name = event.target.name;
         const value = event.target.value;
@@ -39,10 +46,13 @@ class newBook extends Component {
         this.setState({
             [name]: value,
         })
-    }
+    }*/
 
     handleSubmit = event => {
-        console.log(this.state);
+        //console.log(this.state);
+        console.log(this.bookName.current.value);
+        console.log(this.bookWriter.current.value);
+        console.log(this.description.current.value);
         event.preventDefault();
     }
 
@@ -53,11 +63,11 @@ class newBook extends Component {
                 <form onSubmit={this.handleSubmit}>
                     <label>Book Name:</label>
                     <br />
-                    <input type="text" name="bookName" value={this.state.bookName} onChange={this.handleInputChange} /><br />
+                    <input type="text" name="bookName" /*Uncontrolled*/ ref={this.bookName} /*Controlled--value={this.state.bookName} onChange={this.handleInputChange}*/ /><br />
                     <label>Writer</label><br />
-                    <input type="text" name="bookWriter" value={this.state.bookWriter} onChange={this.handleInputChange} /><br />
+                    <input type="text" name="bookWriter" /*Uncontrolled*/ ref={this.bookWriter} /*Controlled--value={this.state.bookWriter} onChange={this.handleInputChange}*/ /><br />
                     <label>Description</label><br />
-                    <textarea type="text" name="description" value={this.state.description} onChange={this.handleInputChange} /><br />
+                    <textarea type="text" name="description" /*Uncontrolled*/ ref={this.description} /*Controlled--value={this.state.description} onChange={this.handleInputChange}*/ /><br />
                     <input type='submit' value='Submit' />
                 </form>
             </div>
