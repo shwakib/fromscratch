@@ -18,7 +18,7 @@ class Contact extends Component {
     }
     handleInputChange = event => {
         const pName = event.target.name;
-        const pValue = event.target.value;
+        const pValue = event.target.type === 'checkbox' ? event.target.checked : event.target.value;
         // console.log(pName, pValue);
         this.setState({
             [pName]: pValue
@@ -52,13 +52,13 @@ class Contact extends Component {
                             <FormGroup row>
                                 <Label htmlFor="telNo" md={2}>Telephone Number:</Label>
                                 <Col md={10}>
-                                    <Input onChange={this.handleInputChange} type="tel" name="telNo" placeholder="Telephone Number" value={this.state.telNo} minLength="11" />
+                                    <Input onChange={this.handleInputChange} type="tel" name="telNo" placeholder="Telephone Number" value={this.state.telNo} maxLength="11" minLength="11" />
                                 </Col>
                             </FormGroup>
                             <FormGroup row>
                                 <Label htmlFor="email" md={2}>E-mail Address:</Label>
                                 <Col md={10}>
-                                    <Input onChange={this.handleInputChange} type="text" name="email" placeholder="Email Address" value={this.state.email} />
+                                    <Input onChange={this.handleInputChange} type="email" name="email" placeholder="Email Address" value={this.state.email} />
                                 </Col>
                             </FormGroup>
                             <FormGroup row>
