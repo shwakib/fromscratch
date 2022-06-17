@@ -30,7 +30,7 @@ class navBar extends Component {
             <div>
                 <Navbar dark color="dark" expand="sm" >
                     <NavbarToggler onClick={this.navToggle} />
-                    <NavbarBrand href="/">Bohubrihi Restaurant</NavbarBrand>
+                    <NavbarBrand href="/" >Bohubrihi Restaurant</NavbarBrand>
                     <Collapse navbar isOpen={this.state.isNavOpen}>
                         <Nav className="mr-auto" style={{ textDecoration: 'none', color: 'white' }} navbar>
                             <NavItem>
