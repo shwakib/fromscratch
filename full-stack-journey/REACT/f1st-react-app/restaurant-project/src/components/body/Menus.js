@@ -48,7 +48,7 @@ class Menus extends Component {
                     <CardColumns>
                         {menu}
                     </CardColumns>
-                    <Modal isOpen={this.state.isModalOpen} onClick={this.toggleModal}>
+                    <Modal isOpen={this.state.isModalOpen}>
                         <ModalBody>
                             {dishDetail}
                         </ModalBody>
