@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import { Button, Form, FormGroup, Label, Input, Col } from 'reactstrap';
-import { LocalForm, Control, Errors } from 'react-redux-form'
+import { LocalForm, Control, Errors } from 'react-redux-form';
+
+const required = val => val && val.length;
+const isNumber = val => !isNaN(Number(val));
+const validEmail = val => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val);
 
 class Contact extends Component {
     handleSubmit = values => {
@@ -19,25 +23,47 @@ class Contact extends Component {
                             <FormGroup row>
                                 <Label htmlFor="firstName" md={2}>First Name :</Label>
                                 <Col md={10}>
-                                    <Control.text model='.firstname' name="firstName" placeholder="First Name" className="form-control" />
+                                    <Control.text model='.firstname' name="firstName" placeholder="First Name" className="form-control" validators={{ required }} />
+                                    <Errors className="text-danger" model='.firstname' show="touched" messages={
+                                        {
+                                            required: "Required"
+                                        }
+                                    } />
                                 </Col>
                             </FormGroup>
                             <FormGroup row>
                                 <Label htmlFor="lastName" md={2}>Last Name :</Label>
                                 <Col md={10}>
-                                    <Control.text model='.lastname' name="lastName" placeholder="Last Name" className="form-control" />
+                                    <Control.text model='.lastname' name="lastName" placeholder="Last Name" className="form-control" validators={{ required }} />
+                                    <Errors className="text-danger" model='.lastname' show="touched" messages={
+                                        {
+                                            required: "Required"
+                                        }
+                                    } />
                                 </Col>
                             </FormGroup>
                             <FormGroup row>
                                 <Label htmlFor="telNo" md={2}>Telephone Number:</Label>
                                 <Col md={10}>
-                                    <Control.text model='.telnum' name="telNo" placeholder="Telephone Number" maxLength="11" minLength="11" className="form-control" />
+                                    <Control.text model='.telnum' name="telNo" placeholder="Telephone Number" maxLength="11" minLength="11" className="form-control" validators={{ required, isNumber }} />
+                                    <Errors className="text-danger" model='.telnum' show="touched" messages={
+                                        {
+                                            required: "Required/",
+                                            isNumber: "invalid Telephone Number"
+                                        }
+                                    } />
                                 </Col>
                             </FormGroup>
                             <FormGroup row>
                                 <Label htmlFor="email" md={2}>E-mail Address:</Label>
                                 <Col md={10}>
-                                    <Control.text model='.email' name="email" placeholder="Email Address" className="form-control" />
+                                    <Control.text model='.email' name="email" placeholder="Email Address" className="form-control" validators={{ required, validEmail }} />
+                                    <Errors className="text-danger" model='.email' show="touched" messages={
+                                        {
+                                            required: "Required/",
+                                            validEmail: "Invalid E-mail Address"
+                                        }
+                                    } />
                                 </Col>
                             </FormGroup>
                             <FormGroup row>
@@ -59,7 +85,12 @@ class Contact extends Component {
                             <FormGroup row>
                                 <Label htmlFor="message" md={2}>Your Feedback :</Label>
                                 <Col md={10}>
-                                    <Control.textarea model='.message' name="message" placeholder="Enter Your Feedback" rows="12" className="form-control" />
+                                    <Control.textarea model='.message' name="message" placeholder="Enter Your Feedback" rows="12" className="form-control" validators={{ required }} />
+                                    <Errors className="text-danger" model='.message' show="touched" messages={
+                                        {
+                                            required: "Required"
+                                        }
+                                    } />
                                 </Col>
                             </FormGroup>
                             <FormGroup row>
