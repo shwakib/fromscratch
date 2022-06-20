@@ -6,7 +6,8 @@ import COMMENTS from "../../data/comments";
 import { CardColumns, Modal, ModalBody, ModalFooter, Button } from 'reactstrap'
 import { connect } from 'react-redux';
 import * as actionTypes from '../../redux/actionTypes';
-import { addComment } from '../../redux/actionCreators'
+import { addComment, fetchDishes } from '../../redux/actionCreators';
+import Loading from './loading'
 
 const mapStateToProps = state => {
     return {
@@ -17,7 +18,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        addComment: (dishID, rating, author, comment) => dispatch(addComment(dishID, rating, author, comment))
+        addComment: (dishID, rating, author, comment) => dispatch(addComment(dishID, rating, author, comment)),
+        fetchDishes: () => dispatch(fetchDishes())
     }
 }
 
@@ -34,48 +36,61 @@ class Menus extends Component {
             isModalOpen: !this.state.isModalOpen
         })
     }
+
+    componentDidMount() {
+        this.props.fetchDishes();
+    }
+
     render() {
         document.title = "Menu";
-        const menu = this.props.dishes.map(item => {
+
+        if (this.props.dishes.isLoading) {
             return (
-                <MenuItem dish={item} key={item.id} DishSelect={() => this.onDishSelect(item)} />
+                <Loading />
             )
-        });
-
-        let dishDetail = null;
-        if (this.state.selectedDish != null) {
-            const comments = this.props.comments.filter(comment => {
-                return comment.dishId === this.state.selectedDish.id;
-            })
-            dishDetail = <Dishdetail dish={this.state.selectedDish} comments={comments} addComment={this.props.addComment} />
         }
+        else {
+            const menu = this.props.dishes.dishes.map(item => {
+                return (
+                    <MenuItem dish={item} key={item.id} DishSelect={() => this.onDishSelect(item)} />
+                )
+            });
 
-        return (
-            < div className="container" >
-                <div className="row">
-                    <CardColumns>
-                        {menu}
-                    </CardColumns>
-                    <Modal isOpen={this.state.isModalOpen}>
-                        <ModalBody>
+            let dishDetail = null;
+            if (this.state.selectedDish != null) {
+                const comments = this.props.comments.filter(comment => {
+                    return comment.dishId === this.state.selectedDish.id;
+                })
+                dishDetail = <Dishdetail dish={this.state.selectedDish} comments={comments} addComment={this.props.addComment} />
+            }
+
+            return (
+                < div className="container" >
+                    <div className="row">
+                        <CardColumns>
+                            {menu}
+                        </CardColumns>
+                        <Modal isOpen={this.state.isModalOpen}>
+                            <ModalBody>
+                                {dishDetail}
+                            </ModalBody>
+                            <ModalFooter>
+                                <Button color="danger" onClick={this.toggleModal}>
+                                    Close
+                                </Button>
+                            </ModalFooter>
+                        </Modal>
+                        {/* <div className="col-6">
+                            {menu}
+                        </div> */}
+                        {/* <div className="col-6">
                             {dishDetail}
-                        </ModalBody>
-                        <ModalFooter>
-                            <Button color="danger" onClick={this.toggleModal}>
-                                Close
-                            </Button>
-                        </ModalFooter>
-                    </Modal>
-                    {/* <div className="col-6">
-                        {menu}
-                    </div> */}
-                    {/* <div className="col-6">
-                        {dishDetail}
-                    </div> */}
-                </div>
-            </div >
-        )
-    };
+                        </div> */}
+                    </div>
+                </div >
+            )
+        };
+    }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Menus);
