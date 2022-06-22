@@ -1,12 +1,10 @@
 import React, { Component } from "react";
-import DISHES from "../../data/dishes";
 import MenuItem from "./menuItem";
 import Dishdetail from "./dishDetail";
-import COMMENTS from "../../data/comments";
 import { CardColumns, Modal, ModalBody, ModalFooter, Button } from 'reactstrap'
 import { connect } from 'react-redux';
 import * as actionTypes from '../../redux/actionTypes';
-import { addComment, fetchDishes } from '../../redux/actionCreators';
+import { addComment, fetchDishes, fetchComments } from '../../redux/actionCreators';
 import Loading from './loading'
 
 const mapStateToProps = state => {
@@ -19,7 +17,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         addComment: (dishID, rating, author, comment) => dispatch(addComment(dishID, rating, author, comment)),
-        fetchDishes: () => dispatch(fetchDishes())
+        fetchDishes: () => dispatch(fetchDishes()),
+        fetchComments: () => dispatch(fetchComments())
     }
 }
 
@@ -39,6 +38,7 @@ class Menus extends Component {
 
     componentDidMount() {
         this.props.fetchDishes();
+        this.props.fetchComments();
     }
 
     render() {
@@ -58,10 +58,10 @@ class Menus extends Component {
 
             let dishDetail = null;
             if (this.state.selectedDish != null) {
-                const comments = this.props.comments.filter(comment => {
+                const comments = this.props.comments.comments.filter(comment => {
                     return comment.dishId === this.state.selectedDish.id;
                 })
-                dishDetail = <Dishdetail dish={this.state.selectedDish} comments={comments} addComment={this.props.addComment} />
+                dishDetail = <Dishdetail dish={this.state.selectedDish} comments={comments} addComment={this.props.addComment} commentsIsLoading={this.props.comments.isLoading} />
             }
 
             return (
