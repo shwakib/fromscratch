@@ -41,18 +41,18 @@ class Contact extends Component {
                         })
                     }, 2000)
                 }
-                else {
+            })
+            .catch(error => {
+                this.setState({
+                    alertShow: true,
+                    alertText: error.message,
+                    alertType: "danger"
+                })
+                setTimeout(() => {
                     this.setState({
-                        alertShow: true,
-                        alertText: "Error Occured",
-                        alertType: "danger"
-                    });
-                    setTimeout(() => {
-                        this.setState({
-                            alertShow: false
-                        })
-                    }, 2000)
-                }
+                        alertShow: false
+                    })
+                }, 2000)
             })
         this.props.resetFeedbackForm();
     }
