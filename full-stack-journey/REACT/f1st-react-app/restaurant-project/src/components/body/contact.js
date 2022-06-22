@@ -1,7 +1,9 @@
 import React, { Component } from "react";
-import { Button, FormGroup, Label, Col } from 'reactstrap';
+import { Button, FormGroup, Label, Col, Alert } from 'reactstrap';
 import { Form, Control, Errors, actions } from 'react-redux-form';
 import { connect } from 'react-redux';
+import axios from 'axios';
+import { baseURL } from "../../redux/baseURL";
 
 const mapDispatchToProps = dispatch => {
     return {
@@ -16,8 +18,42 @@ const isNumber = val => !isNaN(Number(val));
 const validEmail = val => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val);
 
 class Contact extends Component {
+    state = {
+        alertShow: false,
+        alertText: null,
+        alertType: null
+    }
+
     handleSubmit = values => {
-        console.log(values);
+        //console.log(values);
+        axios.post(baseURL + 'feedback', values)
+            .then(response => response.status)
+            .then(status => {
+                if (status === 201) {
+                    this.setState({
+                        alertShow: true,
+                        alertText: "Submitted Successfully",
+                        alertType: "success"
+                    });
+                    setTimeout(() => {
+                        this.setState({
+                            alertShow: false
+                        })
+                    }, 2000)
+                }
+                else {
+                    this.setState({
+                        alertShow: true,
+                        alertText: "Error Occured",
+                        alertType: "danger"
+                    });
+                    setTimeout(() => {
+                        this.setState({
+                            alertShow: false
+                        })
+                    }, 2000)
+                }
+            })
         this.props.resetFeedbackForm();
     }
     render() {
@@ -27,6 +63,7 @@ class Contact extends Component {
                 <div className="row row-content" style={{ paddingLeft: "20px", textAlign: "left" }}>
                     <div className="col-12" style={{ padding: "10px 0px 10px 15px" }}>
                         <h3>Send us your Feedback</h3>
+                        <Alert isOpen={this.state.alertShow} color={this.state.alertType}>{this.state.alertText}</Alert>
                     </div>
                     <div className="col-12 col-md-7">
                         <Form model='feedback' onSubmit={values => { this.handleSubmit(values) }}>
@@ -59,7 +96,7 @@ class Contact extends Component {
                                     <Errors className="text-danger" model='.telnum' show="touched" messages={
                                         {
                                             required: "Required/",
-                                            isNumber: "invalid Telephone Number"
+                                            isNumber: "Invalid Telephone Number"
                                         }
                                     } />
                                 </Col>

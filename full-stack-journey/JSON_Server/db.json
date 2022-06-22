@@ -211,5 +211,26 @@
       "id": 20
     }
   ],
-  "feedback": []
+  "feedback": [
+    {
+      "firstname": "Sifat Hasan",
+      "lastname": "Wakib",
+      "telnum": "01714049024",
+      "email": "sifat6460@gmail.com",
+      "agree": true,
+      "contacttype": "Email",
+      "message": "Call me",
+      "id": 1
+    },
+    {
+      "firstname": "Maruf Ahmed",
+      "lastname": "Badhon",
+      "telnum": "01792036435",
+      "email": "sifathasanwakib@gmail.com",
+      "agree": true,
+      "contacttype": "Telephone",
+      "message": "I nmeed foods",
+      "id": 2
+    }
+  ]
 }
