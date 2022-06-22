@@ -62,3 +62,31 @@ class App extends Component {
 }
 
 export default App;
+
+//db.json
+/*
+{
+  "dishes": [
+    {
+      "id": 0,
+      "name": "Burger",
+      "price": 199
+    },
+    {
+      "id": 1,
+      "name": "Nachos",
+      "price": 150
+    },
+    {
+      "name": "Pizza",
+      "price": 295,
+      "id": 2
+    },
+    {
+      "name": "Steak",
+      "price": 800,
+      "id": 3
+    }
+  ],
+  "comments": []
+}*/

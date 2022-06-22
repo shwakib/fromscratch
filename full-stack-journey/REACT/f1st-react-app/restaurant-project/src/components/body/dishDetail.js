@@ -1,13 +1,14 @@
 import React from "react";
 import { Card, CardImg, CardImgOverlay, CardBody, CardTitle, CardText } from 'reactstrap';
 import LoadComments from "./loadComments";
-import ComemntForm from './commentForm'
+import ComemntForm from './commentForm';
+import { baseURL } from "../../redux/baseURL";
 
 const dishdetail = (props) => {
     return (
         <div>
             <Card style={{ marginTop: "10px" }}>
-                <CardImg top src={props.dish.image} alt={props.dish.name} />
+                <CardImg top src={baseURL + props.dish.image} alt={props.dish.name} />
                 <CardBody style={{ textAlign: "left" }}>
                     <CardTitle><strong>{props.dish.name}</strong></CardTitle>
                     <CardText style={{ textAlign: "justify" }}>
