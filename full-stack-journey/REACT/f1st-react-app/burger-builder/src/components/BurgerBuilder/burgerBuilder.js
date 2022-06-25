@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import Burger from './Burger/burger';
 import Controls from './Controls/controls';
 import Summary from './Summary/summary';
-import { Modal, ModalBody, ModalHeader, ModalFooter, Button } from 'reactstrap'
+import { Modal, ModalBody, ModalHeader, ModalFooter, Button } from 'reactstrap';
+import { useNavigate } from 'react-router-dom';
 
 const ingredientsPrices = {
     salad: 20,
@@ -10,7 +11,7 @@ const ingredientsPrices = {
     meat: 90
 }
 
-export default class burgerBuilder extends Component {
+class BurgerBuilder extends Component {
     state = {
         ingredients: [
             { type: 'salad', amount: 0 },
@@ -56,6 +57,14 @@ export default class burgerBuilder extends Component {
         })
     }
 
+    handleCheckout = () => {
+        this.props.history('/checkout');
+    }
+
+    componentDidMount() {
+        console.log(this.props);
+    }
+
     updatePurchasable = ingredients => {
         const sum = ingredients.reduce((sum, element) => {
             return sum + element.amount;
@@ -74,11 +83,11 @@ export default class burgerBuilder extends Component {
                 <Modal isOpen={this.state.modalOpen}>
                     <ModalHeader>Your Order Summary</ModalHeader>
                     <ModalBody>
-                        <h5>Total price: {this.state.totalprice.toFixed(0)} BDT</h5>
                         <Summary ingredients={this.state.ingredients} />
+                        <h5>Total price: {this.state.totalprice.toFixed(0)} BDT</h5>
                     </ModalBody>
                     <ModalFooter>
-                        <Button color='success' onClick={this.toggleModal}>Continue to Checkout</Button>
+                        <Button color='success' onClick={this.handleCheckout}>Continue to Checkout</Button>
                         <Button color='danger' onClick={this.toggleModal}>Cancel</Button>
                     </ModalFooter>
                 </Modal>
@@ -86,3 +95,7 @@ export default class burgerBuilder extends Component {
         )
     }
 }
+
+export default props => (
+    <BurgerBuilder history={useNavigate()} />
+);
