@@ -13,8 +13,8 @@ const BuildControl = props => {
             <div className="me-auto ml-5" style={{ fontWeight: 'bold', fontSize: '1.2rem' }}>
                 {props.label}
             </div>
-            <button className="btn btn-danger btn-sm m-1">Less</button>
-            <button className="btn btn-success btn-sm m-1">More</button>
+            <button style={{ fontSize: '20px', borderRadius: '4px' }} className="btn btn-danger btn-sm m-1" onClick={props.removed}>-</button>
+            <button style={{ fontSize: '20px', borderRadius: '4px' }} className="btn btn-success btn-sm m-1" onClick={props.added}>+</button>
         </div>
     )
 }
@@ -27,7 +27,7 @@ const controls = props => {
                 <CardBody>
                     {
                         controlsArr.map(item => {
-                            return <BuildControl label={item.label} type={item.type} key={Math.random()} />
+                            return <BuildControl label={item.label} type={item.type} key={Math.random()} added={() => props.ingredientsAdded(item.type)} removed={() => props.ingredientsRemoved(item.type)} />
                         })
                     }
                 </CardBody>
