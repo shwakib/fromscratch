@@ -13,8 +13,8 @@ const BuildControl = props => {
             <div className="me-auto ml-5" style={{ fontWeight: 'bold', fontSize: '1.2rem' }}>
                 {props.label}
             </div>
-            <button style={{ fontSize: '20px', borderRadius: '4px' }} className="btn btn-success btn-sm m-1" onClick={props.added}>+</button>
-            <button style={{ fontSize: '20px', borderRadius: '4px' }} className="btn btn-danger btn-sm m-1" onClick={props.removed}>-</button>
+            <button style={{ fontSize: '20px', borderRadius: '4px' }} className="btn btn-success btn-sm m-1" onClick={props.addedIngre}>+</button>
+            <button style={{ fontSize: '20px', borderRadius: '4px' }} className="btn btn-danger btn-sm m-1" onClick={props.removedIngre}>-</button>
         </div>
     )
 }
@@ -27,13 +27,13 @@ const controls = props => {
                 <CardBody>
                     {
                         controlsArr.map(item => {
-                            return <BuildControl label={item.label} type={item.type} key={Math.random()} added={() => props.ingredientsAdded(item.type)} removed={() => props.ingredientsRemoved(item.type)} />
+                            return <BuildControl label={item.label} type={item.type} key={Math.random()} addedIngre={() => props.ingredientsAdded(item.type)} removedIngre={() => props.ingredientsRemoved(item.type)} />
                         })
                     }
                 </CardBody>
                 <CardFooter>
                     <h5>Price:<strong>{props.price}</strong> BDT</h5>
-                    <Button disabled={!props.purchasable} style={{ width: '100%' }} onClick={props.toggleModal}>Order Now</Button>
+                    <Button disabled={!props.purchasable} style={{ width: '100%', backgroundColor: '#D70F64' }} onClick={props.toggleModal}>Order Now</Button>
                 </CardFooter>
             </Card>
         </div>

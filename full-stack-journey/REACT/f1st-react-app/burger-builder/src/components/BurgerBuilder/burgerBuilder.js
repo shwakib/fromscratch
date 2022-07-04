@@ -3,7 +3,7 @@ import Burger from './Burger/burger';
 import Controls from './Controls/controls';
 import Summary from './Summary/summary';
 import { Modal, ModalBody, ModalHeader, ModalFooter, Button } from 'reactstrap';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { addIngredients, removeIngredients, updatePurchasable } from '../../redux/actionCreators';
 
@@ -33,6 +33,7 @@ class BurgerBuilder extends Component {
         this.props.updatePurchasable();
     }
     removeIngredientHandle = type => {
+        console.log('button clicked');
         this.props.removeIngredients(type);
         this.props.updatePurchasable();
     }
@@ -45,13 +46,13 @@ class BurgerBuilder extends Component {
 
     handleCheckout = () => {
         console.log('button clicked');
-        console.log(this.props);
+        // console.log(this.props);
         this.props.navigate('/checkout');
     }
 
-    componentDidMount() {
-        console.log(this.props);
-    }
+    // componentDidMount() {
+    //     console.log(this.props);
+    // }
 
     render() {
         return (
