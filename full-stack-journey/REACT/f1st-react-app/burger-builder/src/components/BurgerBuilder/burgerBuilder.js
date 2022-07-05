@@ -45,7 +45,6 @@ class BurgerBuilder extends Component {
     }
 
     handleCheckout = () => {
-        console.log('button clicked');
         // console.log(this.props);
         this.props.navigate('/checkout');
     }
