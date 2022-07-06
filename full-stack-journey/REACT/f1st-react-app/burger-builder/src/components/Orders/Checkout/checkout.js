@@ -1,8 +1,10 @@
 import React, { Component } from "react";
-import { Button } from 'reactstrap';
+import { Button, Modal, ModalBody } from 'reactstrap';
 import { useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import Spinner from '../../Spinner/spinner';
+import { resetIngredients } from '../../../redux/actionCreators';
 
 const mapStateToProps = state => {
     return {
@@ -12,13 +14,22 @@ const mapStateToProps = state => {
     }
 }
 
+const mapDispatchToProps = dispatch => {
+    return {
+        resetIngredients: () => dispatch(resetIngredients())
+    }
+}
+
 class Checkout extends Component {
     state = {
         values: {
             deliveryAddress: '',
             phone: '',
             paymentType: "Cash On Delivery"
-        }
+        },
+        isLoading: false,
+        isModalOpen: false,
+        modalMessage: ''
     }
 
     goback = () => {
@@ -35,6 +46,9 @@ class Checkout extends Component {
     }
 
     submitHandler = () => {
+        this.setState({
+            isLoading: true
+        })
         const order = {
             ingredients: this.props.ingredients,
             customerInfo: this.state.values,
@@ -42,21 +56,35 @@ class Checkout extends Component {
             orderTime: new Date()
         };
         axios.post("https://burger-builder-9e98c-default-rtdb.asia-southeast1.firebasedatabase.app/orders.json", order)
-            .then(response => console.log(response))
-            .catch(err => console.log(err))
+            .then(response => {
+                if (response.status === 200) {
+                    this.setState({
+                        isLoading: false,
+                        isModalOpen: true,
+                        modalMessage: "Order Placed Successfully!"
+                    });
+                    this.props.resetIngredients();
+                }
+                else {
+                    this.setState({
+                        isLoading: false,
+                        isModalOpen: true,
+                        modalMessage: "Something Went Wrong! Order Again!"
+                    })
+                }
+            })
+            .catch(err => {
+                this.setState({
+                    isLoading: false,
+                    isModalOpen: true,
+                    modalMessage: "Something Went Wrong! Order Again!"
+                })
+            })
         console.log(order);
-        this.setState({
-            values: {
-                deliveryAddress: '',
-                phone: '',
-                paymentType: "Cash On Delivery"
-            }
-        });
-        this.props.navigate("/");
     }
 
     render() {
-        return (
+        let form = (
             <div>
                 <h4 style={{ border: "1px solid grey", boxShadow: "1px 1px #888888", borderRadius: "5px", padding: "20px" }}>Payment: {this.props.totalprice} /=</h4>
                 <form style={{ border: "1px solid grey", boxShadow: "1px 1px #888888", borderRadius: "5px", padding: "20px" }}>
@@ -69,9 +97,19 @@ class Checkout extends Component {
                         <option value='bKash'> bKash</option>
                     </select>
                     <br />
-                    <Button color="success" className="mr-auto" onClick={this.submitHandler}>Place Order</Button>
+                    <Button color="success" className="mr-auto" onClick={this.submitHandler} disabled={!this.props.purchasable}>Place Order</Button>
                     <Button color="danger" className="mx-3" onClick={this.goback}>Cancel Order</Button>
                 </form>
+            </div>
+        )
+        return (
+            <div>
+                {this.state.isLoading ? <Spinner /> : form}
+                <Modal isOpen={this.state.isModalOpen} onClick={this.goback}>
+                    <ModalBody>
+                        <p>{this.state.modalMessage}</p>
+                    </ModalBody>
+                </Modal>
             </div>
         )
     }
@@ -86,4 +124,4 @@ const WithNavigate = (props) => {
     return <Checkout {...props} navigate={navigate} />;
 }
 
-export default connect(mapStateToProps)(WithNavigate);
+export default connect(mapStateToProps, mapDispatchToProps)(WithNavigate);
