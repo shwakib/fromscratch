@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import Spinner from '../../Spinner/spinner';
 import { resetIngredients } from '../../../redux/actionCreators';
+import { Formik } from "formik";
 
 const mapStateToProps = state => {
     return {
@@ -22,11 +23,6 @@ const mapDispatchToProps = dispatch => {
 
 class Checkout extends Component {
     state = {
-        values: {
-            deliveryAddress: '',
-            phone: '',
-            paymentType: "Cash On Delivery"
-        },
         isLoading: false,
         isModalOpen: false,
         modalMessage: ''
@@ -36,22 +32,13 @@ class Checkout extends Component {
         this.props.navigate(-1)
     }
 
-    inputChangeHandler = event => {
-        this.setState({
-            values: {
-                ...this.state.values,
-                [event.target.name]: event.target.value,
-            }
-        })
-    }
-
-    submitHandler = () => {
+    submitHandler = (values) => {
         this.setState({
             isLoading: true
         })
         const order = {
             ingredients: this.props.ingredients,
-            customerInfo: this.state.values,
+            customerInfo: values,
             price: this.props.totalprice,
             orderTime: new Date()
         };
@@ -86,20 +73,35 @@ class Checkout extends Component {
     render() {
         let form = (
             <div>
-                <h4 style={{ border: "1px solid grey", boxShadow: "1px 1px #888888", borderRadius: "5px", padding: "20px" }}>Payment: {this.props.totalprice} /=</h4>
-                <form style={{ border: "1px solid grey", boxShadow: "1px 1px #888888", borderRadius: "5px", padding: "20px" }}>
-                    <textarea name="deliveryAddress" value={this.state.values.deliveryAddress} className='form-control' placeholder="Enter your address for delivery" onChange={(e) => this.inputChangeHandler(e)}></textarea>
-                    <br />
-                    <input name="phone" className="form-control" value={this.state.values.phone} placeholder="Your Phone Number" onChange={(e) => this.inputChangeHandler(e)} />
-                    <br />
-                    <select name="paymentType" className="form-control" value={this.state.values.paymentType} onChange={(e) => this.inputChangeHandler(e)}>
-                        <option value='Cash On Delivery'> Cash On Delivery</option>
-                        <option value='bKash'> bKash</option>
-                    </select>
-                    <br />
-                    <Button color="success" className="mr-auto" onClick={this.submitHandler} disabled={!this.props.purchasable}>Place Order</Button>
-                    <Button color="danger" className="mx-3" onClick={this.goback}>Cancel Order</Button>
-                </form>
+                <Formik initialValues={
+                    {
+                        deliveryAddress: '',
+                        phone: '',
+                        paymentType: "Cash On Delivery"
+                    }
+                }
+                    onSubmit={(values) =>
+                        this.submitHandler(values)
+                    }
+                >
+                    {({ values, handleChange, handleSubmit }) => (
+                        <div>
+                            <form onSubmit={handleSubmit}>
+                                <textarea name="deliveryAddress" value={values.deliveryAddress} className='form-control' placeholder="Enter your address for delivery" onChange={handleChange}></textarea>
+                                <br />
+                                <input name="phone" className="form-control" value={values.phone} placeholder="Your Phone Number" onChange={handleChange} />
+                                <br />
+                                <select name="paymentType" className="form-control" value={values.paymentType} onChange={handleChange}>
+                                    <option value='Cash On Delivery'> Cash On Delivery</option>
+                                    <option value='bKash'> bKash</option>
+                                </select>
+                                <br />
+                                <Button type="submit" color="success" className="mr-auto" disabled={!this.props.purchasable}>Place Order</Button>
+                                <Button color="danger" className="mx-3" onClick={this.goback}>Cancel Order</Button>
+                            </form>
+                        </div>
+                    )}
+                </Formik>
             </div>
         )
         return (
