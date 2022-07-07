@@ -7,7 +7,7 @@ const Order = props => {
                 border: '1px solid grey',
                 borderRadius: '5px',
                 padding: '5px',
-                marginRight: '10px',
+                marginRight: '5px',
             }}>
                 {item.amount} X <span style={{ textTransform: "capitalize" }}>{item.type} </span>
             </span>
@@ -24,7 +24,7 @@ const Order = props => {
             <p>Order Number: {props.order.id}</p>
             <p>Delivery Address: {props.order.customerInfo.deliveryAddress}</p>
             <hr />
-            {ingredientsSummary}
+            <p >Ingredients with Burger: {ingredientsSummary}</p>
             <p style={{ paddingTop: '15px' }}>Total Price: {props.order.price}/=</p>
         </div>
     )
