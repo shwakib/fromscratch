@@ -13,6 +13,7 @@ const Order = props => {
             </span>
         )
     })
+    console.log(props.order);
     return (
         <div style={{
             border: '1px solid grey',
@@ -23,6 +24,7 @@ const Order = props => {
         }}>
             <p>Order Number: {props.order.id}</p>
             <p>Delivery Address: {props.order.customerInfo.deliveryAddress}</p>
+            <p>Order Placed at: {props.order.orderTime}</p>
             <hr />
             <p >Ingredients with Burger: {ingredientsSummary}</p>
             <p style={{ paddingTop: '15px' }}>Total Price: {props.order.price}/=</p>

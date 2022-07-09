@@ -53,7 +53,7 @@ class Checkout extends Component {
             ingredients: this.props.ingredients,
             customerInfo: this.state.values,
             price: this.props.totalprice,
-            orderTime: new Date()
+            orderTime: new Date().toUTCString()
         };
         axios.post("https://burger-builder-9e98c-default-rtdb.asia-southeast1.firebasedatabase.app/orders.json", order)
             .then(response => {
