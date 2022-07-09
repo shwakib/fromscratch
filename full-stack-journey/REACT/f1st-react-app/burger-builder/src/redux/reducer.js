@@ -89,6 +89,12 @@ export const reducer = (state = initState, action) => {
                 token: action.payload.token,
                 userID: action.payload.userID
             }
+        case actionTypes.AUTH_LOGOUT:
+            return {
+                ...state,
+                token: null,
+                userID: null
+            }
         default:
             return state;
     }

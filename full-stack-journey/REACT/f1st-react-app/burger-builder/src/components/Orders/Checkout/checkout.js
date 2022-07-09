@@ -80,7 +80,7 @@ class Checkout extends Component {
                     modalMessage: "Something Went Wrong! Order Again!"
                 })
             })
-        console.log(order);
+        // console.log(order);
     }
 
     render() {

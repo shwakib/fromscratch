@@ -16,7 +16,7 @@ const burger = props => {
     if (ingredientArr.length === 0) {
         ingredientArr = <p style={{ paddingTop: '6px' }}>Please Add some Ingredients!</p>
     }
-    console.log(ingredientArr);
+    // console.log(ingredientArr);
     return (
         <div className="Burger">
             <Ingredients type="bread-top" />

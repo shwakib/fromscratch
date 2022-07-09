@@ -22,9 +22,6 @@ class orders extends Component {
     componentDidMount() {
         this.props.fetchOrders();
     }
-    componentDidUpdate() {
-        console.log(this.props);
-    }
     render() {
         let orders = null;
         if (this.props.orderError) {
