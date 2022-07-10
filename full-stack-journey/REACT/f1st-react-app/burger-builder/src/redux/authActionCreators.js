@@ -49,7 +49,8 @@ export const auth = (email, password, mode) => dispatch => {
         })
         .catch(err => {
             dispatch(authLoading(false));
-            console.log(err)
+            console.log(err.response.data.error.message);
+            dispatch(authFailed(err.response.data.error.message));
         })
 }
 
@@ -57,6 +58,13 @@ export const authLoading = isLoading => {
     return {
         type: actionTypes.AUTH_LOADING,
         payload: isLoading,
+    }
+}
+
+export const authFailed = errMsg => {
+    return {
+        type: actionTypes.AUTH_FAILED,
+        payload: errMsg
     }
 }
 
