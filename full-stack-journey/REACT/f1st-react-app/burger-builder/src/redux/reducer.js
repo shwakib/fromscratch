@@ -12,7 +12,9 @@ const initState = {
     totalprice: 80,
     purchasable: false,
     token: null,
-    userID: null
+    userID: null,
+    authLoading: false,
+    authFailedmsg: null
 }
 
 const ingredientsPrices = {
@@ -94,6 +96,11 @@ export const reducer = (state = initState, action) => {
                 ...state,
                 token: null,
                 userID: null
+            }
+        case actionTypes.AUTH_LOADING:
+            return {
+                ...state,
+                authLoading: action.payload,
             }
         default:
             return state;
