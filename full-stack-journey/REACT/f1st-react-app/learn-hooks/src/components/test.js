@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const Test = props => {
     const [myName, setMyName] = useState("");
@@ -16,7 +16,10 @@ const Test = props => {
         })
     }
 
-    console.log("My Info:", myInfo);
+    useEffect(() => {
+        console.log("My Info:", myInfo);
+    }, [myInfo, myName]);
+
     return (
         <div>
             <button onClick={changeState}>Change</button>
