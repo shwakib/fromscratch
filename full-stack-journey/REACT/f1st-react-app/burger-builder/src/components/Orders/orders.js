@@ -8,19 +8,21 @@ const mapStateToProps = state => {
     return {
         orders: state.orders,
         orderLoading: state.orderLoading,
-        orderError: state.orderError
+        orderError: state.orderError,
+        token: state.token,
+        userID: state.userID
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchOrders: () => dispatch(fetchOrders()),
+        fetchOrders: (token, userID) => dispatch(fetchOrders(token, userID)),
     }
 }
 
 class orders extends Component {
     componentDidMount() {
-        this.props.fetchOrders();
+        this.props.fetchOrders(this.props.token, this.props.userID);
     }
     render() {
         let orders = null;
@@ -31,7 +33,7 @@ class orders extends Component {
                 borderRadius: '5px',
                 padding: '20px',
                 marginBottom: '10px'
-            }}>Sorry Failed to Load orders list</p>
+            }}>Sorry Failed to Load Orders</p>
         }
         else {
             if (this.props.orders.length === 0) {
