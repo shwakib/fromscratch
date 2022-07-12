@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Transition } from 'react-transition-group'
+import { Transition, CSSTransition } from 'react-transition-group'
 
 class App extends Component {
   state = {
@@ -8,24 +8,25 @@ class App extends Component {
   }
   render() {
     const animateTime = {
-      enter: 1000, exit: 5000
+      enter: 1000, exit: 500
     }
     return (
       <div className="App">
         <button onClick={() => this.setState({ show: !this.state.show })}>Toggle</button>
-        <Transition in={this.state.show} timeout={animateTime} mountOnEnter unmountOnExit onEnter={() => console.log("OnEnter")} onEntering={() => console.log("OnEntering")} onEntered={() => console.log("OnEntered")} onExit={() => console.log("onExit")} onExiting={() => console.log("OnExiting")} onExited={() => console.log("OnExited")}>
+        <CSSTransition in={this.state.show}
+          timeout={animateTime}
+          mountOnEnter unmountOnExit
+          classNames="myClass">
           {
             mode => (<div style={{
               background: "black",
               color: "white",
               borderRadius: 4,
-              transition: 'opacity 1s ease-out',
-              opacity: mode === "exiting" || mode == "entering" ? 0 : 1
             }}>
               <p>I am some text!</p>
             </div>)
           }
-        </Transition>
+        </CSSTransition>
         <p>I am outside of the Transition!</p>
       </div >
     );
