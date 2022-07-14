@@ -1,12 +1,26 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TextInput } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
 
 export default function App() {
+  const [inputValue, setInputValue] = useState("");
+  const [placeList, setPlaceList] = useState([]);
   return (
     <View style={styles.container}>
-      <Text>Hello! I am Sifat Hasan Wakib</Text>
-      <Text>Hello! I am Sifat Hasan Wakib</Text>
-      <Text>Hello! I am Sifat Hasan Wakib</Text>
+      <View style={styles.inputView}>
+        <TextInput placeholder='Add a Place...' style={{
+          width: "80%",
+          borderBottomWidth: 1,
+          borderColor: "green",
+          padding: 7
+        }} value={inputValue} onChangeText={text => setInputValue(text)} />
+        <Button title='Add' onPress={() => {
+          if (inputValue !== "") {
+            setPlaceList([...placeList, inputValue])
+          }
+        }
+        } />
+      </View>
     </View>
   );
 }
@@ -17,9 +31,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'flex-start',
-    flexDirection: 'column-reverse'
+    flexDirection: 'column'
   },
-  textStyle: {
-    color: "red"
+  inputView: {
+    padding: 20,
+    width: "60%",
+    marginTop: 50,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center"
   }
 });
