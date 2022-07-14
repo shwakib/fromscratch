@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, ScrollView } from 'react-native';
 import ListItem from './components/ListItems/ListItem';
 
 export default function App() {
@@ -9,7 +9,7 @@ export default function App() {
 
   const list = placeList.map((item, i) => {
     return (
-      <ListItem places={item} key={i} />
+      <ListItem places={item} key={i} onItemPressed={() => alert(item)} />
     )
   })
   return (
@@ -28,11 +28,11 @@ export default function App() {
         }
         } />
       </View>
-      <View style={{
+      <ScrollView style={{
         width: "100%"
       }}>
         {list}
-      </View>
+      </ScrollView>
     </View>
   );
 }

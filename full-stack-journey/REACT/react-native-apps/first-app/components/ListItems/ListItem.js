@@ -1,15 +1,16 @@
 import React from "react";
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 const ListItem = props => {
     return (
-        <View style={styles.listItem}>
-            <Text>
-                <ul>
-                    <li>{props.places}</li>
-                </ul>
-            </Text>
-        </View>
+        <TouchableOpacity onPress={props.onItemPressed}>
+            <View style={styles.listItem}>
+                {/* <Unorderedlist>
+                <List><Text>{props.places}</Text></List>
+            </Unorderedlist> */}
+                <Text>{props.places}</Text>
+            </View>
+        </TouchableOpacity>
     )
 }
 
