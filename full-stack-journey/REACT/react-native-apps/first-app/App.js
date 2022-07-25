@@ -1,17 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, Button, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, FlatList } from 'react-native';
 import ListItem from './components/ListItems/ListItem';
 
 export default function App() {
-  const [inputValue, setInputValue] = useState("");
-  const [placeList, setPlaceList] = useState([]);
+  const [inputValue, setInputValue] = useState(""); //State defined
+  const [placeList, setPlaceList] = useState([]); //State defined
 
-  const list = placeList.map((item, i) => {
-    return (
-      <ListItem places={item} key={i} onItemPressed={() => alert(item)} />
-    )
-  })
   return (
     <View style={styles.container}>
       <View style={styles.inputView}>
@@ -23,16 +18,18 @@ export default function App() {
         }} value={inputValue} onChangeText={text => setInputValue(text)} />
         <Button title='Add' onPress={() => {
           if (inputValue !== "") {
-            setPlaceList([...placeList, inputValue])
+            setPlaceList([...placeList, { key: Math.random().toString(), value: inputValue }])
           }
         }
         } />
       </View>
-      <ScrollView style={{
+      <FlatList style={{
         width: "100%"
-      }}>
-        {list}
-      </ScrollView>
+      }} data={placeList} renderItem={info => {
+        return (
+          <ListItem places={info.item.value} onItemPressed={() => alert(info.item.value)} />
+        )
+      }} />
     </View>
   );
 }
