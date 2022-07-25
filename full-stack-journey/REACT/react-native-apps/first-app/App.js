@@ -3,16 +3,30 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, Button, FlatList } from 'react-native';
 import InputPlace from './components/InputPlace/inputPlace';
 import PlaceList from './components/PlaceList/placeList';
+import PlaceDetail from './components/placeDetail/placeDetail';
 
 export default function App() {
   const [inputValue, setInputValue] = useState(""); //State defined
   const [placeList, setPlaceList] = useState([]); //State defined
+  const [selectedPlace, setSelectedPlace] = useState(null);
 
+  const handleSelectedPlace = key => {
+    const place = placeList.find(place => {
+      return place.key === key;
+    })
+    setSelectedPlace(place);
+  }
+
+  let placeDetail = null;
+  if (selectedPlace !== null) {
+    placeDetail = <PlaceDetail place={selectedPlace} />
+  }
   return (
     <View style={styles.container}>
+      {placeDetail}
       <InputPlace
         inputValue={inputValue} setInputValue={setInputValue} placeList={placeList} setPlaceList={setPlaceList} />
-      <PlaceList placeList={placeList} />
+      <PlaceList placeList={placeList} handleSelectedPlace={handleSelectedPlace} />
     </View>
   );
 }

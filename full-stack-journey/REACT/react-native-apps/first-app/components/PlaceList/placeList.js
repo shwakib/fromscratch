@@ -8,7 +8,7 @@ const placeList = props => {
             width: "100%"
         }} data={props.placeList} renderItem={info => {
             return (
-                <ListItem places={info.item.value} onItemPressed={() => alert(info.item.value)} />
+                <ListItem places={info.item.value} onItemPressed={() => props.handleSelectedPlace(info.item.key)} />
             )
         }} />
     )
