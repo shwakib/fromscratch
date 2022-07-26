@@ -16,10 +16,17 @@ export default function App() {
     })
     setSelectedPlace(place);
   }
+  const handleModalClose = () => {
+    setSelectedPlace(null);
+  }
+  const handleDeleteItem = key => {
+    setPlaceList(placeList.filter(place => place.key !== key));
+    setSelectedPlace(null);
+  }
 
   let placeDetail = null;
   if (selectedPlace !== null) {
-    placeDetail = <PlaceDetail place={selectedPlace} />
+    placeDetail = <PlaceDetail place={selectedPlace} handleModalClose={handleModalClose} handleDeleteItem={handleDeleteItem} />
   }
   return (
     <View style={styles.container}>

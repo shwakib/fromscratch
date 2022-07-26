@@ -5,9 +5,11 @@ const placeDetail = props => {
     return (
         <Modal>
             <View>
-                <Text>{props.place.value}</Text>
+                <Image source={props.place.image} style={{ width: "100%", height: 300 }} />
+                <Text style={{ textAlign: "center", fontSize: 40, fontWeight: "bold" }}>{props.place.value}</Text>
                 <View>
-                    <Button title="Delete" />
+                    <Button title="Delete" color="red" onPress={() => props.handleDeleteItem(props.place.key)} />
+                    <Button title="Close" onPress={() => props.handleModalClose()} />
                 </View>
             </View>
         </Modal>

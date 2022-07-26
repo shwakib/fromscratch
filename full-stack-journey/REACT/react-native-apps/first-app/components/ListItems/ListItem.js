@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 
 const ListItem = props => {
     return (
@@ -8,7 +8,8 @@ const ListItem = props => {
                 {/* <Unorderedlist>
                 <List><Text>{props.places}</Text></List>
             </Unorderedlist> */}
-                <Text>{props.places}</Text>
+                <Image source={props.image} style={{ width: 60, height: 50 }} />
+                <Text style={{ paddingLeft: 15 }}>{props.places}</Text>
             </View>
         </TouchableOpacity>
     )
@@ -19,7 +20,8 @@ const styles = StyleSheet.create({
         width: "100%",
         padding: 10,
         backgroundColor: "#eee",
-        margin: 5
+        margin: 5,
+        flexDirection: "row"
     }
 })
 
