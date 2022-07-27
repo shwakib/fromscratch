@@ -1,14 +1,15 @@
 import React from "react";
-import { View, Text } from 'react-native';
+import { View, Text, Button } from 'react-native';
 
-const login = () => {
+const Login = props => {
     return (
         <View>
             <Text>
                 Login Screen
             </Text>
+            <Button title="Login" onPress={() => { props.navigation.navigate("Home") }} />
         </View>
     )
 }
 
-export default login;
+export default Login;
