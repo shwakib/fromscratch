@@ -10,8 +10,8 @@ const Tab = createBottomTabNavigator();
 const NavigationTab = props => {
     return (
         <Tab.Navigator >
-            <Tab.Screen name="Find Places" component={FindPlaces} options={{ tabBarIcon: ({ color, size }) => (<Icon name="md-map" color={color} size={size} />) }} />
-            <Tab.Screen name="Share Places" component={SharePlaces} options={{ tabBarIcon: ({ color, size }) => (<Icon name="arrow-redo-sharp" color={color} size={size} />) }} />
+            <Tab.Screen name="Find Places" component={FindPlaces} options={{ tabBarIcon: ({ color, size }) => (<Icon name="md-map" color={color} size={size} />), tabBarInactiveTintColor: "tomato" }} />
+            <Tab.Screen name="Share Places" component={SharePlaces} options={{ tabBarIcon: ({ color, size }) => (<Icon name="arrow-redo-sharp" color={color} size={size} />), tabBarInactiveTintColor: "tomato" }} />
         </Tab.Navigator>
     )
 }
