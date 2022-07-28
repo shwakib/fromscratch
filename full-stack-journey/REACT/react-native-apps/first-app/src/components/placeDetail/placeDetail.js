@@ -6,7 +6,7 @@ const placeDetail = props => {
     return (
         <Modal>
             <View>
-                <Image source={props.place.image} style={{ width: "100%", height: 300 }} />
+                <Image source={{ uri: props.place.image }} style={{ width: "100%", height: 300 }} />
                 <Text style={{ textAlign: "center", fontSize: 40, fontWeight: "bold" }}>{props.place.value}</Text>
                 <View style={{ alignItems: "center", marginTop: 45 }}>
                     <TouchableOpacity onPress={() => props.handleDeleteItem(props.place.key)}>

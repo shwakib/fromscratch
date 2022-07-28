@@ -8,7 +8,7 @@ const ListItem = props => {
                 {/* <Unorderedlist>
                 <List><Text>{props.places}</Text></List>
             </Unorderedlist> */}
-                <Image source={props.image} style={{ width: 60, height: 50 }} />
+                <Image source={{ uri: props.image }} style={{ width: 60, height: 50 }} />
                 <Text style={{ paddingLeft: 15 }}>{props.places}</Text>
             </View>
         </TouchableOpacity>
