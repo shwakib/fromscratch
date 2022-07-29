@@ -41,3 +41,24 @@ export const loadPlaces = () => dispatch => {
             dispatch(setPlaces(places));
         })
 }
+
+const API_KEY = "AIzaSyAYqBhpJ_oghSLQFS - NlsOjqMy2omD4Jj4";
+export const trySignup = (email, password) => dispatch => {
+    fetch("https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=" + API_KEY, {
+        method: "POST",
+        body: JSON.stringify({
+            email: email, password: password, returnSecuretoken: true
+        }),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+        .catch(err => {
+            console.log(err);
+            alert("Authentication Failed");
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+        })
+}

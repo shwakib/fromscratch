@@ -1,6 +1,14 @@
 import React, { useState } from "react";
 import { View, Text, Button, TextInput, StyleSheet, TouchableOpacity, ImageBackground } from 'react-native';
 import backgroundImage from '../images/home.jpg';
+import { trySignup } from "../../redux/actionCreators";
+import { connect } from 'react-redux'
+
+const mapDispatchToProps = dispatch => {
+    return {
+        trySignup: (email, password) => dispatch(trySignup(email, password))
+    }
+}
 
 const Login = props => {
     const [authStates, setAuthStates] = useState({
@@ -45,6 +53,7 @@ const Login = props => {
                     props.navigation.navigate("Home");
                 } else {
                     if (password === confirmPassword) {
+                        props.trySignup(email, password);
                         props.navigation.navigate("Home");
                     }
                     else {
@@ -118,4 +127,4 @@ const Styles = StyleSheet.create({
     }
 })
 
-export default Login;
+export default connect(null, mapDispatchToProps)(Login);
