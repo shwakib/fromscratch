@@ -1,5 +1,4 @@
 import * as actionTypes from './actionTypes';
-import { navigate } from '../../App';
 
 export const addPlace = place => dispatch => {
     fetch("https://first-react-native-proje-7df03-default-rtdb.asia-southeast1.firebasedatabase.app/places.json", {
@@ -50,7 +49,7 @@ export const authUser = () => {
 }
 
 const API_KEY = "AIzaSyAYqBhpJ_oghSLQFS - NlsOjqMy2omD4Jj4";
-export const trySignup = (email, password) => dispatch => {
+export const trySignup = (email, password, switchViews) => dispatch => {
     fetch("https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=" + API_KEY, {
         method: "POST",
         body: JSON.stringify({
@@ -70,7 +69,7 @@ export const trySignup = (email, password) => dispatch => {
                 alert(data.error.message);
             }
             else {
-                navigate("Login");
+                switchViews();
                 dispatch(authUser());
                 console.log(data);
             }

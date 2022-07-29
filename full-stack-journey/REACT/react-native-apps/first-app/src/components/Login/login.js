@@ -12,7 +12,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        trySignup: (email, password) => dispatch(trySignup(email, password))
+        trySignup: (email, password, switchViews) => dispatch(trySignup(email, password, switchViews))
     }
 }
 
@@ -63,7 +63,7 @@ const Login = props => {
                     }
                 } else {
                     if (password === confirmPassword) {
-                        props.trySignup(email, password);
+                        props.trySignup(email, password, switchViews);
                     }
                     else {
                         alert("Password does not match");
