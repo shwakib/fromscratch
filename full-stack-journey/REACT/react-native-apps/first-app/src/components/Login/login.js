@@ -2,7 +2,13 @@ import React, { useState } from "react";
 import { View, Text, Button, TextInput, StyleSheet, TouchableOpacity, ImageBackground } from 'react-native';
 import backgroundImage from '../images/home.jpg';
 import { trySignup } from "../../redux/actionCreators";
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+
+const mapStateToProps = state => {
+    return {
+        isAuth: state.isAuth,
+    }
+}
 
 const mapDispatchToProps = dispatch => {
     return {
@@ -50,11 +56,14 @@ const Login = props => {
         if (email !== "" && password !== "") {
             if (re.test(email)) {
                 if (authStates.mode === "login") {
-                    props.navigation.navigate("Home");
+                    if (props.isAuth) {
+                        props.navigation.navigate("Home");
+                    } else {
+                        alert("Please Login");
+                    }
                 } else {
                     if (password === confirmPassword) {
                         props.trySignup(email, password);
-                        props.navigation.navigate("Home");
                     }
                     else {
                         alert("Password does not match");
@@ -127,4 +136,4 @@ const Styles = StyleSheet.create({
     }
 })
 
-export default connect(null, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

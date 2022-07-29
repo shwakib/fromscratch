@@ -1,4 +1,5 @@
-import * as actionTypes from './actionTypes'
+import * as actionTypes from './actionTypes';
+import { navigate } from '../navigationRef/navigatorRef';
 
 export const addPlace = place => dispatch => {
     fetch("https://first-react-native-proje-7df03-default-rtdb.asia-southeast1.firebasedatabase.app/places.json", {
@@ -42,6 +43,12 @@ export const loadPlaces = () => dispatch => {
         })
 }
 
+export const authUser = () => {
+    return {
+        type: actionTypes.AUTHENTICATE_USER,
+    }
+}
+
 const API_KEY = "AIzaSyAYqBhpJ_oghSLQFS - NlsOjqMy2omD4Jj4";
 export const trySignup = (email, password) => dispatch => {
     fetch("https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=" + API_KEY, {
@@ -59,6 +66,13 @@ export const trySignup = (email, password) => dispatch => {
         })
         .then(res => res.json())
         .then(data => {
-            console.log(data);
+            if (data.error) {
+                alert(data.error.message);
+            }
+            else {
+                navigate("Login");
+                dispatch(authUser());
+                console.log(data);
+            }
         })
 }

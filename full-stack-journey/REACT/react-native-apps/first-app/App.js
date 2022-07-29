@@ -6,12 +6,12 @@ import { NavigationContainer } from '@react-navigation/native';
 import Login from './src/components/Login/login';
 import NavigationTab from './src/components/navigationTab/navigationTab';
 import { createStackNavigator } from '@react-navigation/stack';
-
+import { navigationref } from './src/navigationRef/navigatorRef'
 const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <NavigationContainer>
+    <NavigationContainer ref={navigationref}>
       <Provider store={Store}>
         <Stack.Navigator>
           <Stack.Screen name='Login' component={Login} />
