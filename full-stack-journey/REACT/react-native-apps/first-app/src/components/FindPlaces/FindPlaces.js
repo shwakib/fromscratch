@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TextInput, Button, FlatList } from 'react-native';
 import PlaceList from '../PlaceList/placeList';
 import PlaceDetail from '../placeDetail/placeDetail'
 import { connect } from 'react-redux';
-import { deletePlace } from '../../redux/actionCreators';
+import { deletePlace, loadPlaces } from '../../redux/actionCreators';
 
 const mapStateToProps = state => {
     return {
@@ -13,12 +13,17 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        deletePlace: key => dispatch(deletePlace(key))
+        deletePlace: key => dispatch(deletePlace(key)),
+        loadPlaces: () => dispatch(loadPlaces())
     }
 }
 
 const FindPlaces = props => {
     const [selectedPlace, setSelectedPlace] = useState(null);
+
+    useEffect(() => {
+        props.loadPlaces();
+    })
 
     const handleSelectedPlace = key => {
         const place = props.placeList.find(place => {
