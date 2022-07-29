@@ -26,4 +26,4 @@ const PickImage = props => {
     )
 }
 
-export default PickImage
+export default PickImage;
