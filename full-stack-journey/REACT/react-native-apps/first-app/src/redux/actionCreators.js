@@ -70,6 +70,32 @@ export const trySignup = (email, password, switchViews) => dispatch => {
             }
             else {
                 switchViews();
+                console.log(data);
+            }
+        })
+}
+
+export const tryLogin = (email, password, navigate) => dispatch => {
+    fetch("https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=" + API_KEY, {
+        method: "POST",
+        body: JSON.stringify({
+            email: email, password: password, returnSecuretoken: true
+        }),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+        .catch(err => {
+            console.log(err);
+            alert("Authentication Failed");
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.error) {
+                alert(data.error.message);
+            }
+            else {
+                navigate("Home");
                 dispatch(authUser());
                 console.log(data);
             }

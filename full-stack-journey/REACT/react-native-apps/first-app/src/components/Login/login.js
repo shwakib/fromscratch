@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, Button, TextInput, StyleSheet, TouchableOpacity, ImageBackground } from 'react-native';
 import backgroundImage from '../images/home.jpg';
-import { trySignup } from "../../redux/actionCreators";
+import { trySignup, tryLogin } from "../../redux/actionCreators";
 import { connect } from 'react-redux';
 
 const mapStateToProps = state => {
@@ -12,7 +12,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        trySignup: (email, password, switchViews) => dispatch(trySignup(email, password, switchViews))
+        trySignup: (email, password, switchViews) => dispatch(trySignup(email, password, switchViews)),
+        tryLogin: (email, password, navigateProps) => dispatch(tryLogin(email, password, navigateProps))
     }
 }
 
@@ -56,11 +57,7 @@ const Login = props => {
         if (email !== "" && password !== "") {
             if (re.test(email)) {
                 if (authStates.mode === "login") {
-                    if (props.isAuth) {
-                        props.navigation.navigate("Home");
-                    } else {
-                        alert("Please Login");
-                    }
+                    props.tryLogin(email, password, props.navigation.navigate);
                 } else {
                     if (password === confirmPassword) {
                         props.trySignup(email, password, switchViews);
