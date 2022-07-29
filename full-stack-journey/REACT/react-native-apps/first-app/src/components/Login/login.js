@@ -14,13 +14,57 @@ const Login = props => {
     const switchViews = () => {
         setAuthStates({
             ...authStates,
-            mode: authStates.mode === "login" ? "signup" : "login"
+            mode: authStates.mode === "login" ? "signup" : "login",
+            inputs: {
+                email: '',
+                password: '',
+                confirmPassword: ''
+            }
         })
     }
+
+    const updateInput = (value, name) => {
+        setAuthStates({
+            ...authStates,
+            inputs: {
+                ...authStates.inputs,
+                [name]: value,
+            }
+        })
+    }
+
+    const re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    const handleAuthValidation = () => {
+        const email = authStates.inputs.email;
+        const password = authStates.inputs.password;
+        const confirmPassword = authStates.inputs.confirmPassword;
+
+        if (email !== "" && password !== "") {
+            if (re.test(email)) {
+                if (authStates.mode === "login") {
+                    props.navigation.navigate("Home");
+                } else {
+                    if (password === confirmPassword) {
+                        props.navigation.navigate("Home");
+                    }
+                    else {
+                        alert("Password does not match");
+                    }
+                }
+            }
+            else {
+                alert("Invalid Email");
+            }
+        }
+        else {
+            alert("Please Input all the fields!")
+        }
+    }
+
     let confirmPasswordField = null;
     if (authStates.mode === "signup") {
         confirmPasswordField = (
-            <TextInput placeholder="Confirm Password" value={authStates.inputs.confirmPassword} style={Styles.inputStyles} />
+            <TextInput placeholder="Confirm Password" value={authStates.inputs.confirmPassword} style={Styles.inputStyles} onChangeText={value => updateInput(value, "confirmPassword")} secureTextEntry={true} />
         )
     }
     return (
@@ -29,10 +73,10 @@ const Login = props => {
                 <TouchableOpacity style={{ ...Styles.btnContainer, backgroundColor: "#1167b1", width: "80%", paddingVertical: 5 }} onPress={() => switchViews()}>
                     <Text style={Styles.btnStyle}>{authStates.mode === "login" ? "Switch to Sign Up" : "Switch to Login"}</Text>
                 </TouchableOpacity>
-                <TextInput placeholder="Your Email Address" value={authStates.inputs.email} style={Styles.inputStyles} />
-                <TextInput placeholder="Password" value={authStates.inputs.password} style={Styles.inputStyles} />
+                <TextInput placeholder="Your Email Address" value={authStates.inputs.email} style={Styles.inputStyles} onChangeText={value => updateInput(value, "email")} />
+                <TextInput placeholder="Password" value={authStates.inputs.password} style={Styles.inputStyles} onChangeText={value => updateInput(value, "password")} secureTextEntry={true} />
                 {confirmPasswordField}
-                <TouchableOpacity style={Styles.btnContainer}>
+                <TouchableOpacity style={Styles.btnContainer} onPress={() => handleAuthValidation()}>
                     <Text style={Styles.btnStyle}>{authStates.mode === "login" ? "Login" : "Sign Up"}</Text>
                 </TouchableOpacity>
             </View>
