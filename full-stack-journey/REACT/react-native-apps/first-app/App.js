@@ -6,7 +6,12 @@ import { NavigationContainer } from '@react-navigation/native';
 import Login from './src/components/Login/login';
 import NavigationTab from './src/components/navigationTab/navigationTab';
 import { createStackNavigator } from '@react-navigation/stack';
-import { navigationref } from './src/navigationRef/navigatorRef'
+
+const navigationref = React.createRef();
+export const navigate = (name, params) => {
+  navigationref.current && navigationref.current.navigate(name, params);
+}
+
 const Stack = createStackNavigator();
 
 export default function App() {

@@ -1,5 +1,5 @@
 import * as actionTypes from './actionTypes';
-import { navigate } from '../navigationRef/navigatorRef';
+import { navigate } from '../../App';
 
 export const addPlace = place => dispatch => {
     fetch("https://first-react-native-proje-7df03-default-rtdb.asia-southeast1.firebasedatabase.app/places.json", {
