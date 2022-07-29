@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { View, Text, Button, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, Button, TextInput, StyleSheet, TouchableOpacity, ImageBackground } from 'react-native';
+import backgroundImage from '../images/home.jpg';
 
 const Login = props => {
     const [authStates, setAuthStates] = useState({
@@ -9,15 +10,33 @@ const Login = props => {
             confirmPassword: ''
         }
     })
-    return (
-        <View style={Styles.loginView}>
-            <TextInput placeholder="Your Email Address" value={authStates.inputs.email} style={Styles.inputStyles} />
-            <TextInput placeholder="Password" value={authStates.inputs.password} style={Styles.inputStyles} />
+
+    const switchViews = () => {
+        setAuthStates({
+            ...authStates,
+            mode: authStates.mode === "login" ? "signup" : "login"
+        })
+    }
+    let confirmPasswordField = null;
+    if (authStates.mode === "signup") {
+        confirmPasswordField = (
             <TextInput placeholder="Confirm Password" value={authStates.inputs.confirmPassword} style={Styles.inputStyles} />
-            <TouchableOpacity style={Styles.btnContainer}>
-                <Text style={Styles.btnStyle}>{authStates.mode === "login" ? "Login" : "Sign Up"}</Text>
-            </TouchableOpacity>
-        </View>
+        )
+    }
+    return (
+        <ImageBackground source={backgroundImage} style={{ width: "100%", flex: 1 }} blurRadius={5}>
+            <View style={Styles.loginView}>
+                <TouchableOpacity style={{ ...Styles.btnContainer, backgroundColor: "#1167b1", width: "80%", paddingVertical: 5 }} onPress={() => switchViews()}>
+                    <Text style={Styles.btnStyle}>{authStates.mode === "login" ? "Switch to Sign Up" : "Switch to Login"}</Text>
+                </TouchableOpacity>
+                <TextInput placeholder="Your Email Address" value={authStates.inputs.email} style={Styles.inputStyles} />
+                <TextInput placeholder="Password" value={authStates.inputs.password} style={Styles.inputStyles} />
+                {confirmPasswordField}
+                <TouchableOpacity style={Styles.btnContainer}>
+                    <Text style={Styles.btnStyle}>{authStates.mode === "login" ? "Login" : "Sign Up"}</Text>
+                </TouchableOpacity>
+            </View>
+        </ImageBackground>
     )
 }
 
@@ -40,7 +59,8 @@ const Styles = StyleSheet.create({
     btnStyle: {
         fontSize: 16,
         color: "#fff",
-        alignSelf: "center"
+        alignSelf: "center",
+        paddingVertical: 8
     },
     btnContainer: {
         flexDirection: "row",
