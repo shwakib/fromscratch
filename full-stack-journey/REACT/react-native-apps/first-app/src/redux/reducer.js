@@ -2,7 +2,8 @@ import * as actionTypes from './actionTypes'
 
 const initState = {
     placeList: [],
-    isAuth: false
+    isAuth: false,
+    token: null
 }
 
 export const rootreducer = (state = initState, action) => {
@@ -25,7 +26,8 @@ export const rootreducer = (state = initState, action) => {
         case actionTypes.AUTHENTICATE_USER:
             return {
                 ...state,
-                isAuth: true
+                isAuth: true,
+                token: action.payload
             }
         default:
             return state;

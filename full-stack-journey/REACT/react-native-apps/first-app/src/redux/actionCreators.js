@@ -1,12 +1,14 @@
 import * as actionTypes from './actionTypes';
 
-export const addPlace = place => dispatch => {
-    fetch("https://first-react-native-proje-7df03-default-rtdb.asia-southeast1.firebasedatabase.app/places.json", {
+export const addPlace = place => (dispatch, getState) => {
+    let token = getState().token;
+    console.log("Add place Token:", token);
+    fetch(`https://first-react-native-proje-7df03-default-rtdb.asia-southeast1.firebasedatabase.app/places.json?auth=${token}`, {
         method: "POST", body: JSON.stringify(place)
     })
         .catch(error => console.log(error))
         .then(response => response.json())
-        .then(data => console.log(data))
+        .then(data => console.log("Dispatch Error", data))
 }
 
 export const deletePlace = key => {
@@ -23,8 +25,9 @@ export const setPlaces = places => {
     }
 }
 
-export const loadPlaces = () => dispatch => {
-    fetch("https://first-react-native-proje-7df03-default-rtdb.asia-southeast1.firebasedatabase.app/places.json")
+export const loadPlaces = () => (dispatch, getState) => {
+    let token = getState().token;
+    fetch(`https://first-react-native-proje-7df03-default-rtdb.asia-southeast1.firebasedatabase.app/places.json?auth=${token}`)
         .catch(err => {
             alert("Something Went Wrong, Sorry!");
             console.log(err);
@@ -42,9 +45,10 @@ export const loadPlaces = () => dispatch => {
         })
 }
 
-export const authUser = () => {
+export const authUser = token => {
     return {
         type: actionTypes.AUTHENTICATE_USER,
+        payload: token
     }
 }
 
@@ -53,7 +57,7 @@ export const trySignup = (email, password, switchViews) => dispatch => {
     fetch("https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=" + API_KEY, {
         method: "POST",
         body: JSON.stringify({
-            email: email, password: password, returnSecuretoken: true
+            email: email, password: password, returnSecureToken: true
         }),
         headers: {
             "Content-Type": "application/json"
@@ -79,7 +83,7 @@ export const tryLogin = (email, password, navigate) => dispatch => {
     fetch("https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=" + API_KEY, {
         method: "POST",
         body: JSON.stringify({
-            email: email, password: password, returnSecuretoken: true
+            email: email, password: password, returnSecureToken: true
         }),
         headers: {
             "Content-Type": "application/json"
@@ -95,9 +99,9 @@ export const tryLogin = (email, password, navigate) => dispatch => {
                 alert(data.error.message);
             }
             else {
+                dispatch(authUser(data.idToken));
                 navigate("Home");
-                dispatch(authUser());
-                console.log(data);
             }
+            console.log(data);
         })
 }
