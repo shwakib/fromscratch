@@ -2,13 +2,12 @@ import * as actionTypes from './actionTypes';
 
 export const addPlace = place => (dispatch, getState) => {
     let token = getState().token;
-    console.log("Add place Token:", token);
     fetch(`https://first-react-native-proje-7df03-default-rtdb.asia-southeast1.firebasedatabase.app/places.json?auth=${token}`, {
         method: "POST", body: JSON.stringify(place)
     })
         .catch(error => console.log(error))
         .then(response => response.json())
-        .then(data => console.log("Dispatch Error", data))
+        .then(data => console.log(data))
 }
 
 export const deletePlace = key => {
