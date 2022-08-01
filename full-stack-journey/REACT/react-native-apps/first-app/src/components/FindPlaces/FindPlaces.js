@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, TextInput, Button, FlatList } from 'react-nativ
 import PlaceList from '../PlaceList/placeList';
 import PlaceDetail from '../placeDetail/placeDetail'
 import { connect } from 'react-redux';
-import { deletePlace, loadPlaces } from '../../redux/actionCreators';
+import { removePlace, loadPlaces } from '../../redux/actionCreators';
 
 const mapStateToProps = state => {
     return {
@@ -13,7 +13,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        deletePlace: key => dispatch(deletePlace(key)),
+        removePlace: key => dispatch(removePlace(key)),
         loadPlaces: () => dispatch(loadPlaces())
     }
 }
@@ -35,7 +35,7 @@ const FindPlaces = props => {
         setSelectedPlace(null);
     }
     const handleDeleteItem = key => {
-        props.deletePlace(key);
+        props.removePlace(key);
         setSelectedPlace(null);
     }
 

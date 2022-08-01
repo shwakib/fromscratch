@@ -10,6 +10,16 @@ export const addPlace = place => (dispatch, getState) => {
         .then(data => console.log(data))
 }
 
+export const removePlace = key => (dispatch, getState) => {
+    let token = getState().token;
+    fetch(`https://first-react-native-proje-7df03-default-rtdb.asia-southeast1.firebasedatabase.app/places/${key}.json?auth=${token}`, { method: "DELETE" })
+        .catch(error => console.log(error))
+        .then(response => response.json())
+        .then(data => {
+            dispatch(deletePlace(key))
+        })
+}
+
 export const deletePlace = key => {
     return {
         type: actionTypes.DELETE_PLACE,
