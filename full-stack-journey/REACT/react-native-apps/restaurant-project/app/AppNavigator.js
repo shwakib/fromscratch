@@ -12,7 +12,7 @@ const Stack = createStackNavigator();
 const MenuStack = () => {
     return (
         <Stack.Navigator>
-            <Stack.Screen name="Menu" component={MenuScreen} />
+            <Stack.Screen name="Main Menu" component={MenuScreen} />
             <Stack.Screen name="Dish Detail" component={DishDetail} />
         </Stack.Navigator>
     )
