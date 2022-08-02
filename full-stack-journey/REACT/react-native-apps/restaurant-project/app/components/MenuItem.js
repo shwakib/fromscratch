@@ -3,7 +3,7 @@ import { View, StyleSheet, Image, TouchableHighlight, Text } from 'react-native'
 
 const MenuItem = props => {
     return (
-        <TouchableHighlight>
+        <TouchableHighlight onPress={props.selectDish}>
             <View style={styles.container}>
                 {props.item.image && <Image source={{ uri: props.item.image }} style={styles.image} />}
                 <View style={styles.details}>
