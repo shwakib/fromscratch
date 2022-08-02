@@ -6,14 +6,16 @@ import MenuScreen from "./screens/MenuScreen";
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
 import Icon from "./components/Icon";
+import { useNavigation } from '@react-navigation/native'
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 
 const MenuStack = () => {
+    const navigation = useNavigation();
     return (
         <Stack.Navigator screenOptions={{
-            headerStyle: { backgroundColor: "#F53B50" }, headerTintColor: "#fff", headerTitleStyle: { fontWeight: "bold" }, headerRight: () => (<Icon />)
+            headerStyle: { backgroundColor: "#F53B50" }, headerTintColor: "#fff", headerTitleStyle: { fontWeight: "bold" }, headerRight: () => (<Icon name="menu-sharp" color="black" size={24} iconStyle={{ paddingRight: 15 }} action={() => navigation.toggleDrawer()} />)
         }}>
             <Stack.Screen name="Main Menu" component={MenuScreen} />
             <Stack.Screen name="Dish Detail" component={DishDetail} options={({ route }) => ({ title: route.params.dish.name })} />
