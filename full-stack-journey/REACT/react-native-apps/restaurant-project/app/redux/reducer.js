@@ -17,6 +17,11 @@ export const reducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 favouriteDish: state.favouriteDish.concat(action.payload)
             }
+        case actionTypes.REMOVE_FROM_FAVOURITES:
+            return {
+                ...state,
+                favouriteDish: state.favouriteDish.filter(item => item.id !== action.payload.id)
+            }
         default:
             return state;
     }

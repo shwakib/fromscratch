@@ -1,5 +1,13 @@
 import React from "react";
 import { View, StyleSheet, Image, Text } from 'react-native';
+import { connect } from "react-redux";
+import { removeFavouriteDish } from "../redux/actionCreators";
+
+const mapDispatchToProps = dispatch => {
+    return {
+        removeFavouriteDish: dish => removeFavouriteDish(dish)
+    }
+}
 
 const Card = props => {
     return (
@@ -33,4 +41,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default Card;
+export default connect(null, mapDispatchToProps)(Card);
