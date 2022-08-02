@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, Image, TouchableHighlight, Text } from 'react-native'
+import { View, StyleSheet, Image, TouchableHighlight, Text } from 'react-native';
 
 const MenuItem = props => {
     return (
