@@ -6,6 +6,11 @@ const INITIAL_STATE = {
 
 export const reducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
+        case actionTypes.LOAD_DISHES:
+            return {
+                ...state,
+                dishes: action.payload
+            }
         default:
             return state;
     }

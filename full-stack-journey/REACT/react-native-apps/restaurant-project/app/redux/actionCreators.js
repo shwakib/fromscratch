@@ -9,7 +9,7 @@ export const loadDishes = dishes => {
 }
 
 export const getDishes = () => dispatch => {
-    axios.get("")
-        .then(response => console.log(response))
+    axios.get("https://react-native-restaurant-420-default-rtdb.firebaseio.com/dishes.json")
+        .then(response => dispatch(loadDishes(response.data)))
         .catch(err => console.log(err))
 }
