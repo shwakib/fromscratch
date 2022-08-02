@@ -4,7 +4,8 @@ import HomeScreen from "./screens/HomeScreen";
 import DishDetail from "./screens/DishDetail";
 import MenuScreen from "./screens/MenuScreen";
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { createStackNavigator } from '@react-navigation/stack'
+import { createStackNavigator } from '@react-navigation/stack';
+import Icon from "./components/Icon";
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -12,7 +13,7 @@ const Stack = createStackNavigator();
 const MenuStack = () => {
     return (
         <Stack.Navigator screenOptions={{
-            headerStyle: { backgroundColor: "#F53B50" }, headerTintColor: "#fff", headerTitleStyle: { fontWeight: "bold" }
+            headerStyle: { backgroundColor: "#F53B50" }, headerTintColor: "#fff", headerTitleStyle: { fontWeight: "bold" }, headerRight: () => (<Icon />)
         }}>
             <Stack.Screen name="Main Menu" component={MenuScreen} />
             <Stack.Screen name="Dish Detail" component={DishDetail} options={({ route }) => ({ title: route.params.dish.name })} />
