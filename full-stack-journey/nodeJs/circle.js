@@ -4,6 +4,7 @@ const message = "I am in Bangladesh";
 
 module.exports.area = area;
 module.exports.circumference = circumference;
-exports.msg = message
+exports.msg = message;
+module.exports = area;
 
 console.log(module);
