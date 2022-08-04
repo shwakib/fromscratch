@@ -42,3 +42,26 @@ myEvent.on('event1', () => {
 })
 
 myEvent.function1();
+
+//HTTP Module
+
+const http = require('http');
+
+const server = http.createServer((request, response) => {
+    if (request.url === '/') {
+        response.write('Hello World');
+        response.end();
+    }
+
+    if (request.url === '/students') {
+        response.write(JSON.stringify([
+            { name: "Rahim" },
+            { name: "Karim" }
+        ]))
+        response.end();
+    }
+});
+
+server.listen(3000); //3000=>Port Number
+
+console.log("Listening on Port 3000....");
