@@ -32,3 +32,13 @@ emitter.on('event2', () => {
 
 emitter.emit('event1', { name: "Sifat Hasan", id: 1 });
 emitter.emit('event2');
+
+//Inherating event module from different file
+const MyEvent = require('./myEvents');
+const myEvent = new MyEvent();
+
+myEvent.on('event1', () => {
+    console.log('inherited Event Emitted');
+})
+
+myEvent.function1();
