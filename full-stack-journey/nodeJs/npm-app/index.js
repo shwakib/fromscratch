@@ -8,17 +8,23 @@ module.exports.cir = cir;
 
 console.log("Line 1");
 
-getStudents(2, (student) => {
-    console.log(student);
-    getCourses(student, (courses) => {
-        console.log(courses);
-        getQuizMarks(courses.courses, (quizMarks) => {
-            console.log(quizMarks);
-        })
-    })
-})
+getStudents(2, showStudentInfo);
 
 console.log("Line 2");
+
+function showMarks(marks) {
+    console.log(marks);
+}
+
+function showCourse(courses) {
+    console.log(courses);
+    getQuizMarks(courses.courses, showMarks);
+}
+
+function showStudentInfo(student) {
+    console.log(student);
+    getCourses(student, showCourse);
+}
 
 function getStudents(id, callbackFunc) {
     setTimeout(() => {
