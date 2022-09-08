@@ -7,13 +7,16 @@ module.exports.cir = cir;
 //AsyncJS
 
 console.log("Line 1");
-const students = getStudents(1);
-console.log(students);
+
+getStudents(2, (student) => {
+    console.log(student);
+})
+
 console.log("Line 2");
 
-function getStudents(id) {
+function getStudents(id, callbackFunc) {
     setTimeout(() => {
         console.log("Fetching from database...");
-        return { id: id, name: "Rahim" }
+        callbackFunc({ id: id, name: "Rahim" })
     }, 2000);
 }
