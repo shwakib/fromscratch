@@ -10,6 +10,12 @@ console.log("Line 1");
 
 getStudents(2, (student) => {
     console.log(student);
+    getCourses(student, (courses) => {
+        console.log(courses);
+        getQuizMarks(courses.courses, (quizMarks) => {
+            console.log(quizMarks);
+        })
+    })
 })
 
 console.log("Line 2");
@@ -19,4 +25,18 @@ function getStudents(id, callbackFunc) {
         console.log("Fetching from database...");
         callbackFunc({ id: id, name: "Rahim" })
     }, 2000);
+}
+
+function getCourses(student, callbackFunc) {
+    setTimeout(() => {
+        console.log("Student Courses from database...");
+        callbackFunc({ id: student.id, name: student.name, courses: ["Javascript", "Python"] }), 5500
+    })
+}
+
+function getQuizMarks(courses, callbackFunc) {
+    setTimeout(() => {
+        console.log("Courses Marks are loading...");
+        callbackFunc({ [courses[0]]: 90, [courses[1]]: 85 }), 7000
+    })
 }
