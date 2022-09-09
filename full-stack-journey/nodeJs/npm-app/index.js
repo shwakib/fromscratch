@@ -8,17 +8,10 @@ module.exports.cir = cir;
 
 console.log("Line 1");
 
-getStudents(3).then(students => {
-    console.log(students);
-    return getCourses(students);
-})
-    .then(courses => {
-        console.log(courses);
-        return getQuizMarks(courses.courses);
-    })
-    .then(marks => {
-        console.log(marks);
-    })
+getStudents(3)
+    .then(students => getCourses(students))
+    .then(courses => getQuizMarks(courses.courses))
+    .then(marks => console.log(marks))
 
 console.log("Line 2");
 
@@ -26,7 +19,9 @@ function getStudents(id) {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             console.log("Fetching from database...");
-            resolve({ id: id, name: "Rahim" })
+            const student = { id: id, name: "Rahim" };
+            console.log(student);
+            resolve(student);
         }, 2000);
     });
 }
@@ -35,7 +30,9 @@ function getCourses(student) {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             console.log("Student Courses from database...");
-            resolve({ id: student.id, name: student.name, courses: ["Javascript", "Python"] }), 5500
+            const courses = { id: student.id, name: student.name, courses: ["Javascript", "Python"] }
+            console.log(courses);
+            resolve(courses), 5500
         })
     })
 }
