@@ -1,16 +1,17 @@
 const express = require('express');
+const fs = require('fs');
 const app = express();
 
 app.get('/', (request, response) => {
     response.send("Hello from expressJs!");
 })
 
-app.get('/another', (request, response) => {
-    response.send("I am another response!");
-})
-
-app.get('/courses', (request, response) => {
-    response.send(JSON.stringify(["Bangla", "English"]));
+app.get('/api/students', (req, res) => {
+    fs.readFile('./db.json', 'utf-8', (err, data) => {
+        console.log(data);
+        const students = JSON.parse(data).students;
+        res.send(students);
+    })
 })
 
 const port = 3000;
