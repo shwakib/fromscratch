@@ -37,6 +37,34 @@ app.get('/api/students/:id', (req, res) => {
         });
 });
 
+app.put('/api/students/:id', (req, res) => {
+    const id = parseInt(req.params.id);
+    const updatedData = req.body;
+    db.getDbStudents()
+        .then(students => {
+            const student = students.find(s => s.id === id);
+            if (!student) res.status(404).send("No Student found with this ID!");
+            else {
+                const i = students.findIndex(s => s.id === id);
+                students[i] = updatedData;
+                db.insertDbStudent(students)
+                    .then(msg => res.send(updatedData))
+            }
+        });
+})
+
+app.delete('/api/students/:id', (req, res) => {
+    const id = parseInt(req.params.id);
+    db.getDbStudents()
+        .then(students => {
+            const student = students.find(s => s.id === id);
+            if (!student) res.status(404).send("No Student found with this ID!");
+            const updatedStudents = students.filter(s => s.id !== id);
+            db.insertDbStudent(updatedStudents)
+                .then(msg => res.send(student))
+        });
+})
+
 const port = 3000;
 app.listen(port, () => {
     console.log(`Listening on port ${port}!`);
