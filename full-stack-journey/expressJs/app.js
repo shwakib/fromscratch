@@ -27,6 +27,16 @@ app.post('/api/students', (req, res) => {
         })
 })
 
+app.get('/api/students/:id', (req, res) => {
+    const id = parseInt(req.params.id);
+    db.getDbStudents()
+        .then(students => {
+            const student = students.find(s => s.id === id);
+            if (!student) res.status(404).send("No Student found with this ID!");
+            else res.send(student);
+        });
+});
+
 const port = 3000;
 app.listen(port, () => {
     console.log(`Listening on port ${port}!`);
