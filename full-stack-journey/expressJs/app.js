@@ -1,11 +1,15 @@
 const express = require('express');
 const app = express();
 const studentRouter = require('./routers/studentRouter');
+const morgan = require('morgan');
 
 //Built In MiddleWare
 app.use(express.json()); //POST/PUT/PATCH ->json object ->req.body
 app.use(express.urlencoded({ extended: true })); //id=1&&name=Something
 app.use(express.static('public'));
+
+//Third Party middleware
+app.use(morgan('combined'));
 
 //Custom Made middleware
 app.use((req, res, next) => {
