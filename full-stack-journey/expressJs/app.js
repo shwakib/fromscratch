@@ -65,15 +65,9 @@ const deleteStudent = (req, res) => {
         });
 };
 
-app.get('/api/students', studentList);
+app.route('/api/students').get(studentList).post(newStudent);
 
-app.post('/api/students', newStudent);
-
-app.get('/api/students/:id', studentDetail);
-
-app.put('/api/students/:id', updateStudent);
-
-app.delete('/api/students/:id', deleteStudent);
+app.route('/api/students/:id').get(studentDetail).put(updateStudent).delete(deleteStudent);
 
 const port = 3000;
 app.listen(port, () => {
