@@ -36,11 +36,11 @@ const Student = mongoose.model('Student', studentSchema); //Class
 async function createStudent() {
     try {
         const data = await Student.create({
-            firstName: "Sahim",
-            lastName: "Miah",
-            dob: new Date("31 December 2001"),
+            firstName: "Hakim",
+            // lastName: "Miah",
+            dob: new Date("31 December 1994"),
             passed: true,
-            hobbies: ["Swimming", "Singing"],
+            hobbies: [],
             parents: {
                 fatherName: "A",
                 motherName: "B"
@@ -50,7 +50,9 @@ async function createStudent() {
         console.log(data);
     }
     catch (err) {
-        console.log(err.message);
+        for (field in err.errors) {
+            console.log(err.errors[field].message);
+        }
     }
 }
 createStudent();
