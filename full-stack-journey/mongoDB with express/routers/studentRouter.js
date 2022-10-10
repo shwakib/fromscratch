@@ -2,18 +2,35 @@ const express = require('express');
 const router = express.Router();
 const { Student } = require('../models/students')
 
-const studentList = (req, res) => {
-
+const studentList = async (req, res) => {
+    const studentsList = await Student.find().sort({ name: 1 });
+    res.send(studentsList);
 };
 
-const newStudent = (req, res) => {
-    const newStudent = req.body;
-
+const newStudent = async (req, res) => {
+    const newStudent = new Student(req.body);
+    try {
+        const result = await newStudent.save();
+        res.send(result);
+    }
+    catch (err) {
+        const errMsgs = [];
+        for (field in err.errors) {
+            errMsgs.push(err.errors[field].message);
+        }
+        return res.status(400).send(errMsgs);
+    }
 };
 
-const studentDetail = (req, res) => {
-    const id = parseInt(req.params.id);
-
+const studentDetail = async (req, res) => {
+    try {
+        const studentData = await Student.findById(req.params.id);
+        if (!studentData) return res.status(404).send("This Student ID is not found!");
+        res.send(studentData);
+    }
+    catch (err) {
+        return res.status(404).send("This Student ID is not found!");
+    }
 };
 
 const updateStudent = (req, res) => {

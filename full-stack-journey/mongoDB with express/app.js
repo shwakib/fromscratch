@@ -4,6 +4,7 @@ const studentRouter = require('./routers/studentRouter');
 // const morgan = require('morgan');
 const mongoose = require('mongoose');
 
+//Connecting MongoDB
 mongoose.connect('mongodb://localhost:27017/my-students-1')
     .then(() => console.log("Connected to Database successfully"))
     .catch(err => console.error("Connection Failed!!"));
