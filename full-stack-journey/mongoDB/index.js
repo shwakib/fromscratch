@@ -8,10 +8,20 @@ mongoose.connect('mongodb://localhost:27017/my-students')
 const studentSchema = new mongoose.Schema({
     firstName: { type: String },
     lastName: { type: String, required: [true, "Please insert last name!"] }, //https://mongoosejs.com/docs/validation.html#built-in-validators
-    dob: Date,
+    dob: {
+        type: Date, validate: {
+            validator: (value) => value > new Date("1 January 2000"),
+            message: "Date of birth should be after 1st January 2000"
+        }
+    },
     entryDate: { type: Date, default: Date.now },
     passed: Boolean,
-    hobbies: [String],
+    hobbies: {
+        type: Array, of: String, validate: {
+            validator: (value) => value.length > 0,
+            message: "Hobbies can't be empty"
+        }
+    },
     parents: {
         fatherName: String,
         motherName: String
@@ -26,9 +36,9 @@ const Student = mongoose.model('Student', studentSchema); //Class
 async function createStudent() {
     try {
         const data = await Student.create({
-            firstName: "Kahim",
-            // lastName: "Miah",
-            dob: new Date("31 December 1998"),
+            firstName: "Sahim",
+            lastName: "Miah",
+            dob: new Date("31 December 2001"),
             passed: true,
             hobbies: ["Swimming", "Singing"],
             parents: {
