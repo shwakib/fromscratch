@@ -33,15 +33,27 @@ const studentDetail = async (req, res) => {
     }
 };
 
-const updateStudent = (req, res) => {
-    const id = parseInt(req.params.id);
+const updateStudent = async (req, res) => {
+    const id = req.params.id;
     const updatedData = req.body;
-
+    try {
+        const studentData = await Student.findByIdAndUpdate(id, updatedData, { new: true });
+        if (!studentData) return res.status(404).send("This Student ID is not found!");
+        res.send(studentData);
+    } catch (err) {
+        return res.status(404).send("This Student ID is not found!");
+    }
 };
 
-const deleteStudent = (req, res) => {
-    const id = parseInt(req.params.id);
-
+const deleteStudent = async (req, res) => {
+    const id = req.params.id;
+    try {
+        const studentData = await Student.findByIdAndDelete(id);
+        if (!studentData) return res.status(404).send("This Student ID is not found!");
+        res.send(studentData);
+    } catch (err) {
+        return res.status(404).send("This Student ID is not found!");
+    }
 };
 
 router.route('/')
