@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const studentRouter = require('./routers/studentRouter');
+const userRouter = require('./routers/userRouter');
 // const morgan = require('morgan');
 const mongoose = require('mongoose');
 
@@ -13,6 +14,7 @@ mongoose.connect('mongodb://localhost:27017/my-students-1')
 app.use(express.json()); //POST/PUT/PATCH ->json object ->req.body
 
 app.use('/api/students', studentRouter);
+app.use('/api/user', userRouter);
 
 app.get('/', (request, response, next) => {
     // response.send("Another Response!");
