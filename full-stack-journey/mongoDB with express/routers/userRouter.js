@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { User } = require('../models/users');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 //Create new user
 const newUser = async (req, res) => {
@@ -19,7 +20,8 @@ const newUser = async (req, res) => {
 
     try {
         const result = await user.save();
-        res.send({ name: result.name, email: result.email });
+        const token = user.generateJWT();
+        res.send({ token: token, data: { name: result.name, email: result.email } });
     }
     catch (err) {
         const errMsgs = [];
