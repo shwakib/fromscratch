@@ -3,16 +3,13 @@ const app = express();
 const studentRouter = require('./routers/studentRouter');
 const userRouter = require('./routers/userRouter');
 const authRouter = require('./routers/authRouter');
-// const morgan = require('morgan');
-const mongoose = require('mongoose');
-
-//Connecting MongoDB
-mongoose.connect('mongodb://localhost:27017/my-students-1')
-    .then(() => console.log("Connected to Database successfully"))
-    .catch(err => console.error("Connection Failed!!"));
-
+const morgan = require('morgan')
 //Built In MiddleWare
 app.use(express.json()); //POST/PUT/PATCH ->json object ->req.body
+if (process.env.NODE_ENV === 'development') {
+    console.log("Development Server");
+    app.use(morgan('dev'));
+}
 
 app.use('/api/students', studentRouter);
 app.use('/api/user', userRouter);
@@ -27,7 +24,4 @@ app.get('/', (request, response) => {
     response.send("Hello from expressJs!");
 })
 
-const port = 3000;
-app.listen(port, () => {
-    console.log(`Listening on port ${port}!`);
-})
+module.exports = app;
