@@ -9,6 +9,7 @@ module.exports = function (req, res, next) {
     //Verify Token
     try {
         const decoded = jwt.verify(token, process.env.mySecretKey); //If verified, thenname, age,email will be stored in decoded
+        console.log(decoded);
         req.user = decoded;
         next();
     }
