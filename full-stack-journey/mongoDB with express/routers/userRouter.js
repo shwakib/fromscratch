@@ -3,6 +3,7 @@ const router = express.Router();
 const { User } = require('../models/users');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const authorize = require('../middlewares/authorize');
 
 //Create new user
 const newUser = async (req, res) => {
@@ -34,5 +35,10 @@ const newUser = async (req, res) => {
 
 router.route('/')
     .post(newUser);
+
+router.route('/me')
+    .get(authorize, (req, res) => {
+        res.send(req.user);
+    })
 
 module.exports = router;
