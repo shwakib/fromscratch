@@ -1,5 +1,6 @@
 import * as actionTypes from './actionTypes';
 import axios from 'axios';
+import jwt_decode from 'jwt-decode';
 
 export const authCheck = () => dispatch => {
     const token = localStorage.getItem('token');
@@ -25,32 +26,32 @@ export const auth = (email, password, mode) => dispatch => {
     dispatch(authLoading(true));
     const authData = {
         email: email,
-        password: password,
-        returnSecureToken: true
+        password: password
     }
 
+    let Url = process.env.REACT_APP_BACKEND_URL;
     let authUrl = null;
     if (mode === "Sign Up") {
-        authUrl = "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=";
+        authUrl = `${Url}/user`;
     }
     else {
-        authUrl = "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=";
+        authUrl = `${Url}/user/auth`;
     }
 
-    const API_KEY = "AIzaSyCv09TxVwrFLAd5Puzutx-mqh0Rf7TLWJM";
-    axios.post(authUrl + API_KEY, authData)
+    axios.post(authUrl, authData)
         .then(response => {
             dispatch(authLoading(false));
-            localStorage.setItem('token', response.data.idToken);
-            localStorage.setItem('userID', response.data.localId);
-            const expirationTime = new Date(new Date().getTime() + response.data.expiresIn * 1000);
+            localStorage.setItem('token', response.data.token);
+            localStorage.setItem('userID', response.data.user._id);
+            let decoded = jwt_decode(response.data.token);
+            const expirationTime = new Date(decoded.exp * 1000);
             localStorage.setItem('expirationTime', expirationTime);
-            dispatch(authSuccess(response.data.idToken, response.data.localId))
+            dispatch(authSuccess(response.data.token, response.data.user._id))
         })
         .catch(err => {
             dispatch(authLoading(false));
             // console.log(err.response.data.error.message);
-            dispatch(authFailed(err.response.data.error.message));
+            dispatch(authFailed(err.response.data));
         })
 }
 

@@ -22,7 +22,7 @@ const Order = props => {
             padding: '20px',
             marginBottom: '10px'
         }}>
-            <p>Order Number: {props.order.id}</p>
+            <p>Order Number: {props.order._id}</p>
             <p>Delivery Address: {props.order.customerInfo.deliveryAddress}</p>
             <p>Order Placed at: {props.order.orderTime}</p>
             <hr />

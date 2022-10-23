@@ -55,12 +55,16 @@ class Checkout extends Component {
             ingredients: this.props.ingredients,
             customerInfo: this.state.values,
             price: this.props.totalprice,
-            orderTime: new Date().toUTCString(),
             userID: this.props.userID
         };
-        axios.post("https://burger-builder-9e98c-default-rtdb.asia-southeast1.firebasedatabase.app/orders.json?auth=" + this.props.token, order)
+        let url = process.env.REACT_APP_BACKEND_URL;
+        axios.post(`${url}/order`, order, {
+            headers: {
+                "Authorization": `Bearer ${this.props.token}`
+            }
+        })
             .then(response => {
-                if (response.status === 200) {
+                if (response.status === 201) {
                     this.setState({
                         isLoading: false,
                         isModalOpen: true,

@@ -37,7 +37,7 @@ const authUser = async (req, res) => {
     const token = user.generateJWT();
     res.send({
         token: token,
-        user: _.pick(user, ['id', 'email'])
+        user: _.pick(user, ['_id', 'email'])
     })
 }
 
