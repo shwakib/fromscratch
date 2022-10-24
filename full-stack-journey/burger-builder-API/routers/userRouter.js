@@ -29,7 +29,7 @@ const newUser = async (req, res) => {
 
 const authUser = async (req, res) => {
     let user = await User.findOne({ email: req.body.email });
-    if (!user) return res.status(400).send("Invalid E-mail or Password!");
+    if (!user) return res.status(400).send("Invalid E-mail or!");
 
     const validUser = await bcrypt.compare(req.body.password, user.password);
     if (!validUser) return res.status(400).send("Invalid E-mail or Password!");
