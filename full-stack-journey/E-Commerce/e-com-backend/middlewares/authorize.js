@@ -5,9 +5,11 @@ module.exports = async function (req, res, next) {
     if (!token) return res.status(400).send("Access Denied!!");
     else token = token.split(" ")[1].trim();
 
-    const decoded = await jwt.verify(token, process.env.JWT_secret_Key);
-    if (!decoded) return res.status(400).send("Invalid Token");
-
-    req.user = decoded;
-    next();
+    try {
+        const decoded = await jwt.verify(token, process.env.JWT_secret_Key);
+        req.user = decoded;
+        next();
+    } catch (err) {
+        return res.status(400).send("Invalid Token");
+    }
 }

@@ -6,7 +6,7 @@ const userSchema = Schema({
     name: { type: String, required: true, minlength: 5, maxlength: 100 },
     email: { type: String, required: true, minlength: 5, maxlength: 255, unique: true },
     password: { type: String, required: true, minlength: 5, maxlength: 1024 },
-    userRole: { type: String, enum: ['user', 'admin'], default: 'user' }
+    role: { type: String, enum: ['user', 'admin'], default: 'user' }
 }, { timestamps: true });
 
 userSchema.methods.generateJWT = function () {
@@ -24,6 +24,7 @@ const validateUser = user => {
         name: joi.string().min(5).max(100).required(),
         email: joi.string().min(5).max(255).required(),
         password: joi.string().min(5).max(255).required(),
+        role: joi.string()
     });
     return schema.validate(user);
 }
