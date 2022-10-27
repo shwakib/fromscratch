@@ -15,7 +15,7 @@ module.exports.createProduct = async (req, res) => {
         const product = new Product(fields);
 
         if (files.photo) {
-            fs.readFile(files.photo.path, (err, data) => {
+            fs.readFile(files.photo.filepath, (err, data) => {
                 if (err) return res.status(400).send("Problem in file data!!");
                 product.photo.data = data;
                 product.photo.contentType = files.photo.type;
@@ -35,7 +35,8 @@ module.exports.createProduct = async (req, res) => {
 }
 
 module.exports.getProducts = async (req, res) => {
-
+    const products = await Product.find().select({ photo: 0 });
+    return res.status(200).send(products);
 }
 
 module.exports.getProductsById = async (req, res) => {
