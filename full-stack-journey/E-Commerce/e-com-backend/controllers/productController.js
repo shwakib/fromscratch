@@ -37,7 +37,7 @@ module.exports.createProduct = async (req, res) => {
 module.exports.getProducts = async (req, res) => {
     // console.log(req.query);
     let order = req.query.order === 'desc' ? -1 : 1;
-    let sortBy = req.query.sortBy ? req.query.sortBy : '_id';
+    let sortBy = req.query.sortBy ? req.query.sortBy : '_id'; //If there is any sorting requirements given other wise it will be sorted based on _id
     let limit = req.query.limit ? parseInt(req.query.limit) : 10;
     const products = await Product.find().select({ photo: 0, description: 0 }).sort({ [sortBy]: order }).limit(limit).populate('category', 'name createdAt');
     return res.status(200).send(products);
@@ -88,4 +88,14 @@ module.exports.updateProductsById = async (req, res) => {
             })
         }
     })
+}
+
+module.exports.filterProducts = async (req, res) => {
+    let order = req.body.order === 'desc' ? -1 : 1;
+    let sortBy = req.body.sortBy ? req.query.sortBy : '_id';
+    let limit = req.body.limit ? parseInt(req.query.limit) : 10;
+    let skip = parseInt(req.body.skip);
+
+    const products = await Product.find().select({ photo: 0 }).populate('category', 'name').sort({ [sortBy]: order }).skip(skip).limit(limit);
+    return res.status(200).send(products);
 }
