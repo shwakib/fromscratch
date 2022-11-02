@@ -3,9 +3,12 @@ import { BrowserRouter } from 'react-router-dom';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Main />
-    </BrowserRouter>);
+    <div>
+      <BrowserRouter>
+        <Main />
+      </BrowserRouter>
+    </div>
+  );
 }
 
 export default App;

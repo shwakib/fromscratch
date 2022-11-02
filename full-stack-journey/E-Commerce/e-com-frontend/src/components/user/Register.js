@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import Layout from '../Layout';
 import { showError, showLoading } from '../../utils/messages';
+import { register } from '../../api/apiAuth';
+import { Link } from 'react-router-dom';
 
 const Register = () => {
     const [values, setValues] = useState({
@@ -21,11 +23,43 @@ const Register = () => {
             error: false,
             [e.target.name]: e.target.value
         })
+        console.log(error);
     }
 
     const handleSubmit = e => {
+        // alert(JSON.stringify(values));
+        setValues({
+            ...values,
+            error: false,
+            loading: true,
+            disabled: true
+        });
+        console.log(loading, disabled);
+        register({ name, email, password })
+            .then(response => {
+                setValues({
+                    name: '',
+                    email: '',
+                    password: '',
+                    error: false,
+                    loading: false,
+                    disabled: false,
+                    success: true
+                })
+                console.log(values);
+            })
+            .catch(err => {
+                let errMsg = 'Something Went Wrong!!';
+                if (err.response) {
+                    errMsg = err.response.data;
+                } else {
+                    errMsg = 'Something Went Wrong!!';
+                }
+                setValues({
+                    ...values, error: errMsg, disabled: false, loading: false
+                })
+            })
         e.preventDefault();
-        alert(JSON.stringify(values));
     }
 
     const signUpForm = () => (
@@ -49,9 +83,21 @@ const Register = () => {
         </form>
     );
 
+    const showSuccess = () => {
+        if (success)
+            return (
+                <div className='alert alert-primary'>
+                    New Account Created. Please <Link to='/login'>Login!</Link>
+                </div>
+            )
+    }
+
     return (
         <Layout title="Register" className="container col-md-8 offset-md-2">
-            <h3>Register Here,</h3>
+            {showSuccess()}
+            {showLoading(loading)}
+            {showError(error, error)}
+            <h3>Register Here</h3>
             <hr />
             {signUpForm()}
             <hr />
