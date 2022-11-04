@@ -3,6 +3,7 @@ import Layout from '../Layout';
 import { showError, showLoading } from '../../utils/messages';
 import { login } from '../../api/apiAuth';
 import { Navigate } from 'react-router-dom';
+import { authenticate } from '../../utils/auth';
 
 const Login = () => {
     const [values, setValues] = useState({
@@ -36,15 +37,15 @@ const Login = () => {
         console.log(values);
         login({ email, password })
             .then(response => {
-                console.log(response);
-                setValues({
-                    email: '',
-                    password: '',
-                    disabled: false,
-                    loading: false,
-                    redirect: true
+                authenticate(response.data.token, () => {
+                    setValues({
+                        email: '',
+                        password: '',
+                        disabled: false,
+                        loading: false,
+                        redirect: true
+                    })
                 })
-                console.log(email, password, redirect);
             })
             .catch(err => {
                 let errMsg = 'Something Went Wrong!!';
