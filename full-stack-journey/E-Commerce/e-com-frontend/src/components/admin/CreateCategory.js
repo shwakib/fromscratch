@@ -28,6 +28,7 @@ const CreateCategory = () => {
             .then(response => {
                 setValues({
                     ...values,
+                    name: '',
                     error: false,
                     success: true,
                     loading: false
