@@ -6,6 +6,7 @@ import Dashboard from './user/Dashboard';
 import AdminDashboard from './admin/adminDashboard';
 import PrivateRoute from './protectiveRoutes/privateRoute';
 import AdminRoute from './protectiveRoutes/adminRoute';
+import CreateCategory from './admin/CreateCategory';
 
 
 const Main = () => {
@@ -23,6 +24,11 @@ const Main = () => {
                 <Route path="/admin/dashboard" element={
                     <AdminRoute>
                         <AdminDashboard />
+                    </AdminRoute>}
+                />
+                <Route path="/create/category" element={
+                    <AdminRoute>
+                        <CreateCategory />
                     </AdminRoute>}
                 />
                 <Route
