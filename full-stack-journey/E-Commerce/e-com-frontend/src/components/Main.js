@@ -3,7 +3,10 @@ import Home from './home/home';
 import Register from './user/Register';
 import Login from './user/Login';
 import Dashboard from './user/Dashboard';
+import AdminDashboard from './admin/adminDashboard';
 import PrivateRoute from './protectiveRoutes/privateRoute';
+import AdminRoute from './protectiveRoutes/adminRoute';
+
 
 const Main = () => {
     return (
@@ -12,10 +15,19 @@ const Main = () => {
                 <Route path="/" element={<Home />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
-                <Route path="/dashboard" element={
+                <Route path="/user/dashboard" element={
                     <PrivateRoute>
                         <Dashboard />
                     </PrivateRoute>}
+                />
+                <Route path="/admin/dashboard" element={
+                    <AdminRoute>
+                        <AdminDashboard />
+                    </AdminRoute>}
+                />
+                <Route
+                    path="*"
+                    element={<Navigate to="/" replace />}
                 />
             </Routes>
         </div>

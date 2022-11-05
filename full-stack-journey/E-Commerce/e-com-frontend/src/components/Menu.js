@@ -1,5 +1,5 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { signOut, isAuthenticated } from '../utils/auth';
+import { signOut, isAuthenticated, userInfo } from '../utils/auth';
 
 const isActive = (pathname, path) => {
     if (pathname === path) {
@@ -28,6 +28,9 @@ const Menu = () => {
                     </li>
                 </>)}
                 {isAuthenticated() && (<>
+                    <li className="nav-item">
+                        <Link className="nav-link" to={`/${userInfo().role}/dashboard`} style={isActive(location.pathname, `/${userInfo().role}/dashboard`)}>Dashboard</Link>
+                    </li>
                     <li className="nav-item">
                         <span className="nav-link" style={{ cursor: 'pointer', color: 'grey' }} onClick={() => {
                             signOut(() => {
