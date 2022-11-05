@@ -8,7 +8,7 @@ import PrivateRoute from './protectiveRoutes/privateRoute';
 import AdminRoute from './protectiveRoutes/adminRoute';
 import CreateCategory from './admin/CreateCategory';
 import CreateProduct from './admin/CreateProduct';
-
+import ProductDetails from './home/ProductDetails';
 
 const Main = () => {
     return (
@@ -17,6 +17,7 @@ const Main = () => {
                 <Route path="/" element={<Home />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
+                <Route path="/product/:id" element={<ProductDetails />} />
                 <Route path="/user/dashboard" element={
                     <PrivateRoute>
                         <Dashboard />
