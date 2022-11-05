@@ -3,6 +3,7 @@ import Layout from '../Layout';
 import { Link } from 'react-router-dom';
 import { showError, showSuccess, showLoading } from '../../utils/messages';
 import { createProduct, getCategory } from '../../api/apiAdmin';
+import { userInfo } from '../../utils/auth';
 
 const CreateProduct = () => {
     const [values, setValues] = useState({
@@ -53,28 +54,55 @@ const CreateProduct = () => {
     }, [])
 
     const handleChange = (e) => {
-
+        const value = e.target.name === 'photo' ? e.target.files[0] : e.target.value;
+        formData.set(e.target.name, value);
+        setValues({
+            ...values,
+            [e.target.name]: value,
+            error: false,
+            success: false
+        })
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
+        setValues({
+            ...values,
+            error: false,
+            loading: true,
+            disabled: true,
+            success: false
+        })
+        const { token } = userInfo();
+        createProduct(token, formData)
+            .then(response => {
+                setValues({
+                    name: '',
+                    description: '',
+                    price: '',
+                    quantity: '',
+                    category: '',
+                    loading: false,
+                    disabled: false,
+                    success: true,
+                    error: false,
+                })
+            })
+            .catch(err => {
+                let errorMsg = "Something went wrong!!";
+                if (err.response) errorMsg = err.response.data;
+                setValues({
+                    ...values,
+                    error: errorMsg,
+                    loading: false,
+                    success: false,
+                    disabled: false
+                })
+            })
     }
 
     const productForm = () => (
         <form className="mb-3" onSubmit={handleSubmit}>
-            <h4>Photo:</h4>
-            <div className="form-group">
-                <label className="btn btn-secondary">
-                    <input
-                        type="file"
-                        name="photo"
-                        onChange={handleChange}
-                        accept="image/*"
-                        required
-                    />
-                </label>
-            </div>
             <div className="form-group">
                 <label className="text-muted">Name:</label>
                 <input
@@ -127,12 +155,24 @@ const CreateProduct = () => {
                     ))}
                 </select>
             </div>
+            <h5>Photo:</h5>
+            <div className="form-group">
+                <label className="btn btn-secondary">
+                    <input
+                        type="file"
+                        name="photo"
+                        onChange={handleChange}
+                        accept="image/*"
+                        required
+                    />
+                </label>
+            </div>
             <button className="btn btn-outline-primary" type="submit" disabled={disabled}>Create Product</button>
         </form>
     );
 
     const goBack = () => (<div className="mt-5">
-        <Link to="/admin/dashboard" className="text-warning">Go to Dashboard</Link>
+        <Link to="/admin/dashboard" className="text-danger">Go to Dashboard</Link>
     </div>)
 
 
