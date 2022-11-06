@@ -4,6 +4,8 @@ import Card from './Card';
 import { showError, showSuccess } from '../../utils/messages';
 import { getCategories, getProducts, getFilteredProducts } from '../../api/apiProducts';
 import Checkbox from './checkbox';
+import RadioBox from './radiobox';
+import { prices } from '../../utils/prices';
 
 const Home = () => {
     const [products, setProducts] = useState([]);
@@ -34,7 +36,19 @@ const Home = () => {
         if (filterBy === 'category') {
             newFilters[filterBy] = myfilters;
         }
+
+        if (filterBy === 'price') {
+            const data = prices;
+            let arr = [];
+            for (let i in data) {
+                if (data[i].id === parseInt(myfilters)) {
+                    arr = data[i].arr;
+                }
+            }
+            newFilters[filterBy] = arr;
+        }
         setFilters(newFilters);
+
         getFilteredProducts(skip, limit, newFilters, order, sortBy)
             .then(response => setProducts(response.data))
             .catch(err => setError("Failed to load Products!!"))
@@ -48,6 +62,12 @@ const Home = () => {
                     <ul>
                         <Checkbox categories={categories} handleFilters={myfilters => handleFilters(myfilters, 'category')} />
                     </ul>
+                </div>
+                <div className='col-sm-5'>
+                    <h5>Filter By Price:</h5>
+                    <div className='row'>
+                        <RadioBox prices={prices} handleFilters={myfilters => handleFilters(myfilters, 'price')} />
+                    </div>
                 </div>
             </div>
         </>
