@@ -10,10 +10,10 @@ const Dashboard = () => {
                 <h4 className="card-header">User Links</h4>
                 <ul className="list-group">
                     <li className="list-group-item">
-                        <Link className="nav-link" to="#">My Cart</Link>
+                        <Link className="nav-link" to="/cart">My Cart</Link>
                     </li>
                     <li className="list-group-item">
-                        <Link className="nav-link" to="#">Update Profile</Link>
+                        <Link className="nav-link" to="/shipping-address">Update Profile</Link>
                     </li>
                 </ul>
             </div>

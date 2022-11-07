@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Layout from '../Layout';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { getProfile, updateProfile } from '../../api/apiOrder';
 import { userInfo } from '../../utils/auth';
 
@@ -85,6 +85,7 @@ const ShippingAddress = () => {
 
     return (<>
         <Layout title="Checkout" description="Complete your order!" className="container">
+            {redirect ? <Navigate to="/checkout" replace /> : ""}
             <nav aria-label="breadcrumb">
                 <ol className="breadcrumb">
                     <li className="breadcrumb-item"><Link href="#">Order</Link></li>

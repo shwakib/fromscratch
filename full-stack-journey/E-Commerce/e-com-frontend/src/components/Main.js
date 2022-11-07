@@ -11,6 +11,7 @@ import CreateProduct from './admin/CreateProduct';
 import ProductDetails from './home/ProductDetails';
 import Cart from './order/Cart';
 import ShippingAddress from './order/ShippingAddress';
+import Checkout from './order/Checkout';
 
 const Main = () => {
     return (
@@ -33,6 +34,11 @@ const Main = () => {
                 <Route path="/shipping-address" element={
                     <PrivateRoute>
                         <ShippingAddress />
+                    </PrivateRoute>}
+                />
+                <Route path="/checkout" element={
+                    <PrivateRoute>
+                        <Checkout />
                     </PrivateRoute>}
                 />
                 <Route path="/admin/dashboard" element={
