@@ -9,6 +9,7 @@ import AdminRoute from './protectiveRoutes/adminRoute';
 import CreateCategory from './admin/CreateCategory';
 import CreateProduct from './admin/CreateProduct';
 import ProductDetails from './home/ProductDetails';
+import Cart from './order/Cart';
 
 const Main = () => {
     return (
@@ -21,6 +22,11 @@ const Main = () => {
                 <Route path="/user/dashboard" element={
                     <PrivateRoute>
                         <Dashboard />
+                    </PrivateRoute>}
+                />
+                <Route path="/cart" element={
+                    <PrivateRoute>
+                        <Cart />
                     </PrivateRoute>}
                 />
                 <Route path="/admin/dashboard" element={

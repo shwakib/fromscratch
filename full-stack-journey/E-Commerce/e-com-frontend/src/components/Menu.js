@@ -32,6 +32,9 @@ const Menu = () => {
                         <Link className="nav-link" to={`/${userInfo().role}/dashboard`} style={isActive(location.pathname, `/${userInfo().role}/dashboard`)}>Dashboard</Link>
                     </li>
                     <li className="nav-item">
+                        <Link className="nav-link" style={isActive(location.pathname, `/cart`)} to={`/cart`}>Cart</Link>
+                    </li>
+                    <li className="nav-item">
                         <span className="nav-link" style={{ cursor: 'pointer', color: 'grey' }} onClick={() => {
                             signOut(() => {
                                 navigate('/login');
