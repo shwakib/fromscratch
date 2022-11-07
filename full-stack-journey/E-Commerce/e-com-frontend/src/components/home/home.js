@@ -6,6 +6,8 @@ import { getCategories, getProducts, getFilteredProducts } from '../../api/apiPr
 import Checkbox from './checkbox';
 import RadioBox from './radiobox';
 import { prices } from '../../utils/prices';
+import { isAuthenticated, userInfo } from '../../utils/auth';
+import { addToCart } from '../../api/apiOrder';
 
 const Home = () => {
     const [products, setProducts] = useState([]);
@@ -30,6 +32,31 @@ const Home = () => {
             .then(response => setCategories(response.data))
             .catch(err => setError("Failed to load categories!"));
     }, [])
+
+    const handleAddToCart = product => () => {
+        if (isAuthenticated()) {
+            setError(false);
+            setSuccess(false);
+            const user = userInfo();
+            const cartItem = {
+                user: user._id,
+                product: product._id,
+                price: product.price
+            }
+            addToCart(user.token, cartItem)
+                .then(response => {
+                    setSuccess(true);
+                })
+                .catch(err => {
+                    if (err.response) setError(err.response.data);
+                    else setError("Adding to cart failed!");
+                })
+        }
+        else {
+            setSuccess(false);
+            setError("Please Login First!!");
+        }
+    }
 
     const handleFilters = (myfilters, filterBy) => {
         const newFilters = { ...filters };
@@ -82,7 +109,7 @@ const Home = () => {
                 {showSuccess(success, "Added to cart successfully!")}
             </div>
             <div className="row">
-                {products && products.map(product => <Card product={product} key={product._id} />)}
+                {products && products.map(product => <Card product={product} key={product._id} handleAddToCart={handleAddToCart(product)} />)}
             </div>
         </Layout>
     )
