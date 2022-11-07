@@ -15,6 +15,7 @@ const ShippingAddress = () => {
     });
     const [disabled, setDisabled] = useState(false);
     const [redirect, setRedirect] = useState(false);
+    // eslint-disable-next-line
     const [error, setError] = useState(false);
 
     const {
