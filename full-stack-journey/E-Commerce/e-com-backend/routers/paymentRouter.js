@@ -4,3 +4,5 @@ const authorize = require('../middlewares/authorize');
 
 router.route('/')
     .get(authorize, initPayment);
+
+module.exports = router;
