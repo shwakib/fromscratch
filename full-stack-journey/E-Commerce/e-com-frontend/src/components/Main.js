@@ -12,6 +12,7 @@ import ProductDetails from './home/ProductDetails';
 import Cart from './order/Cart';
 import ShippingAddress from './order/ShippingAddress';
 import Checkout from './order/Checkout';
+import Payment from './order/Payment';
 
 const Main = () => {
     return (
@@ -39,6 +40,11 @@ const Main = () => {
                 <Route path="/checkout" element={
                     <PrivateRoute>
                         <Checkout />
+                    </PrivateRoute>}
+                />
+                <Route path="/payment" element={
+                    <PrivateRoute>
+                        <Payment />
                     </PrivateRoute>}
                 />
                 <Route path="/admin/dashboard" element={
