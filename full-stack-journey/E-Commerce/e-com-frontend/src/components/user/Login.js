@@ -34,7 +34,6 @@ const Login = () => {
             loading: true,
             disabled: true
         });
-        console.log(values);
         login({ email, password })
             .then(response => {
                 authenticate(response.data.token, () => {
