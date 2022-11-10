@@ -3,6 +3,7 @@ const { CartItem } = require('../models/cartItem');
 const { Profile } = require('../models/profile');
 const { Order } = require('../models/order');
 const { Payment } = require('../models/payment');
+const path = require('path');
 
 module.exports.ipn = async (req, res) => {
     const payment = new Payment(req.body);
@@ -31,7 +32,7 @@ module.exports.initPayment = async (req, res) => {
     const payment = new PaymentSession(true, process.env.STORE_ID, process.env.STORE_PASSWORD);
 
     payment.setUrls({
-        success: "yoursite.com/success", // If payment Succeed
+        success: "https://safe-ocean-93615.herokuapp.com/api/payment/success", // If payment Succeed
         fail: "yoursite.com/fail", // If payment failed
         cancel: "yoursite.com/cancel", // If user cancel payment
         ipn: "https://safe-ocean-93615.herokuapp.com/api/payment/ipn", // SSLCommerz will send http post request in this link
@@ -90,4 +91,8 @@ module.exports.initPayment = async (req, res) => {
         await order.save();
     }
     return res.status(200).send(response);
+}
+
+module.exports.paymentStatusSuccess = async (req, res) => {
+    return res.status(200).sendFile(path.join(__basedir + "/public/success.html"));
 }
