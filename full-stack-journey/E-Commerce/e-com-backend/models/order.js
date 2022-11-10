@@ -25,5 +25,5 @@ module.exports.Order = model('Order', Schema({
         type: Schema.Types.ObjectId,
         ref: "User"
     },
-    sessonKey: String
+    sessionKey: String
 }))

@@ -7,5 +7,5 @@ const cartItemSchema = Schema({
     user: { type: Schema.Types.ObjectId, ref: "User", required: true }
 }, { timestamps: true });
 
-module.exports.CartItemSchema = this.CartItemSchema;
+module.exports.CartItemSchema = cartItemSchema;
 module.exports.CartItem = model("CartItem", cartItemSchema);

@@ -5,7 +5,16 @@ const { Order } = require('../models/order');
 const { Payment } = require('../models/payment');
 
 module.exports.ipn = async (req, res) => {
-    console.log(req.body);
+    const payment = new Payment(req.body);
+    const tran_id = payment['tran_id'];
+    if (payment['status'] === 'VALID') {
+        const order = await Order.updateOne({ transaction_id: tran_id }, { payment_status: 'Complete' });
+        await CartItem.deleteMany(order.cartItems);
+    } else {
+        await Order.deleteOne({ transaction_id: tran_id });
+    }
+    await payment.save();
+    return res.status(200).send("IPN");
 }
 
 module.exports.initPayment = async (req, res) => {
@@ -75,5 +84,10 @@ module.exports.initPayment = async (req, res) => {
     });
 
     const response = await payment.paymentInit();
+    let order = new Order({ cartItems: cartItems, user: userId, transaction_id: tran_id, address: profile })
+    if (response.status === 'SUCCESS') {
+        order.sessionKey = response['sessionkey'];
+        await order.save();
+    }
     return res.status(200).send(response);
 }
