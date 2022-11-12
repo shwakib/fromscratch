@@ -119,3 +119,9 @@ module.exports.filterProducts = async (req, res) => {
     const products = await Product.find(args).select({ photo: 0 }).populate('category', 'name').sort({ [sortBy]: order }).skip(skip).limit(limit);
     return res.status(200).send(products);
 }
+
+module.exports.updateProductCount = async (req, res) => {
+    const { product_id, product_quantity } = _.pick(req.body, ["product_id", "product_quantity"]);
+    const result = await Product.updateOne({ _id: product_id }, { quantity: product_quantity });
+    return res.status(200).send("Count updated");
+}

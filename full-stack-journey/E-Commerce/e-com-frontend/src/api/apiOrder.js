@@ -9,6 +9,14 @@ export const addToCart = (token, cartItem) => {
         }
     })
 }
+export const updateCartCount = (token, data) => {
+    return axios.put(`${API}/product`, data, {
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        }
+    })
+}
 
 export const getCartItems = (token) => {
     return axios.get(`${API}/cart`, {

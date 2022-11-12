@@ -7,7 +7,7 @@ import Checkbox from './checkbox';
 import RadioBox from './radiobox';
 import { prices } from '../../utils/prices';
 import { isAuthenticated, userInfo } from '../../utils/auth';
-import { addToCart } from '../../api/apiOrder';
+import { addToCart, updateCartCount } from '../../api/apiOrder';
 
 const Home = () => {
     const [products, setProducts] = useState([]);
@@ -46,7 +46,13 @@ const Home = () => {
             addToCart(user.token, cartItem)
                 .then(response => {
                     setSuccess(true);
-                    // product.quantity = product.quantity - 1;
+                    product.quantity = product.quantity - 1;
+                    const cartCount = {
+                        product_id: product,
+                        product_quantity: product.quantity
+                    }
+                    updateCartCount(user.token, cartCount)
+                        .then(response => console.log(response));
                 })
                 .catch(err => {
                     if (err.response) setError(err.response.data);
