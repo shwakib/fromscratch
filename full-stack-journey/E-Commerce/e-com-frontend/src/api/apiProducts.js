@@ -13,7 +13,7 @@ export const getCategories = () => {
     return axios.get(`${API}/category`)
 }
 
-export const getFilteredProducts = (skip, limit, filters, order, sortBy = {}) => {
+export const getFilteredProducts = (skip, limit, filters = {}, order, sortBy) => {
     const data = {
         order: order,
         sortBy: sortBy,

@@ -15,7 +15,7 @@ const Home = () => {
     const [skip, setSkip] = useState(0);
     const [categories, setCategories] = useState([]);
     const [order, setOrder] = useState('desc');
-    const [sortBy, setSortBy] = useState('createdAt');
+    const [sortBy, setSortBy] = useState('name');
     const [error, setError] = useState(false);
     const [success, setSuccess] = useState(false);
     const [filters, setFilters] = useState({
@@ -46,6 +46,7 @@ const Home = () => {
             addToCart(user.token, cartItem)
                 .then(response => {
                     setSuccess(true);
+                    // product.quantity = product.quantity - 1;
                 })
                 .catch(err => {
                     if (err.response) setError(err.response.data);
@@ -60,6 +61,8 @@ const Home = () => {
 
     const handleFilters = (myfilters, filterBy) => {
         const newFilters = { ...filters };
+        let newOrder = order;
+        let newSortBy = sortBy;
         if (filterBy === 'category') {
             newFilters[filterBy] = myfilters;
         }
@@ -74,9 +77,15 @@ const Home = () => {
             }
             newFilters[filterBy] = arr;
         }
+
+        if (filterBy === 'order') {
+            // newFilters[filterBy] = myfilters;
+            newSortBy = 'price';
+            newOrder = myfilters;
+        }
         setFilters(newFilters);
 
-        getFilteredProducts(skip, limit, newFilters, order, sortBy)
+        getFilteredProducts(skip, limit, newFilters, newOrder, newSortBy)
             .then(response => setProducts(response.data))
             .catch(err => setError("Failed to load Products!!"))
     }
@@ -94,6 +103,16 @@ const Home = () => {
                     <h5>Filter By Price:</h5>
                     <div className='row'>
                         <RadioBox prices={prices} handleFilters={myfilters => handleFilters(myfilters, 'price')} />
+                    </div>
+                </div>
+                <div className='col-sm-4'>
+                    <div className='row'>
+                        <label style={{ marginRight: 15 }} htmlFor="priceorder" >Choose price Order:</label>
+                        <select defaultValue={"Selected"} name="priceorder" id="priceorder" onChange={(e) => handleFilters(e.target.value, 'order')}>
+                            <option value={"Selected"} disabled="disabled">Select One</option>
+                            <option value="asc">Low to High</option>
+                            <option value="desc">High to Low</option>
+                        </select>
                     </div>
                 </div>
             </div>
