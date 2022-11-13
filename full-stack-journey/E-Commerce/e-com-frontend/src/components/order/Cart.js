@@ -1,7 +1,7 @@
 import Layout from '../Layout';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { getCartItems, updateCartItems, deleteCartItem } from '../../api/apiOrder';
+import { getCartItems, updateCartItems, deleteCartItem, updateCartCount } from '../../api/apiOrder';
 import { userInfo } from '../../utils/auth';
 import CartItem from './CartItem';
 import { showError } from '../../utils/messages';
@@ -24,11 +24,19 @@ const Cart = () => {
         if (item.count === 5) return
         const cartItem = {
             ...item,
-            count: item.count + 1
+            count: item.count + 1,
+            quantity: item.quantity - 1
         }
-        updateCartItems(userInfo().token, cartItem)
+        // alert(item.product._id);
+        const token = userInfo().token;
+        updateCartItems(token, cartItem)
             .then(response => {
-                loadCart()
+                const cartCount = {
+                    product_id: item.product._id,
+                    product_quantity: item.quantity - 1
+                }
+                updateCartCount(token, cartCount)
+                    .then(response => loadCart());
             })
             .catch(err => setError("Failed to load products!"))
     }
@@ -37,11 +45,18 @@ const Cart = () => {
         if (item.count === 1) return
         const cartItem = {
             ...item,
-            count: item.count - 1
+            count: item.count - 1,
+            quantity: item.quantity + 1
         }
-        updateCartItems(userInfo().token, cartItem)
+        const token = userInfo().token;
+        updateCartItems(token, cartItem)
             .then(response => {
-                loadCart()
+                const cartCount = {
+                    product_id: item.product._id,
+                    product_quantity: item.quantity + 1
+                }
+                updateCartCount(token, cartCount)
+                    .then(response => loadCart());
             })
             .catch(err => setError("Failed to load products!"))
     }

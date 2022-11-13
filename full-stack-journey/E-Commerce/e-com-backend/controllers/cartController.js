@@ -2,14 +2,15 @@ const { CartItem } = require('../models/cartItem');
 const _ = require('lodash');
 
 module.exports.createCartItem = async (req, res) => {
-    let { price, product } = _.pick(req.body, ["price", "product"]);
+    console.log(req.body);
+    let { price, product, quantity } = _.pick(req.body, ["price", "product", "quantity"]);
     let item = await CartItem.findOne({
         user: req.user._id,
         product: product
     });
     if (item) return res.status(400).send("Item already exists in Cart!!!");
     let cartItem = new CartItem({
-        price: price, product: product, user: req.user._id
+        price: price, product: product, user: req.user._id, quantity: quantity
     });
     const result = await cartItem.save();
     return res.status(201).send({
@@ -26,9 +27,9 @@ module.exports.getCartItem = async (req, res) => {
 }
 
 module.exports.updateCartItem = async (req, res) => {
-    const { _id, count } = _.pick(req.body, ["count", "_id"]);
+    const { _id, count, quantity } = _.pick(req.body, ["count", "_id", "quantity"]);
     userId = req.user._id;
-    const result = await CartItem.updateOne({ _id: _id, user: userId }, { count: count });
+    const result = await CartItem.updateOne({ _id: _id, user: userId }, { count: count, quantity: quantity });
     return res.status(200).send("Item updated");
 }
 

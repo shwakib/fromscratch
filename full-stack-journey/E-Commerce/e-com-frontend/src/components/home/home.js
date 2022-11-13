@@ -41,7 +41,8 @@ const Home = () => {
             const cartItem = {
                 user: user._id,
                 product: product._id,
-                price: product.price
+                price: product.price,
+                quantity: product.quantity - 1
             }
             addToCart(user.token, cartItem)
                 .then(response => {
@@ -52,7 +53,7 @@ const Home = () => {
                         product_quantity: product.quantity
                     }
                     updateCartCount(user.token, cartCount)
-                        .then(response => console.log(response));
+                        .then(response => { });
                 })
                 .catch(err => {
                     if (err.response) setError(err.response.data);
