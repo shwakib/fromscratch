@@ -68,9 +68,18 @@ const Cart = () => {
     }
 
     const removeItem = (item) => () => {
+        const token = userInfo().token;
         if (!window.confirm("Delete Item?")) return
-        deleteCartItem(userInfo().token, item)
-            .then(response => { loadCart() })
+        alert(item.count);
+        deleteCartItem(token, item)
+            .then(response => {
+                const cartCount = {
+                    product_id: item.product._id,
+                    product_quantity: item.quantity + item.count
+                }
+                updateCartCount(token, cartCount)
+                    .then(response => loadCart());
+            })
             .catch(err => setError("Failed to load products!"))
     }
 
