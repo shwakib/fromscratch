@@ -30,7 +30,10 @@ const Card = ({ product, handleAddToCart }) => {
                         <p style={titleStyle}>{product.name}</p>
                     </div>
                     <span style={{ fontSize: 20 }}>&#2547;</span>{product.price}
-                    <p>{product.quantity ? (<span className="badge badge-pill badge-primary">In Stock [{product.quantity}]</span>) : (<span className="badge badge-pill badge-danger">Out of Stock</span>)}</p>
+                    <p>
+                        {product.cartQuantity ? (<span className="badge badge-pill badge-primary">In Stock [{product.cartQuantity}]</span>) : (<span className="badge badge-pill badge-danger">Out of Stock</span>)}
+                        <span style={{ marginLeft: 10 }}>[ {product.soldUnit} units sold out of {product.quantity} units]</span>
+                    </p>
                     <Link to={`/product/${product._id}`}>
                         <button className="btn btn-outline-warning btn-sm">View Product</button>
                     </Link>

@@ -42,15 +42,15 @@ const Home = () => {
                 user: user._id,
                 product: product._id,
                 price: product.price,
-                quantity: product.quantity - 1
+                quantity: product.cartQuantity - 1
             }
             addToCart(user.token, cartItem)
                 .then(response => {
                     setSuccess(true);
-                    product.quantity = product.quantity - 1;
+                    product.cartQuantity = product.cartQuantity - 1;
                     const cartCount = {
                         product_id: product,
-                        product_quantity: product.quantity
+                        product_quantity: product.cartQuantity
                     }
                     updateCartCount(user.token, cartCount)
                         .then(response => { });

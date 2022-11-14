@@ -12,7 +12,11 @@ module.exports.ipn = async (req, res) => {
     if (payment['status'] === 'VALID') {
         const order = await Order.updateOne({ transaction_id: tran_id }, { payment_status: 'Complete' });
         const cartObjects = await Order.findOne({ transaction_id: tran_id });
-        cartObjects.cartItems.map(async (item, i) => await Product.updateOne({ _id: item.product._id }, { soldUnit: item.count }));
+        cartObjects.cartItems.map(async (item, i) => {
+            let previousSoldUnit = await Product.findById(item.product._id).select("soldUnit");
+            previousSoldUnit = previousSoldUnit.soldUnit + item.count;
+            await Product.updateOne({ _id: item.product._id }, { soldUnit: previousSoldUnit })
+        });
         /*console.log(item.product._id, item.price, item.quantity, item.count, i)*/
         await CartItem.deleteMany(order.cartItems);
     } else {

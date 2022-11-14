@@ -12,7 +12,16 @@ module.exports.createProduct = async (req, res) => {
         const { error } = validate(_.pick(fields, ["name", 'description', 'price', 'category', 'quantity']));
         if (error) return res.status(400).send(error.details[0].message);
 
-        const product = new Product(fields);
+        const { name, description, price, category, quantity } = _.pick(fields, ["name", 'description', 'price', 'category', 'quantity']);
+
+        const product = new Product({
+            name: name,
+            description: description,
+            price: price,
+            category: category,
+            quantity: quantity,
+            cartQuantity: quantity
+        });
 
         if (files.photo) {
             fs.readFile(files.photo.filepath, (err, data) => {
@@ -122,6 +131,6 @@ module.exports.filterProducts = async (req, res) => {
 
 module.exports.updateProductCount = async (req, res) => {
     const { product_id, product_quantity } = _.pick(req.body, ["product_id", "product_quantity"]);
-    const result = await Product.updateOne({ _id: product_id }, { quantity: product_quantity });
+    const result = await Product.updateOne({ _id: product_id }, { cartQuantity: product_quantity });
     return res.status(200).send("Count updated");
 }

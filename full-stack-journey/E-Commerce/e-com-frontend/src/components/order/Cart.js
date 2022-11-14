@@ -70,7 +70,6 @@ const Cart = () => {
     const removeItem = (item) => () => {
         const token = userInfo().token;
         if (!window.confirm("Delete Item?")) return
-        alert(item.count);
         deleteCartItem(token, item)
             .then(response => {
                 const cartCount = {

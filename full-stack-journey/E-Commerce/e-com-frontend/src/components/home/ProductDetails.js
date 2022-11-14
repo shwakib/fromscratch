@@ -29,18 +29,19 @@ const ProductDetails = (props) => {
             const cartItem = {
                 user: user._id,
                 product: product._id,
-                price: product.price
+                price: product.price,
+                quantity: product.cartQuantity - 1
             }
             addToCart(user.token, cartItem)
                 .then(response => {
                     setSuccess(true);
-                    product.quantity = product.quantity - 1;
+                    product.cartQuantity = product.cartQuantity - 1;
                     const cartCount = {
                         product_id: product,
-                        product_quantity: product.quantity
+                        product_quantity: product.cartQuantity
                     }
                     updateCartCount(user.token, cartCount)
-                        .then(response => console.log(response));
+                        .then(response => { });
                 })
                 .catch(err => {
                     if (err.response) setError(err.response.data);
@@ -77,7 +78,10 @@ const ProductDetails = (props) => {
                 <div className="col-6">
                     <h3>{product.name}</h3>
                     <span style={{ fontSize: 20 }}>&#2547;</span>{product.price}
-                    <p>{product.quantity ? (<span className="badge badge-pill badge-primary">In Stock [{product.quantity}]</span>) : (<span className="badge badge-pill badge-danger">Out of Stock</span>)}</p>
+                    <p>
+                        {product.cartQuantity ? (<span className="badge badge-pill badge-primary">In Stock [{product.cartQuantity}]</span>) : (<span className="badge badge-pill badge-danger">Out of Stock</span>)}
+                        <span style={{ marginLeft: 10 }}>[ {product.soldUnit} units sold out of {product.quantity} units ]</span>
+                    </p>
                     <p>{product.description}</p>
                     {product.quantity ? <>
                         &nbsp;<button className="btn btn-outline-primary btn-md" onClick={handleAddToCart(product)}>Add to Cart</button>
