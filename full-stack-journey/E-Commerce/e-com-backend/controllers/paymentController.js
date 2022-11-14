@@ -4,12 +4,16 @@ const { Profile } = require('../models/profile');
 const { Order } = require('../models/order');
 const { Payment } = require('../models/payment');
 const path = require('path');
+const { Product } = require('../models/product');
 
 module.exports.ipn = async (req, res) => {
     const payment = new Payment(req.body);
     const tran_id = payment['tran_id'];
     if (payment['status'] === 'VALID') {
         const order = await Order.updateOne({ transaction_id: tran_id }, { payment_status: 'Complete' });
+        const cartObjects = await Order.findOne({ transaction_id: tran_id });
+        cartObjects.cartItems.map(async (item, i) => await Product.updateOne({ _id: item.product._id }, { soldUnit: item.count }));
+        /*console.log(item.product._id, item.price, item.quantity, item.count, i)*/
         await CartItem.deleteMany(order.cartItems);
     } else {
         await Order.deleteOne({ transaction_id: tran_id });
