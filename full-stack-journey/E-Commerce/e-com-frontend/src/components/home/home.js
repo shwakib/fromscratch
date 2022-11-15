@@ -11,7 +11,7 @@ import { addToCart, updateCartCount } from '../../api/apiOrder';
 
 const Home = () => {
     const [products, setProducts] = useState([]);
-    const [limit, setLimit] = useState(30);
+    const [limit, setLimit] = useState(8);
     const [skip, setSkip] = useState(0);
     const [categories, setCategories] = useState([]);
     const [order, setOrder] = useState('desc');
@@ -24,14 +24,18 @@ const Home = () => {
     });
 
     useEffect(() => {
-        getProducts(sortBy, order, limit)
-            .then(response => setProducts(response.data))
-            .catch(err => setError("Failed to load products!"));
+        getProductsAtLoad();
 
         getCategories()
             .then(response => setCategories(response.data))
             .catch(err => setError("Failed to load categories!"));
     }, [])
+
+    const getProductsAtLoad = () => {
+        getProducts(sortBy, order, limit, skip)
+            .then(response => { setProducts(response.data) })
+            .catch(err => setError("Failed to load products!"));
+    }
 
     const handleAddToCart = product => () => {
         if (isAuthenticated()) {
@@ -127,6 +131,25 @@ const Home = () => {
         )
     }
 
+    const loadMoreButton = () => {
+        return (<>
+            <div>
+                <button onClick={loadMoreItems} style={{
+                    position: "relative",
+                    bottom: "10px",
+                    left: "660px",
+                    width: "150px",
+                    borderRadius: "5%"
+                }}>Load More</button>
+            </div>
+        </>)
+    }
+
+    const loadMoreItems = () => {
+        setSkip(skip + limit);
+        getProductsAtLoad();
+    }
+
     return (
         <Layout title="Home Page" className="container-fluid">
             {showFilters()}
@@ -136,6 +159,9 @@ const Home = () => {
             </div>
             <div className="row">
                 {products && products.map(product => <Card product={product} key={product._id} handleAddToCart={handleAddToCart(product)} />)}
+            </div>
+            <div className="row">
+                {loadMoreButton()}
             </div>
         </Layout>
     )

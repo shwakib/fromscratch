@@ -9,7 +9,7 @@ const Card = ({ product, handleAddToCart }) => {
         wordWrap: "break-word",
         overflow: "hidden",
         maxHeight: "2em",
-        lineHeight: "1em"
+        lineHeight: "2em"
     }
     const imgStyle = {
         height: 250,

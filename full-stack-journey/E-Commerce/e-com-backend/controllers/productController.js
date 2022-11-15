@@ -48,7 +48,8 @@ module.exports.getProducts = async (req, res) => {
     let order = req.query.order === 'desc' ? -1 : 1;
     let sortBy = req.query.sortBy ? req.query.sortBy : '_id'; //If there is any sorting requirements given other wise it will be sorted based on _id
     let limit = req.query.limit ? parseInt(req.query.limit) : 10;
-    const products = await Product.find().select({ photo: 0, description: 0 }).sort({ [sortBy]: order }).limit(limit).populate('category', 'name createdAt');
+    let skip = parseInt(req.query.skip);
+    const products = await Product.find().select({ photo: 0, description: 0 }).sort({ [sortBy]: order }).skip(skip).limit(limit).populate('category', 'name createdAt');
     return res.status(200).send(products);
 }
 
