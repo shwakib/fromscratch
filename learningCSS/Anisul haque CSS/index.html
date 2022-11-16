@@ -7,54 +7,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Learning CSS</title>
     <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
-    <style type="text/css">
-        /*universal selector*/
-        /* * {
-            background-color: green;
-            color: red
-        } */
-
-        /* grouping selector */
-        /* h1,
-        p {
-            background-color: red;
-            color: white;
-        } */
-
-        /* Combinators */
-        /* div p {
-            color: green;
-        } */
-
-        /* Child Selectors */
-        /* div>p {
-            color: green;
-        } */
-
-        /* Adjacent sibling Selector */
-        /* div+p {
-            color: green;
-        } */
-
-        /* General sibling Selector */
-        div~p {
-            color: green;
+    <style>
+        .myStyle {
+            font-family: 'Noto Sans Mende Kikakui', sans-serif;
+            font-size: 110%;
+            font-style: italic;
+            font-weight: bold;
+            color: grey;
         }
     </style>
 </head>
 
 <body>
-    <h1>This is a h1 tag</h1>
-    <div>
-        <p>This is paragraph 1</p>
-        <p>This is paragraph 2</p>
-        <p>This is paragraph 3</p>
-        <section>
-            <p>This is paragraph 10</p>
-        </section>
-    </div>
-    <p>This is paragraph 4</p>
-    <p>This is paragraph 5</p>
+    <p class="myStyle">This is a paragraph!</p>
 </body>
 
 </html>
