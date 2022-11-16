@@ -8,38 +8,53 @@
     <title>Learning CSS</title>
     <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
     <style type="text/css">
-        /* #section1 {
-            background-color: aquamarine;
-        }
-        #section1 h1 {
-            color: red;
-        }
-        #section1 p {
-            color: grey;
+        /*universal selector*/
+        /* * {
+            background-color: green;
+            color: red
         } */
 
-        .style1 {
-            color: green;
-        }
+        /* grouping selector */
+        /* h1,
+        p {
+            background-color: red;
+            color: white;
+        } */
 
-        .style2 {
-            font-size: 70px;
+        /* Combinators */
+        /* div p {
+            color: green;
+        } */
+
+        /* Child Selectors */
+        /* div>p {
+            color: green;
+        } */
+
+        /* Adjacent sibling Selector */
+        /* div+p {
+            color: green;
+        } */
+
+        /* General sibling Selector */
+        div~p {
+            color: green;
         }
     </style>
 </head>
 
 <body>
-    <div id="section1">
-        <h1 class="style1 style2"> This is heading</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores dolorem dolor eius corporis assumenda
-            numquam explicabo corrupti, odit cum necessitatibus dolore voluptatibus cupiditate reiciendis magnam
-            similique incidunt molestiae veniam deleniti earum unde qui doloribus. Iure explicabo officiis atque,
-            deserunt quasi temporibus nobis possimus corrupti soluta! Id magni deleniti error facilis hic repudiandae,
-            assumenda vitae debitis, odit harum excepturi incidunt libero. Cupiditate, eaque magni! Consectetur minus,
-            velit doloribus nobis nemo nostrum provident officia laborum eveniet ad dolor quas facere voluptatem quia.
-        </p>
+    <h1>This is a h1 tag</h1>
+    <div>
+        <p>This is paragraph 1</p>
+        <p>This is paragraph 2</p>
+        <p>This is paragraph 3</p>
+        <section>
+            <p>This is paragraph 10</p>
+        </section>
     </div>
-
+    <p>This is paragraph 4</p>
+    <p>This is paragraph 5</p>
 </body>
 
 </html>
