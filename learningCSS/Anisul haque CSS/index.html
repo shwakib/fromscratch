@@ -5,30 +5,74 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CSS Box Model</title>
-    <link rel="stylesheet" href="style.css">
-    </link>
+    <title>Pseduo Class</title>
+    <style>
+        /* a.my-link:hover {
+            color: green;
+        } */
+        /* input {
+            padding: 10px;
+            font-size: 1rem;
+            width: 150px;
+        }
+
+        input:hover {
+            background-color: green;
+        }
+
+        input:focus {
+            background-color: red;
+        } */
+
+        /* table,
+        tr,
+        td {
+            border: 1px solid black;
+        }
+
+        tr:nth-child(odd) {
+            background-color: brown;
+        } */
+        /* p:hover {
+            background-color: red;
+        } */
+        /* p::first-letter {
+            color: coral;
+            font-size: 1.5rem;
+        } */
+        p::after {
+            content: ">";
+        }
+
+        p::before {
+            content: ">";
+        }
+    </style>
 </head>
 
 <body>
-    <!-- <h1>This is h1</h1>
-    <h2>This is h2</h2> -->
-    <!-- <span>This is a text</span>
-    <span>This is a text</span>
-    <span>This is a text</span> -->
-    <div class="e1">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim tempore reprehenderit ad quod dolore eum vitae
-        adipisci magnam error soluta. Eos animi eaque voluptatibus quidem possimus cupiditate porro quisquam sit quasi?
-        Ipsa optio adipisci quasi ipsum possimus laudantium praesentium dolore corporis delectus reprehenderit,
-        assumenda facere velit quos mollitia harum. Ut.
-    </div>
-    <br>
-    <div class="e2">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim tempore reprehenderit ad quod dolore eum vitae
-        adipisci magnam error soluta. Eos animi eaque voluptatibus quidem possimus cupiditate porro quisquam sit quasi?
-        Ipsa optio adipisci quasi ipsum possimus laudantium praesentium dolore corporis delectus reprehenderit,
-        assumenda facere velit quos mollitia harum. Ut.
-    </div>
+    <!-- <a class="my-link" href="#">Tutorial</a>
+    <a href="#">Home</a> -->
+    <!-- <input type="text" placeholder="Enter Your name" /> -->
+    <!-- <table>
+        <tr>
+            <td>Name</td>
+            <td>Age</td>
+        </tr>
+        <tr>
+            <td>Anis</td>
+            <td>45</td>
+        </tr>
+        <tr>
+            <td>Rabeya</td>
+            <td>30</td>
+        </tr>
+    </table> -->
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate ad distinctio veritatis possimus, iusto,
+        optio id impedit doloribus inventore tempora ipsum atque perferendis velit ducimus totam facere repudiandae
+        eaque obcaecati quas, non vitae facilis? Voluptatum expedita blanditiis dolor maiores culpa alias rerum
+        possimus, sapiente fugiat labore quia in laudantium. Voluptas molestiae ad omnis soluta inventore molestias quod
+        temporibus, doloremque similique.</p>
 </body>
 
 </html>
