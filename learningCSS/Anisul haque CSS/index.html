@@ -7,72 +7,83 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pseduo Class</title>
     <style>
-        /* a.my-link:hover {
-            color: green;
+        /*Pseudo Class*/
+        /* p:nth-child(2) {
+            background-color: black;
+            color: white;
         } */
-        /* input {
-            padding: 10px;
-            font-size: 1rem;
-            width: 150px;
-        }
-
-        input:hover {
-            background-color: green;
-        }
-
-        input:focus {
-            background-color: red;
+        /* ul li:nth-child(odd) {
+            background-color: grey;
+        } */
+        /* ul li:last-of-type {
+            background-color: grey;
         } */
 
-        /* table,
-        tr,
-        td {
-            border: 1px solid black;
-        }
-
-        tr:nth-child(odd) {
-            background-color: brown;
-        } */
-        /* p:hover {
-            background-color: red;
-        } */
+        /*Pseudo Elements*/
         /* p::first-letter {
-            color: coral;
+            color: brown;
             font-size: 1.5rem;
         } */
-        p::after {
-            content: ">";
+        /* ::selection {
+            color: brown;
+            background-color: grey;
+        } */
+        /* .demo1::before {
+            content: "";
+            width: 50%;
+            height: 25px;
+            background-color: black;
+            display: inline-block;
         }
 
-        p::before {
-            content: ">";
+        .demo1::after {
+            content: "";
+            width: 50%;
+            height: 25px;
+            background-color: black;
+            display: inline-block;
+        } */
+
+        input::placeholder {
+            color: brown;
         }
     </style>
 </head>
 
 <body>
-    <!-- <a class="my-link" href="#">Tutorial</a>
-    <a href="#">Home</a> -->
-    <!-- <input type="text" placeholder="Enter Your name" /> -->
-    <!-- <table>
-        <tr>
-            <td>Name</td>
-            <td>Age</td>
-        </tr>
-        <tr>
-            <td>Anis</td>
-            <td>45</td>
-        </tr>
-        <tr>
-            <td>Rabeya</td>
-            <td>30</td>
-        </tr>
-    </table> -->
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate ad distinctio veritatis possimus, iusto,
-        optio id impedit doloribus inventore tempora ipsum atque perferendis velit ducimus totam facere repudiandae
-        eaque obcaecati quas, non vitae facilis? Voluptatum expedita blanditiis dolor maiores culpa alias rerum
-        possimus, sapiente fugiat labore quia in laudantium. Voluptas molestiae ad omnis soluta inventore molestias quod
-        temporibus, doloremque similique.</p>
+    <!-- <div class="demo">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At tempore sapiente fuga ea doloribus ducimus?
+            Explicabo vel fuga unde nobis?</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At tempore sapiente fuga ea doloribus ducimus?
+            Explicabo vel fuga unde nobis?</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At tempore sapiente fuga ea doloribus ducimus?
+            Explicabo vel fuga unde nobis?</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At tempore sapiente fuga ea doloribus ducimus?
+            Explicabo vel fuga unde nobis?</p>
+    </div> -->
+    <!-- <ul>
+        <li>Home1</li>
+        <li>Home2</li>
+        <li>Home3</li>
+        <li>Home4</li>
+        <li>Home5</li>
+        <li>Home6</li>
+    </ul> -->
+    <!-- <div class="demo1">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est excepturi id mollitia aliquam assumenda. Non,
+            similique, fugiat perspiciatis dolorum officia alias quidem maxime, aliquam consectetur vel incidunt
+            perferendis
+            ducimus corporis.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est excepturi id mollitia aliquam assumenda. Non,
+            similique, fugiat perspiciatis dolorum officia alias quidem maxime, aliquam consectetur vel incidunt
+            perferendis
+            ducimus corporis.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est excepturi id mollitia aliquam assumenda. Non,
+            similique, fugiat perspiciatis dolorum officia alias quidem maxime, aliquam consectetur vel incidunt
+            perferendis
+            ducimus corporis.</p>
+    </div> -->
+    <input type="text" placeholder="I am a placeholder">
 </body>
 
 </html>
