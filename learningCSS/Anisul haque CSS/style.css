@@ -1,0 +1,8 @@
+body {
+    background-image: url("bakground.jpg");
+    background-repeat: no-repeat;
+    background-position: right top;
+    background-attachment: fixed;
+
+    /* Shorthand Method -> background: #FFF url("bakground.jpg") no-repeat right top fixed; */
+}
