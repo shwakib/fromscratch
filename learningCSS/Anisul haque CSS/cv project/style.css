@@ -63,3 +63,53 @@ hr {
     margin: 20px auto;
     border-bottom: none;
 }
+
+#personal-section {}
+
+.content {
+    margin-bottom: 30px;
+}
+
+.left-div {
+    width: 30%;
+    float: left;
+}
+
+.right-div {
+    width: 70%;
+    float: left;
+}
+
+.common-hr {
+    border: solid black 1px;
+    border-bottom: none;
+    width: 100%;
+    margin: 20 auto;
+}
+
+.edu-template-left {
+    float: left;
+    width: 45%;
+}
+
+.edu-template-right {
+    float: right;
+    width: 45%;
+}
+
+.bottom-container {
+    background-color: black;
+    text-align: center;
+    padding: 10px;
+}
+
+.bottom-container a {
+    color: white;
+    text-decoration: none;
+    margin: 20px;
+}
+
+.bottom-container p {
+    color: white;
+    margin-top: 20px;
+}
