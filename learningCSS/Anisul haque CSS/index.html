@@ -5,45 +5,45 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gradient</title>
+    <title>nav-Menu</title>
     <!-- <link rel="stylesheet" href="style.css"> -->
     <style>
-        #section1 {
+        #nav-menu {
+            margin: 0 auto;
+            width: 500px;
+            height: 50px;
+            background-color: #639e63;
+        }
+
+        #nav-menu ul {}
+
+        #nav-menu ul li {
+            list-style-type: none;
+            margin: 10px;
             float: left;
-            background-color: green;
         }
 
-        #section2 {
-            float: right;
-            background-color: orange;
+        #nav-menu ul li a {
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            cursor: pointer;
         }
 
-        #clear-div {
-            clear: both;
-        }
-
-        #section3 {
-            background-color: yellow;
+        #nav-menu ul li a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 
 <body>
-    <div id="section1">
-        <h1>Bangladesh</h1>
-    </div>
-    <div id="section2">
-        <h1>Finland</h1>
-    </div>
-    <div id="clear-div"></div>
-    <div id="section3">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos cum delectus repudiandae doloribus! Illo
-            aliquam eveniet quod obcaecati fugit odio repellendus iusto laborum. Architecto expedita debitis numquam
-            facilis doloremque, placeat nostrum maiores quisquam, eligendi veniam accusantium quis, molestiae at laborum
-            omnis voluptatum repellat a. Laborum delectus iure qui totam ullam cum sint nihil pariatur libero, optio aut
-            quasi eum reiciendis veritatis expedita veniam dolores magni minima fugit et. Ab ea saepe deserunt eum rem
-            reprehenderit veritatis quasi laudantium cum, eveniet illo consequuntur molestiae at accusantium dolorem
-            ullam nisi autem labore corrupti a repellat facilis est eos? Modi magnam exercitationem rerum!</p>
+    <div id="nav-menu">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Projects</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
     </div>
 </body>
 
