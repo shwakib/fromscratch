@@ -1,4 +1,5 @@
 const { Product, validate } = require('../models/product');
+const { Review } = require('../models/review');
 const _ = require('lodash');
 const formidable = require('formidable');
 const fs = require('fs');
@@ -134,4 +135,19 @@ module.exports.updateProductCount = async (req, res) => {
     const { product_id, product_quantity } = _.pick(req.body, ["product_id", "product_quantity"]);
     const result = await Product.updateOne({ _id: product_id }, { cartQuantity: product_quantity });
     return res.status(200).send("Count updated");
+}
+
+module.exports.postReview = async (req, res) => {
+    const productId = req.params.id;
+    const { user, star, comment } = _.pick(req.body, ["user", "star", "comment"]);
+    const review = new Review({
+        user: user,
+        productId: productId,
+        star: star,
+        comment: comment
+    })
+    const result = await review.save();
+    return res.status(201).send({
+        message: "Review Submitted Successful!"
+    })
 }

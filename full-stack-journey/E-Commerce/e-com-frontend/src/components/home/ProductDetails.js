@@ -57,31 +57,35 @@ const ProductDetails = (props) => {
 
     const reviewSection = () => {
         return (
-            <div>
-                <h3 style={{ padding: 4 }}>Please add a review for the product</h3>
-                <div className='row '>
-                    <div style={{ marginLeft: "5px" }} className={Star}>
-                        <div class="rate" >
-                            <input type="radio" id="star5" name="rate" value="5" />
-                            <label for="star5" title="text">5 stars</label>
-                            <input type="radio" id="star4" name="rate" value="4" />
-                            <label for="star4" title="text">4 stars</label>
-                            <input type="radio" id="star3" name="rate" value="3" />
-                            <label for="star3" title="text">3 stars</label>
-                            <input type="radio" id="star2" name="rate" value="2" />
-                            <label for="star2" title="text">2 stars</label>
-                            <input type="radio" id="star1" name="rate" value="1" />
-                            <label for="star1" title="text">1 star</label>
+            <form>
+                <div>
+                    <h3 style={{ padding: 4 }}>Please add a review for the product</h3>
+                    <div className='row '>
+                        <div style={{ marginLeft: "5px" }} className={Star}>
+                            <div class="rate" >
+                                <input type="radio" id="star5" name="rate" value="5" />
+                                <label for="star5" title="text">5 stars</label>
+                                <input type="radio" id="star4" name="rate" value="4" />
+                                <label for="star4" title="text">4 stars</label>
+                                <input type="radio" id="star3" name="rate" value="3" />
+                                <label for="star3" title="text">3 stars</label>
+                                <input type="radio" id="star2" name="rate" value="2" />
+                                <label for="star2" title="text">2 stars</label>
+                                <input type="radio" id="star1" name="rate" value="1" />
+                                <label for="star1" title="text">1 star</label>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div className='row'>
-                    <div style={{ marginLeft: "20px" }}>
-                        <label htmlFor='reviewdescription'></label>
-                        <textarea name='reviewdescription'></textarea>
+                    <div className='row'>
+                        <div style={{ marginLeft: "20px" }}>
+                            <p>Review Comment:</p>
+                            <label htmlFor='reviewdescription'></label>
+                            <textarea name='reviewdescription'></textarea>
+                        </div>
                     </div>
-                </div>
-            </div>
+                    <button className="btn btn-outline-primary btn-md" style={{ marginLeft: "5px", marginTop: "15px" }}>Submit Review</button>
+                </div >
+            </form>
         )
     }
 
