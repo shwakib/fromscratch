@@ -5,100 +5,52 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Position</title>
+    <title>Overflow & Tooltip</title>
     <!-- <link rel="stylesheet" href="style.css"> -->
     <style>
-        .nav-bar-fixed {
-            border: 3px solid green;
-            padding: 5px;
-            position: fixed;
-            left: 100px;
-        }
-
-        .div1 {
-            border: 3px solid green;
-            padding: 5px;
-            position: static;
-            bottom: 180px;
-        }
-
-        .div2 {
-            border: 3px solid red;
-            padding: 5px;
-            position: relative;
-            left: 50px;
-        }
-
-        .div3 {
-            border: 3px solid blue;
-            padding: 5px;
-            position: relative;
+        div {
             height: 200px;
+            width: 250px;
+            border: 5px solid black;
+            background-color: green;
+            overflow: auto;
         }
 
-        .div4 {
-            border: 3px solid purple;
-            padding: 5px;
+        .tooltip {
+            position: relative;
+        }
+
+        .tooltip .tooltip-text {
+            visibility: hidden;
+            width: 150px;
+            background-color: bisque;
+            color: black;
+            padding: 10px;
+            border-radius: 5px;
             position: absolute;
-            left: 400px;
-            top: 150px;
+            top: 30px;
+            left: 30px;
+            z-index: 1;
+        }
+
+        .tooltip:hover .tooltip-text {
+            visibility: visible;
         }
     </style>
 </head>
 
 <body>
-
-    <div class="nav-bar-fixed">
-        <a href="#">HOME</a>
-    </div>
+    <a href="www.facebook.com" class="tooltip">Facebook <span class="tooltip-text">Facebook is a social media</span></a>
 
     <br />
 
-    <div class="div1">
-        <p>Static <br />Lorem ipsum dolor, sit amet consectetur adipisicing elit. Explicabo pariatur molestiae suscipit
-            minus. Ea
-            culpa molestias error repellat amet ullam, inventore nisi voluptatibus molestiae architecto expedita debitis
-            quasi vitae aliquid illo ut! Amet delectus neque temporibus voluptatum fugiat reprehenderit, iste possimus,
-            dignissimos ex reiciendis molestiae adipisci ad maiores, cum labore.</p>
+    <div>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti doloremque repudiandae, facilis optio
+            minus voluptate incidunt quod. Incidunt laborum quidem dolorem delectus sint aliquid beatae doloremque at,
+            non quaerat numquam, ullam eum quos, corrupti nisi quas nihil itaque. Aliquid nam impedit exercitationem
+            saepe atque repellendus nostrum iste. Nostrum repellat non nobis quae porro, voluptates incidunt animi dicta
+            sunt expedita. Exercitationem.</p>
     </div>
-
-    <br />
-
-    <div class="div2">
-        <p>Relative <br />Lorem ipsum dolor, sit amet consectetur adipisicing elit. Explicabo pariatur molestiae
-            suscipit minus. Ea
-            culpa molestias error repellat amet ullam, inventore nisi voluptatibus molestiae architecto expedita debitis
-            quasi vitae aliquid illo ut! Amet delectus neque temporibus voluptatum fugiat reprehenderit, iste possimus,
-            dignissimos ex reiciendis molestiae adipisci ad maiores, cum labore.</p>
-    </div>
-
-    <br />
-
-    <div class="div3">
-        <p>Relative <br />Lorem ipsum dolor, sit amet consectetur adipisicing elit. Explicabo pariatur molestiae
-            suscipit minus. Ea
-            culpa molestias error repellat amet ullam, inventore nisi voluptatibus molestiae architecto expedita debitis
-            quasi vitae aliquid illo ut! Amet delectus neque temporibus voluptatum fugiat reprehenderit, iste possimus,
-            dignissimos ex reiciendis molestiae adipisci ad maiores, cum labore.</p>
-        <div class="div4">
-            Hi Bangladesh
-        </div>
-    </div>
-
-    <br />
-
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim necessitatibus odio atque esse laudantium nihil
-        ad rerum autem aliquid, exercitationem, blanditiis minus velit ut ratione? Perferendis quos quidem dolor
-        explicabo illo, enim magni rerum sit iste blanditiis aperiam quis earum neque voluptatem quasi sint nam
-        placeat? Facilis rerum ea sint delectus cupiditate quam explicabo ad veniam, esse corrupti saepe modi sequi
-        sed quos. Deserunt cupiditate molestiae odit, quasi aspernatur animi culpa provident assumenda odio quaerat
-        distinctio asperiores harum at qui molestias debitis officiis. Blanditiis iure praesentium eaque qui non rem
-        doloribus tempore eos vitae quod dolor exercitationem ratione neque repellendus itaque, quia earum ducimus
-        quam assumenda voluptatum. Possimus non beatae velit laborum magni repudiandae sapiente molestiae rerum quis
-        commodi! Consectetur inventore ad, quia ipsam eligendi accusamus harum doloribus a! Facere quisquam iure
-        eaque reprehenderit, voluptatem sed aliquam harum doloribus maxime animi odio quasi quod, quidem aut eos
-        sint tempora expedita!</p>
-
 </body>
 
 </html>
