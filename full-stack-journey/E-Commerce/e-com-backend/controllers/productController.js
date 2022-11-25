@@ -143,11 +143,17 @@ module.exports.postReview = async (req, res) => {
     const review = new Review({
         user: user,
         productId: productId,
-        star: star,
+        star: parseInt(star),
         comment: comment
     })
     const result = await review.save();
     return res.status(201).send({
         message: "Review Submitted Successful!"
     })
+}
+
+module.exports.getReviews = async (req, res) => {
+    const productID = req.params.id;
+    const result = await Review.find({ productId: productID });
+    return res.status(200).send(result);
 }
