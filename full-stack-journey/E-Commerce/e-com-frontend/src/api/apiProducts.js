@@ -27,3 +27,12 @@ export const getFilteredProducts = (skip, limit, filters = {}, order, sortBy) =>
         }
     })
 }
+
+export const postReview = (token, id, data) => {
+    return axios.post(`${API}/product/review/${id}`, data, {
+        headers: {
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json"
+        }
+    })
+}

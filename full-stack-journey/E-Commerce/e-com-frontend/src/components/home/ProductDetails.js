@@ -3,7 +3,7 @@ import Layout from '../Layout';
 import { showSuccess, showError } from '../../utils/messages';
 import { API } from '../../utils/config';
 import { Link, useParams } from 'react-router-dom';
-import { getProductDetails } from '../../api/apiProducts';
+import { getProductDetails, postReview } from '../../api/apiProducts';
 import { addToCart, updateCartCount } from '../../api/apiOrder';
 import { isAuthenticated, userInfo } from '../../utils/auth';
 import * as Star from '../../App.css';
@@ -12,7 +12,12 @@ const ProductDetails = (props) => {
     const [product, setProducts] = useState({});
     const [error, setError] = useState(false);
     const [success, setSuccess] = useState(false);
+    const [review, setReview] = useState({
+        star: [1, 2, 3, 4, 5],
+        comment: ""
+    })
     let { id } = useParams();
+    const { star, comment } = review;
 
     useEffect(() => {
         getProductDetails(id)
@@ -55,38 +60,79 @@ const ProductDetails = (props) => {
         }
     }
 
-    const reviewSection = () => {
+    const PostReviewSection = () => {
         return (
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div>
                     <h3 style={{ padding: 4 }}>Please add a review for the product</h3>
                     <div className='row '>
                         <div style={{ marginLeft: "5px" }} className={Star}>
-                            <div class="rate" >
-                                <input type="radio" id="star5" name="rate" value="5" />
-                                <label for="star5" title="text">5 stars</label>
-                                <input type="radio" id="star4" name="rate" value="4" />
-                                <label for="star4" title="text">4 stars</label>
-                                <input type="radio" id="star3" name="rate" value="3" />
-                                <label for="star3" title="text">3 stars</label>
-                                <input type="radio" id="star2" name="rate" value="2" />
-                                <label for="star2" title="text">2 stars</label>
-                                <input type="radio" id="star1" name="rate" value="1" />
-                                <label for="star1" title="text">1 star</label>
-                            </div>
-                        </div>
-                    </div>
+                            <div className="rate" >
+                                <input type="radio" id="star5" name="star" value={star[4]} onClick={handlechange} />
+                                <label htmlFor="star5" title="text">5 stars</label>
+                                <input type="radio" id="star4" name="star" value={star[3]} onClick={handlechange} />
+                                <label htmlFor="star4" title="text">4 stars</label>
+                                <input type="radio" id="star3" name="star" value={star[2]} onClick={handlechange} />
+                                <label htmlFor="star3" title="text">3 stars</label>
+                                <input type="radio" id="star2" name="star" value={star[1]} onClick={handlechange} />
+                                <label htmlFor="star2" title="text">2 stars</label>
+                                <input type="radio" id="star1" name="star" value={star[0]} onClick={handlechange} />
+                                <label htmlFor="star1" title="text">1 star</label>
+                            </div >
+                        </div >
+                    </div >
                     <div className='row'>
                         <div style={{ marginLeft: "20px" }}>
                             <p>Review Comment:</p>
-                            <label htmlFor='reviewdescription'></label>
-                            <textarea name='reviewdescription'></textarea>
+                            <label htmlFor='comment'></label>
+                            <textarea name='comment' value={comment} onChange={handlechange}></textarea>
                         </div>
                     </div>
-                    <button className="btn btn-outline-primary btn-md" style={{ marginLeft: "5px", marginTop: "15px" }}>Submit Review</button>
+                    <button className="btn btn-outline-primary btn-md" style={{ marginLeft: "5px", marginTop: "15px", marginBottom: "30px" }}>Submit Review</button>
                 </div >
-            </form>
+            </form >
         )
+    }
+
+    const getReviews = () => {
+        return (
+            <div>
+                <h3>Reviews for this product</h3>
+                <h5>User Name</h5>
+                <p><i>Star for the Product</i></p>
+                <p>Review Description</p>
+            </div>
+        )
+    }
+
+    const handlechange = e => {
+        setReview({
+            ...review,
+            [e.target.name]: e.target.value
+        })
+    }
+
+    const handleSubmit = e => {
+        e.preventDefault();
+        setReview({
+            ...review
+        });
+        const { token, _id } = userInfo();
+        // alert(id);
+        const reviewData = {
+            user: _id,
+            star: star,
+            comment: comment
+        }
+        postReview(token, id, reviewData)
+            .then(response => {
+                setReview({
+                    star: "",
+                    comment: ""
+                });
+                alert("Review Submitted Successfully!")
+            })
+            .catch(err => { console.log(err) })
     }
 
     return (
@@ -119,7 +165,8 @@ const ProductDetails = (props) => {
                     </p>
                     <p>{product.description}</p>
                     {product.quantity ? <>&nbsp;<button className="btn btn-outline-primary btn-md" onClick={handleAddToCart(product)}>Add to Cart</button></> : ""}
-                    {reviewSection()}
+                    {PostReviewSection()}
+                    {getReviews()}
                 </div>
             </div>
         </Layout>
