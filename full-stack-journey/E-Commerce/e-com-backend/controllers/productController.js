@@ -154,6 +154,6 @@ module.exports.postReview = async (req, res) => {
 
 module.exports.getReviews = async (req, res) => {
     const productID = req.params.id;
-    const result = await Review.find({ productId: productID });
+    const result = await Review.find({ productId: productID }).populate('user', 'name');
     return res.status(200).send(result);
 }
