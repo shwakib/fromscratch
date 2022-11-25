@@ -5,105 +5,49 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CSS Card</title>
-    <!-- <link rel="stylesheet" href="style.css"> -->
-    <style>
-        .card-containers {
-            box-sizing: border-box;
-            display: flex;
-            background-color: cadetblue;
-            padding: 20px 0;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .card {
-            width: 300px;
-            margin: 10px;
-            box-sizing: border-box;
-            box-shadow: 1px 2px 4px black;
-        }
-
-        .img-style {
-            width: 100%;
-        }
-
-        .card-body {
-            padding: 5px;
-            background-color: cornflowerblue;
-        }
-
-        .card-title {
-            font-size: 2rem;
-            text-align: center;
-            color: white;
-        }
-
-        .card-description {
-            text-align: justify;
-            line-height: 1;
-            color: white;
-        }
-
-        .card:hover {
-            box-shadow: 6px 12px 10px white;
-        }
-    </style>
+    <title>Calculator</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- <style>
+        
+    </style> -->
 </head>
 
 <body>
-    <div class="card-containers">
-        <div class="card">
-            <img class="img-style" src="../Anisul haque CSS/cv project/Passport Picture.jpg">
-            <div class="card-body">
-                <div class="card-title">
-                    Sifat Hasan Wakib
-                </div>
-                <div class="card-description">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci ut dolorum earum fugiat ullam
-                        saepe
-                        accusamus, vel quod perferendis, voluptates dolor aspernatur architecto possimus laboriosam!</p>
-                </div>
-            </div>
+    <h1>Calculator</h1>
+    <div class="card">
+        <div class="calculator-input">
+            <input type="text" id="result" maxlength="10">
         </div>
-        <div class="card">
-            <img class="img-style" src="../Anisul haque CSS/cv project/Passport Picture.jpg">
-            <div class="card-body">
-                <div class="card-title">
-                    Sifat Hasan Wakib
-                </div>
-                <div class="card-description">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci ut dolorum earum fugiat ullam
-                        saepe
-                        accusamus, vel quod perferendis, voluptates dolor aspernatur architecto possimus laboriosam!</p>
-                </div>
+        <div class="calculator-button">
+            <div>
+                <input type="button" class="btn" value="C">
+                <input type="button" class="btn" value="+/-">
+                <input type="button" class="btn" value="%">
+                <input type="button" class="btn btn-style-side" value="/">
             </div>
-        </div>
-        <div class="card">
-            <img class="img-style" src="../Anisul haque CSS/cv project/Passport Picture.jpg">
-            <div class="card-body">
-                <div class="card-title">
-                    Sifat Hasan Wakib
-                </div>
-                <div class="card-description">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci ut dolorum earum fugiat ullam
-                        saepe
-                        accusamus, vel quod perferendis, voluptates dolor aspernatur architecto possimus laboriosam!</p>
-                </div>
+            <div>
+                <input type="button" class="btn" value="7">
+                <input type="button" class="btn" value="8">
+                <input type="button" class="btn" value="9">
+                <input type="button" class="btn btn-style-side" value="*">
             </div>
-        </div>
-        <div class="card">
-            <img class="img-style" src="../Anisul haque CSS/cv project/Passport Picture.jpg">
-            <div class="card-body">
-                <div class="card-title">
-                    Sifat Hasan Wakib
-                </div>
-                <div class="card-description">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci ut dolorum earum fugiat ullam
-                        saepe
-                        accusamus, vel quod perferendis, voluptates dolor aspernatur architecto possimus laboriosam!</p>
-                </div>
+            <div>
+                <input type="button" class="btn" value="4">
+                <input type="button" class="btn" value="5">
+                <input type="button" class="btn" value="6">
+                <input type="button" class="btn btn-style-side" value="-">
+            </div>
+            <div>
+                <input type="button" class="btn" value="1">
+                <input type="button" class="btn" value="2">
+                <input type="button" class="btn" value="3">
+                <input type="button" class="btn btn-style-side" value="+">
+            </div>
+            <div>
+                <input type="button" class="btn" value="0">
+                <input type="button" class="btn" value=".">
+                <input type="button" class="btn" value="DEL">
+                <input type="button" class="btn" value="=" style="background-color: orange;">
             </div>
         </div>
     </div>
