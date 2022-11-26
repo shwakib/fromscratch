@@ -29,8 +29,7 @@ const Checkout = () => {
         percentage: ''
     });
     const { code, percentage } = coupons;
-
-    const { token } = userInfo();
+    const { token, name } = userInfo();
 
     const loadCart = () => {
         getCartItems(token)
@@ -55,7 +54,7 @@ const Checkout = () => {
     const shippinDetails = () => (
         <>
             To,
-            <br /> <b>{userInfo().name}</b>
+            <br /> <b>{name}</b>
             <br /> Phone: {phone}
             <br /> {address1}
             {address2 ? (<><br />{address2}</>) : ""}
@@ -75,7 +74,7 @@ const Checkout = () => {
             code: code
         }
 
-        redeemCoupon(userInfo().token, data)
+        redeemCoupon(token, data)
             .then(response => {
                 setCoupon({
                     ...coupons,
