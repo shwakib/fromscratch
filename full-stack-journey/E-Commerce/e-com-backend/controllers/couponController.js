@@ -9,6 +9,7 @@ module.exports.createCoupon = async (req, res) => {
 }
 
 module.exports.redeemCoupon = async (req, res) => {
-    const coupon = await Coupon.find({ code: req.body.code });
+    const code = req.body.code;
+    const coupon = await Coupon.find({ code: code });
     return res.status(200).send(coupon);
 }
