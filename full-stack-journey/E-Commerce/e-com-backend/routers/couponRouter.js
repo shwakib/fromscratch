@@ -8,6 +8,6 @@ router.route("/")
     .post([authorize, admin], createCoupon);
 
 router.route("/redeem")
-    .get(authorize, redeemCoupon);
+    .post(authorize, redeemCoupon);
 
 module.exports = router;
