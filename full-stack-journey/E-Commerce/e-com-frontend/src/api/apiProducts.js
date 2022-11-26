@@ -36,3 +36,7 @@ export const postReview = (token, id, data) => {
         }
     })
 }
+
+export const fetchReviews = id => {
+    return axios.get(`${API}/product/review/${id}`);
+}

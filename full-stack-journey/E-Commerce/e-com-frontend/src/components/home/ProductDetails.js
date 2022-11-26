@@ -3,21 +3,24 @@ import Layout from '../Layout';
 import { showSuccess, showError } from '../../utils/messages';
 import { API } from '../../utils/config';
 import { Link, useParams } from 'react-router-dom';
-import { getProductDetails, postReview } from '../../api/apiProducts';
+import { getProductDetails, postReview, fetchReviews } from '../../api/apiProducts';
 import { addToCart, updateCartCount } from '../../api/apiOrder';
 import { isAuthenticated, userInfo } from '../../utils/auth';
 import * as Star from '../../App.css';
+import Review from './review';
 
 const ProductDetails = (props) => {
     const [product, setProducts] = useState({});
+    const [reviews, setReviews] = useState([]);
     const [error, setError] = useState(false);
     const [success, setSuccess] = useState(false);
-    const [review, setReview] = useState({
+    const [submitReview, setPostReview] = useState({
         star: [1, 2, 3, 4, 5],
         comment: ""
-    })
+    });
+
     let { id } = useParams();
-    const { star, comment } = review;
+    const { star, comment } = submitReview;
 
     useEffect(() => {
         getProductDetails(id)
@@ -25,7 +28,11 @@ const ProductDetails = (props) => {
                 setProducts(response.data);
             })
             .catch(err => setError("Failed To Load Products"));
-    }, [])
+
+        fetchReviews(id)
+            .then(response => { setReviews(response.data) })
+            .catch(err => console.log(err));
+    }, [reviews])
 
     const handleAddToCart = product => () => {
         if (isAuthenticated()) {
@@ -85,7 +92,7 @@ const ProductDetails = (props) => {
                         <div style={{ marginLeft: "20px" }}>
                             <p>Review Comment:</p>
                             <label htmlFor='comment'></label>
-                            <textarea name='comment' value={comment} onChange={handlechange}></textarea>
+                            <textarea name='comment' value={comment} onChange={handlechange} style={{ width: "350px", height: "90px" }}></textarea>
                         </div>
                     </div>
                     <button className="btn btn-outline-primary btn-md" style={{ marginLeft: "5px", marginTop: "15px", marginBottom: "30px" }}>Submit Review</button>
@@ -94,28 +101,17 @@ const ProductDetails = (props) => {
         )
     }
 
-    const getReviews = () => {
-        return (
-            <div>
-                <h3>Reviews for this product</h3>
-                <h5>User Name</h5>
-                <p><i>Star for the Product</i></p>
-                <p>Review Description</p>
-            </div>
-        )
-    }
-
     const handlechange = e => {
-        setReview({
-            ...review,
+        setPostReview({
+            ...submitReview,
             [e.target.name]: e.target.value
         })
     }
 
     const handleSubmit = e => {
         e.preventDefault();
-        setReview({
-            ...review
+        setPostReview({
+            ...submitReview
         });
         const { token, _id } = userInfo();
         // alert(id);
@@ -126,7 +122,7 @@ const ProductDetails = (props) => {
         }
         postReview(token, id, reviewData)
             .then(response => {
-                setReview({
+                setPostReview({
                     star: "",
                     comment: ""
                 });
@@ -166,7 +162,7 @@ const ProductDetails = (props) => {
                     <p>{product.description}</p>
                     {product.quantity ? <>&nbsp;<button className="btn btn-outline-primary btn-md" onClick={handleAddToCart(product)}>Add to Cart</button></> : ""}
                     {PostReviewSection()}
-                    {getReviews()}
+                    {reviews && reviews.map(review => <Review item={review} key={review._id} />)}
                 </div>
             </div>
         </Layout>
