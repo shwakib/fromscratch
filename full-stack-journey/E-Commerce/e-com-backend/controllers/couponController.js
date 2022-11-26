@@ -5,5 +5,10 @@ module.exports.createCoupon = async (req, res) => {
     // const {code,percentage,description}=_.pick(req.body,["code","percentage","description"]);
     const coupon = new Coupon(_.pick(req.body, ["code", "percentage", "description"]));
     const result = await coupon.save();
-    return res.status(200).send(result);
+    return res.status(201).send(result);
+}
+
+module.exports.redeemCoupon = async (req, res) => {
+    const coupon = await Coupon.find({ code: req.body.code });
+    return res.status(200).send(coupon);
 }
