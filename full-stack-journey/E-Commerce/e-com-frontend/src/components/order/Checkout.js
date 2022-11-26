@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getCartItems, getProfile } from '../../api/apiOrder';
+import { getCartItems, getProfile, redeemCoupon } from '../../api/apiOrder';
 import { userInfo } from '../../utils/auth';
 import Layout from '../Layout';
 import { Link } from 'react-router-dom';
@@ -24,14 +24,22 @@ const Checkout = () => {
         country
     } = values;
 
+    const [coupons, setCoupon] = useState({
+        code: '',
+        percentage: ''
+    });
+    const { code, percentage } = coupons;
+
+    const { token } = userInfo();
+
     const loadCart = () => {
-        getCartItems(userInfo().token)
+        getCartItems(token)
             .then(response => setOrderItems(response.data))
             .catch((err => console.log(err)));
     }
 
     useEffect(() => {
-        getProfile(userInfo().token)
+        getProfile(token)
             .then(response => setValues(response.data))
             .catch(err => { });
         loadCart();
@@ -55,6 +63,29 @@ const Checkout = () => {
         </>
     )
 
+    const handleChange = e => {
+        setCoupon({
+            ...coupons,
+            [e.target.name]: e.target.value
+        })
+    }
+
+    const handleSubmit = e => {
+        const data = {
+            code: code
+        }
+
+        redeemCoupon(userInfo().token, data)
+            .then(response => {
+                setCoupon({
+                    ...coupons,
+                    percentage: response.data[0].percentage,
+                    code: ""
+                })
+            })
+            .catch(err => { console.log(err) })
+    }
+
     if (address1 && city && phone && postcode && country)
         return (<>
             <Layout title="Checkout" description="Complete your order!" className="container">
@@ -77,6 +108,15 @@ const Checkout = () => {
                             </div>
                         </div>
                         <div className="col-md-4">
+                            <div className="card" style={{ height: 'auto', marginBottom: "15px" }}>
+                                <div className="card-body">
+                                    <label className="text" style={{ marginRight: "10px" }}>Coupon: </label>
+                                    <input style={{ height: "43px", borderRadius: "10px", textTransform: "uppercase" }} onChange={handleChange} name="code" value={code} />
+                                </div>
+                                <div className="card-footer">
+                                    <span className="float-right"><button type="submit" className="btn btn-outline-primary" onClick={handleSubmit}>Apply Coupon</button></span>
+                                </div>
+                            </div>
                             <div className="card" style={{ height: 'auto' }}>
                                 <div className="card-body">
                                     <ul className="list-group list-group-flush">

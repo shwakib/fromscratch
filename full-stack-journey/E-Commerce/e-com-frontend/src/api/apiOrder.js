@@ -67,3 +67,12 @@ export const initPayment = token => {
         }
     })
 }
+
+export const redeemCoupon = (token, data) => {
+    return axios.post(`${API}/coupon/redeem`, data, {
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        }
+    })
+}
