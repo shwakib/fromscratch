@@ -8,6 +8,7 @@ import PrivateRoute from './protectiveRoutes/privateRoute';
 import AdminRoute from './protectiveRoutes/adminRoute';
 import CreateCategory from './admin/CreateCategory';
 import CreateProduct from './admin/CreateProduct';
+import CreateCoupon from './admin/createCoupon';
 import ProductDetails from './home/ProductDetails';
 import Cart from './order/Cart';
 import ShippingAddress from './order/ShippingAddress';
@@ -60,6 +61,11 @@ const Main = () => {
                 <Route path="/create/product" element={
                     <AdminRoute>
                         <CreateProduct />
+                    </AdminRoute>}
+                />
+                <Route path="/create/coupon" element={
+                    <AdminRoute>
+                        <CreateCoupon />
                     </AdminRoute>}
                 />
                 <Route
