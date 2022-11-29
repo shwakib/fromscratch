@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 const _ = require('lodash');
 const { User, validate } = require('../models/user');
+const { Order } = require('../models/order')
 
 module.exports.signUp = async (req, res) => {
     const { error } = validate(req.body);
@@ -37,4 +38,10 @@ module.exports.signIn = async (req, res) => {
         token: token,
         user: _.pick(user, ["_id", "name", "email"])
     })
+}
+
+module.exports.fetchPurchaseHistory = async (req, res) => {
+    let user = req.body.userID;
+    const result = await Order.find({ user: user });
+    return res.status(200).send(result);
 }
