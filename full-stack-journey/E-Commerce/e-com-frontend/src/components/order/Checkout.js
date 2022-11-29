@@ -24,11 +24,14 @@ const Checkout = () => {
         country
     } = values;
 
-    const [coupons, setCoupon] = useState({
-        code: '',
-        percentage: ''
+    const [couponCode, setCode] = useState({
+        code: "",
+        disabled: false
     });
-    const { code, percentage } = coupons;
+
+    const [discount, setDiscount] = useState(0);
+
+    const { code, disabled } = couponCode;
     const { token, name } = userInfo();
 
     const loadCart = () => {
@@ -63,8 +66,8 @@ const Checkout = () => {
     )
 
     const handleChange = e => {
-        setCoupon({
-            ...coupons,
+        setCode({
+            ...code,
             [e.target.name]: e.target.value
         })
     }
@@ -76,13 +79,20 @@ const Checkout = () => {
 
         redeemCoupon(token, data)
             .then(response => {
-                setCoupon({
-                    ...coupons,
-                    percentage: response.data[0].percentage,
-                    code: ""
-                })
+                setCode({
+                    ...couponCode,
+                    code: "",
+                    disabled: true
+                });
+                let discountAmount = getOrderTotal() * response.data[0].percentage;
+                setDiscount(discountAmount);
             })
-            .catch(err => { console.log(err) })
+            .catch(err => {
+                setCode({
+                    ...couponCode,
+                    disabled: false
+                });
+            })
     }
 
     if (address1 && city && phone && postcode && country)
@@ -110,7 +120,7 @@ const Checkout = () => {
                             <div className="card" style={{ height: 'auto', marginBottom: "15px" }}>
                                 <div className="card-body">
                                     <label className="text" style={{ marginRight: "10px" }}>Coupon: </label>
-                                    <input style={{ height: "43px", borderRadius: "10px", textTransform: "uppercase" }} onChange={handleChange} name="code" value={code} />
+                                    <input style={{ height: "43px", borderRadius: "10px", textTransform: "uppercase" }} onChange={handleChange} name="code" value={code} disabled={disabled} />
                                 </div>
                                 <div className="card-footer">
                                     <span className="float-right"><button type="submit" className="btn btn-outline-primary" onClick={handleSubmit}>Apply Coupon</button></span>
@@ -123,8 +133,10 @@ const Checkout = () => {
                                     </ul>
                                 </div>
                                 <div className="card-footer">
+                                    <span className="float-left" ><b>Discount</b></span>
+                                    <span className="float-right"><b>৳ {discount}</b></span><br />
                                     <span className="float-left"><b>Order Total</b></span>
-                                    <span className="float-right"><b>৳ {getOrderTotal()}</b></span>
+                                    <span className="float-right"><b>৳ {getOrderTotal() - discount}</b></span>
                                 </div>
                             </div>
                             <br />
