@@ -20,7 +20,7 @@ const Checkbox = ({ categories, handleFilters }) => {
     // }, [checked])
 
     return categories.map(category => (
-        <li className="list-unstyled" key={category._id}>
+        <li className="list-unstyled" key={category._id} style={{ marginLeft: "25px" }}>
             <input type="checkbox" className="form-check-input" onChange={handleToggle(category._id)} value={checked.indexOf(category._id === -1)} />
             <label className="form-check-label">{category.name}</label>
         </li>
