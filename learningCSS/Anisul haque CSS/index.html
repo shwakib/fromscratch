@@ -5,24 +5,48 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dropdown Menu</title>
-    <link rel="stylesheet" media="screen and (max-width:600px)" href="./RWD/mobile.css">
-    <link rel="stylesheet" media="screen and (min-width:992px)" href="./RWD/laptop.css">
+    <title>nav RWD</title>
     </link>
     <style>
-        * {
-            box-sizing: border-box;
+        .navbar {
+            background-color: cadetblue;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            padding: 13px;
+            color: white;
+        }
+
+        .navbar a:hover {
+            background-color: gray;
+        }
+
+        @media screen and (max-width:600px) {
+            .navbar {
+                flex-direction: column;
+                padding: 10px;
+            }
+
+            .navbar a {
+                background-color: indigo;
+                margin: 5px 0px;
+                text-align: center;
+                border-radius: 10px;
+            }
         }
     </style>
 </head>
 
 <body>
-    <h1>Bangladesh</h1>
-    <h2>Responsive Web Design</h2>
-    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequatur quisquam temporibus facere modi cupiditate
-        obcaecati a recusandae ex illo maiores, omnis, quam nam mollitia totam ipsum? Tempore odit minima iure dolor at!
-        Hic, doloribus aliquam. Pariatur, quia quod sunt ex sint repellat ad doloremque consequatur optio itaque
-        corporis rerum fugiat?</p>
+    <div class="navbar">
+        <a href="#">Home</a>
+        <a href="#">Contact</a>
+        <a href="#">About</a>
+        <a href="#">Contact Me</a>
+    </div>
 </body>
 
 </html>
