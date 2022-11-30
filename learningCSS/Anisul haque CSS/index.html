@@ -5,32 +5,63 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Linakble Icon</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <title>Dropdown Menu</title>
     <style>
-        .social-media {
-            background-color: grey;
-            padding: 50px 20px;
+        .navbar {
+            background-color: #40868b;
+            padding: 1% 7%;
             text-align: center;
         }
 
-        .btn {
-            border: none;
+        .navbar a {
+            text-decoration: none;
+            color: white;
+            font-size: 1.2rem;
             padding: 10px 20px;
-            font-size: 2rem;
-            border-radius: 5px;
+            cursor: pointer;
         }
 
-        .btn:hover {
+        .dropdown-container {
+            display: inline;
+            position: relative;
+        }
+
+        .dropdown-container:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-content {
+            position: absolute;
+            top: 30px;
+            right: 0px;
+            background-color: #40868b;
+            text-align: left;
+            min-width: 100px;
+            display: none;
+        }
+
+        .dropdown-content a {
+            display: block;
+        }
+
+        .dropdown-content a:hover {
             background-color: gray;
         }
     </style>
 </head>
 
 <body>
-    <div class="social-media">
-        <button class="btn request-callback" onclick="window.open('https://www.faceboo.com/amiwakib')"><i
-                style="color: #3b5998;" class="fa-brands fa-facebook"></i></button>
+    <div class="navbar">
+        <a href="#">Home</a>
+        <a href="#">Tutorial</a>
+        <div class="dropdown-container">
+            <a href="#">Contact Me</a>
+            <div class="dropdown-content">
+                <a href="#">Facebook</a>
+                <a href="#">Email</a>
+            </div>
+        </div>
+        <a href="#">About</a>
     </div>
 </body>
 
