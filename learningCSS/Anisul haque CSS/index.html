@@ -5,47 +5,74 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>nav RWD</title>
+    <title>Column RWD</title>
     </link>
     <style>
-        .navbar {
-            background-color: cadetblue;
+        * {
+            box-sizing: border-box;
+        }
+
+        .row {
             display: flex;
-            justify-content: flex-end;
+            flex-wrap: wrap;
         }
 
-        .navbar a {
-            text-decoration: none;
-            padding: 13px;
-            color: white;
+        /* .column {
+            float: left;
+            width: 25%;
+            padding: 10px;
+        } */
+
+        .column {
+            flex: 25%;
+            padding: 10px;
         }
 
-        .navbar a:hover {
-            background-color: gray;
+        @media screen and (max-width:992px) {
+
+            /* .column {
+                float: left;
+                width: 50%;
+            } */
+            .column {
+                flex: 50%;
+            }
         }
 
         @media screen and (max-width:600px) {
-            .navbar {
-                flex-direction: column;
-                padding: 10px;
-            }
 
-            .navbar a {
-                background-color: indigo;
-                margin: 5px 0px;
-                text-align: center;
-                border-radius: 10px;
+            /*.column {
+                width: 100%;
+            } */
+            .row {
+                flex-direction: column;
             }
         }
     </style>
 </head>
 
 <body>
-    <div class="navbar">
-        <a href="#">Home</a>
-        <a href="#">Contact</a>
-        <a href="#">About</a>
-        <a href="#">Contact Me</a>
+    <div class="row">
+        <div class="column">
+            <h1>HTML</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque autem iure minus cupiditate itaque
+                assumenda distinctio. Quas atque commodi laudantium!</p>
+        </div>
+        <div class="column">
+            <h1>CSS</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque autem iure minus cupiditate itaque
+                assumenda distinctio. Quas atque commodi laudantium!</p>
+        </div>
+        <div class="column">
+            <h1>JS</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque autem iure minus cupiditate itaque
+                assumenda distinctio. Quas atque commodi laudantium!</p>
+        </div>
+        <div class="column">
+            <h1>Python</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque autem iure minus cupiditate itaque
+                assumenda distinctio. Quas atque commodi laudantium!</p>
+        </div>
     </div>
 </body>
 
