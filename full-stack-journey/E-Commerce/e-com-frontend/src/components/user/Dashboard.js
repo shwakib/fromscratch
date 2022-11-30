@@ -1,9 +1,22 @@
 import Layout from '../Layout';
 import { Link } from 'react-router-dom';
 import { userInfo } from '../../utils/auth';
+import { purchaseHistory } from '../../api/apiPurchaseHistory';
+import { useEffect, useState } from 'react';
+import OrderHistory from './OrderHistory';
 
 const Dashboard = () => {
-    const { name, email, role } = userInfo();
+    const [orders, setOrders] = useState([]);
+    const { name, email, role, _id, token } = userInfo();
+
+    useEffect(() => {
+        const data = {
+            userID: _id
+        }
+        purchaseHistory(token, data)
+            .then(response => { setOrders(response.data) })
+    }, [])
+
     const UserLinks = () => {
         return (
             <div className="card">
@@ -21,11 +34,23 @@ const Dashboard = () => {
     };
 
     const PurchaseHistory = () => (
-        <div className="card mb-5">
-            <h3 className="card-header">Purchase History</h3>
-            <ul className="list-group">
-                <li className="list-group-item">History</li>
-            </ul>
+        <div className="container my-5" style={{ margin: "-15px" }}>
+            <h3 className="card-body">Purchase History</h3>
+            <table className="table table-hover" >
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Order ID</th>
+                        <th scope="col">Transaction ID</th>
+                        <th scope="col">Payment Status</th>
+                        <th scope="col" align="right">Shipping Address</th>
+                        <th scop="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {orders.map((item, i) => <OrderHistory item={item} serial={i + 1} key={item._id} />)}
+                </tbody>
+            </table>
         </div>
     );
 
