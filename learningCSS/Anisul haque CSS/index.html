@@ -5,48 +5,32 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Center a element</title>
+    <title>Linakble Icon</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <style>
-        .main {
-            width: 80%;
-            margin: 0 auto;
-            /* text-align: center; */
-            background-color: pink;
-            height: 200px;
-
-            /* display: flex;
-            justify-content: center;
-            align-items: center; */
-
-            position: relative;
+        .social-media {
+            background-color: grey;
+            padding: 50px 20px;
+            text-align: center;
         }
 
-        /* h1 {
-            width: 200px;
-            margin: 0 auto;
-        } */
+        .btn {
+            border: none;
+            padding: 10px 20px;
+            font-size: 2rem;
+            border-radius: 5px;
+        }
 
-        .desc {
-            background-color: green;
-            width: 300px;
-            height: 150px;
-
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+        .btn:hover {
+            background-color: gray;
         }
     </style>
 </head>
 
 <body>
-    <div class="main">
-        <!-- <h1>Bangladesh</h1> -->
-        <div class="desc">
-            <h3>Sylhet</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi dolorem maiores aut iste! Modi ut
-                molestiae labore repellat assumenda ullam!</p>
-        </div>
+    <div class="social-media">
+        <button class="btn request-callback" onclick="window.open('https://www.faceboo.com/amiwakib')"><i
+                style="color: #3b5998;" class="fa-brands fa-facebook"></i></button>
     </div>
 </body>
 
