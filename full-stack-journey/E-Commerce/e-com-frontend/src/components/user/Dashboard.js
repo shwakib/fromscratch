@@ -4,9 +4,13 @@ import { userInfo } from '../../utils/auth';
 import { purchaseHistory } from '../../api/apiPurchaseHistory';
 import { useEffect, useState } from 'react';
 import OrderHistory from './OrderHistory';
+// import { Modal, ModalBody, ModalFooter } from 'reactstrap';
+// import Modal from 'react-modal';
+import { Modal, Button } from 'react-bootstrap';
 
 const Dashboard = () => {
     const [orders, setOrders] = useState([]);
+    const [modalStatus, setModalStatus] = useState(false);
     const { name, email, role, _id, token } = userInfo();
 
     useEffect(() => {
@@ -16,6 +20,28 @@ const Dashboard = () => {
         purchaseHistory(token, data)
             .then(response => { setOrders(response.data) })
     }, [])
+
+    const viewDetails = item => () => {
+        console.log(item);
+        return (
+            <div>
+                <Modal show={modalStatus}>
+                    <Modal.Header>
+                        <Modal.Title>Modal heading</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" >
+                            Close
+                        </Button>
+                        <Button variant="primary" >
+                            Save Changes
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+            </div>
+        )
+    }
 
     const UserLinks = () => {
         return (
@@ -42,13 +68,14 @@ const Dashboard = () => {
                         <th scope="col">#</th>
                         <th scope="col">Order ID</th>
                         <th scope="col">Transaction ID</th>
+                        <th scope="col">Amount</th>
                         <th scope="col">Payment Status</th>
                         <th scope="col" align="right">Shipping Address</th>
                         <th scop="col"></th>
                     </tr>
                 </thead>
                 <tbody>
-                    {orders.map((item, i) => <OrderHistory item={item} serial={i + 1} key={item._id} />)}
+                    {orders.map((item, i) => <OrderHistory item={item} serial={i + 1} key={item._id} viewDetails={viewDetails(item)} />)}
                 </tbody>
             </table>
         </div>
@@ -73,7 +100,7 @@ const Dashboard = () => {
                 </div>
                 <div className="col-sm-9">
                     <UserInfo />
-                    <PurchaseHistory />
+                    {orders ? <PurchaseHistory /> : ""}
                 </div>
             </div>
         </Layout>
