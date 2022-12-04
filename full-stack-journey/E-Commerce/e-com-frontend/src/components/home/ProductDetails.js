@@ -6,7 +6,7 @@ import { Link, useParams } from 'react-router-dom';
 import { getProductDetails, postReview, fetchReviews } from '../../api/apiProducts';
 import { addToCart, updateCartCount } from '../../api/apiOrder';
 import { isAuthenticated, userInfo } from '../../utils/auth';
-import * as Star from '../../App.css';
+import * as Star from '../../utils/CSS/Star.css';
 import Review from './review';
 
 const ProductDetails = (props) => {

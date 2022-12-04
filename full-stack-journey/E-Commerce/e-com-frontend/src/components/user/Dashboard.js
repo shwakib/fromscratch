@@ -4,9 +4,8 @@ import { userInfo } from '../../utils/auth';
 import { purchaseHistory } from '../../api/apiPurchaseHistory';
 import { useEffect, useState } from 'react';
 import OrderHistory from './OrderHistory';
-// import { Modal, ModalBody, ModalFooter } from 'reactstrap';
-// import Modal from 'react-modal';
-import { Modal, Button } from 'react-bootstrap';
+// import '../../utils/CSS/Modal.css';
+import Modal from './Modal';
 
 const Dashboard = () => {
     const [orders, setOrders] = useState([]);
@@ -21,26 +20,13 @@ const Dashboard = () => {
             .then(response => { setOrders(response.data) })
     }, [])
 
-    const viewDetails = item => () => {
+    const toggleModal = () => {
+        setModalStatus(!modalStatus); // Update state to show/hide modal
+    };
+
+    const ViewDetails = item => () => {
         console.log(item);
-        return (
-            <div>
-                <Modal show={modalStatus}>
-                    <Modal.Header>
-                        <Modal.Title>Modal heading</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="secondary" >
-                            Close
-                        </Button>
-                        <Button variant="primary" >
-                            Save Changes
-                        </Button>
-                    </Modal.Footer>
-                </Modal>
-            </div>
-        )
+        toggleModal();
     }
 
     const UserLinks = () => {
@@ -66,16 +52,16 @@ const Dashboard = () => {
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Order ID</th>
-                        <th scope="col">Transaction ID</th>
-                        <th scope="col">Amount</th>
-                        <th scope="col">Payment Status</th>
-                        <th scope="col" align="right">Shipping Address</th>
+                        <th scope="col" style={{ textAlign: "center" }}>Order ID</th>
+                        <th scope="col" style={{ textAlign: "center" }}>Transaction ID</th>
+                        <th scope="col" style={{ textAlign: "center" }}>Amount</th>
+                        <th scope="col" style={{ textAlign: "center" }}>Payment Status</th>
+                        <th scope="col" style={{ textAlign: "center" }}>Shipping Address</th>
                         <th scop="col"></th>
                     </tr>
                 </thead>
                 <tbody>
-                    {orders.map((item, i) => <OrderHistory item={item} serial={i + 1} key={item._id} viewDetails={viewDetails(item)} />)}
+                    {orders.map((item, i) => <OrderHistory item={item} serial={i + 1} key={item._id} viewDetails={ViewDetails(item)} />)}
                 </tbody>
             </table>
         </div>
@@ -94,6 +80,7 @@ const Dashboard = () => {
 
     return (
         <Layout title="Dashboard" className="container-fluid">
+            {<Modal open={modalStatus} onClose={() => setModalStatus(false)} />}
             <div className="row">
                 <div className="col-sm-3">
                     <UserLinks />
