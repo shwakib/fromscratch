@@ -42,6 +42,6 @@ module.exports.signIn = async (req, res) => {
 
 module.exports.fetchPurchaseHistory = async (req, res) => {
     let user = req.body.userID;
-    const result = await Order.find({ user: user }).populate('products', 'name');
+    const result = await Order.find({ user: user }).populate('product', 'name');
     return res.status(200).send(result);
 }
