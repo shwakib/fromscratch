@@ -15,7 +15,7 @@ const OrderHistory = ({ item, serial, viewDetails }) => {
             <td>{getCartTotal()}</td>
             <td>{item.payment_status}</td>
             <td align="left">{item.address.address1},{item.address.address2}. <br />Phone: {item.address.phone} </td>
-            <td><button className="btn btn-primary btn-sm" onClick={viewDetails}>View Details</button></td>
+            <td><button className="btn btn-primary btn-sm" onClick={viewDetails}>View Product Details</button></td>
         </tr>
     )
 };

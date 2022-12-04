@@ -10,6 +10,7 @@ import Modal from './Modal';
 const Dashboard = () => {
     const [orders, setOrders] = useState([]);
     const [modalStatus, setModalStatus] = useState(false);
+    const [purchasedItems, setPurchasedItems] = useState({});
     const { name, email, role, _id, token } = userInfo();
 
     useEffect(() => {
@@ -27,6 +28,7 @@ const Dashboard = () => {
     const ViewDetails = item => () => {
         console.log(item);
         toggleModal();
+        setPurchasedItems(item);
     }
 
     const UserLinks = () => {
@@ -80,7 +82,7 @@ const Dashboard = () => {
 
     return (
         <Layout title="Dashboard" className="container-fluid">
-            {<Modal open={modalStatus} onClose={() => setModalStatus(false)} />}
+            {<Modal open={modalStatus} onClose={() => setModalStatus(false)} item={purchasedItems} />}
             <div className="row">
                 <div className="col-sm-3">
                     <UserLinks />
