@@ -63,7 +63,7 @@ module.exports.getProductsById = async (req, res) => {
 
 module.exports.getProductName = async (req, res) => {
     const productId = req.body.id;
-    const result = await Product.findById(productId).select({ name: 0 });
+    const result = await Product.findById(productId).select({ name: 1 });
     return res.status(200).send(result);
 }
 
