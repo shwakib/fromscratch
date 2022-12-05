@@ -22,13 +22,15 @@ const Modal = ({ open, onClose, item }) => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {item.cartItems.map((item, i) => <tr >
-                                    <th scope="row">{i + 1}</th>
-                                    <th><img src={`${API}/product/photo/${item.product}`} alt={item.product.name} width="50px" /></th>
-                                    <td>{item.product.name ? item.product.name : ""}</td>
-                                    <td align="center">{item.count}</td>
-                                    <td align="center">৳ {item.price * item.count} </td>
-                                </tr>)}
+                                {item.cartItems.map((item, i) =>
+                                    <tr key={item._id}>
+                                        <th scope="row">{i + 1}</th>
+                                        <th><img src={`${API}/product/photo/${item.product}`} alt={item.product.name} width="60px" height="50px" /></th>
+                                        <td>{item.product.name ? item.product.name : ""}</td>
+                                        <td align="center">{item.count}</td>
+                                        <td align="center">৳ {item.price * item.count} </td>
+                                    </tr>
+                                )}
                             </tbody>
                         </table>
                     </div>
