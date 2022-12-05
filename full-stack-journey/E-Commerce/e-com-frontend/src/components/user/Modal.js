@@ -1,6 +1,7 @@
 import React from "react";
 import "../../utils/CSS/modalStyle.css";
 import { API } from '../../utils/config';
+import { getProductDetails } from '../../api/apiProducts';
 
 const Modal = ({ open, onClose, item }) => {
     console.log(item.cartItems);
@@ -26,7 +27,7 @@ const Modal = ({ open, onClose, item }) => {
                                     <tr key={item._id}>
                                         <th scope="row">{i + 1}</th>
                                         <th><img src={`${API}/product/photo/${item.product}`} alt={item.product.name} width="60px" height="50px" /></th>
-                                        <td>{item.product.name ? item.product.name : ""}</td>
+                                        <td>{/*item.product.name ? item.product.name : ""*/getProductDetails(item.product).then(response => console.log(response.data.name))}</td>
                                         <td align="center">{item.count}</td>
                                         <td align="center">৳ {item.price * item.count} </td>
                                     </tr>
