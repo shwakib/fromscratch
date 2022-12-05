@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { getProducts, getProductsById, updateProductsById, createProduct, getPhoto, filterProducts, updateProductCount, postReview, getReviews } = require('../controllers/productController');
+const { getProducts, getProductsById, updateProductsById, createProduct, getPhoto, filterProducts, updateProductCount, postReview, getReviews, getProductName } = require('../controllers/productController');
 const admin = require('../middlewares/admin');
 const authorize = require('../middlewares/authorize');
 
@@ -21,5 +21,8 @@ router.route('/filter')
 router.route('/review/:id')
     .post(authorize, postReview)
     .get(getReviews)
+
+router.route('/product/name')
+    .post(getProductName);
 
 module.exports = router;
