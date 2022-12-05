@@ -22,7 +22,7 @@ router.route('/review/:id')
     .post(authorize, postReview)
     .get(getReviews)
 
-router.route('/product/name')
+router.route('/name')
     .post(getProductName);
 
 module.exports = router;
