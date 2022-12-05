@@ -23,6 +23,6 @@ router.route('/review/:id')
     .get(getReviews)
 
 router.route('/name')
-    .post(getProductName);
+    .get(getProductName);
 
 module.exports = router;
