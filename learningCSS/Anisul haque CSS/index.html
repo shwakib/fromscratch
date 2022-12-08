@@ -5,94 +5,59 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>using Table Css</title>
+    <title>CSS Form</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     </link>
     <style>
-        table {
-            border: 2px solid black;
-            border-collapse: collapse;
+        * {
+            box-sizing: border-box;
+        }
+
+        input[type=text] {
             width: 100%;
+            padding: 10px 20px;
+            font-size: 1rem;
+            margin: 20px 0;
+            background-color: seagreen;
+            border: 3px solid salmon;
+            border-radius: 5px;
+            /* border: none;
+            border-bottom: 3px solid salmon; */
         }
 
-        th,
-        td {
-            border: 2px solid black;
-            padding: 5px;
-            text-align: center;
+        #search {
+            background-image: url('./search.png');
+            background-repeat: no-repeat;
+            font-size: 1rem;
+            padding: 15px 45px;
+            background-position: 8px 15px;
+            background-color: white;
+            width: 150px;
+
+            transition: width 3s ease-in-out;
         }
 
-        th {
-            background-color: darkgreen;
-            color: white;
-            height: 30px;
-            vertical-align: middle;
-        }
-
-        tr:nth-child(even) {
-            background-color: gray;
-        }
-
-        tr:nth-child(odd) {
-            background-color: gold;
-        }
-
-        tr:hover {
-            background-color: tomato;
+        #search:focus {
+            background-color: sienna;
+            width: 100%;
         }
     </style>
 </head>
 
 <body>
-    <table>
-        <caption>Student Details</caption>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>GPA</th>
-            <th>Phone</th>
-            <th>Bio</th>
-        </tr>
-        <tr>
-            <td>101</td>
-            <td>Sifat</td>
-            <td>3.5</td>
-            <td>0171111115</td>
-            <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur ullam eius amet consequatur placeat
-                facilis animi dolorum veritatis eaque incidunt?</td>
-        </tr>
-        <tr>
-            <td>102</td>
-            <td>Hasan</td>
-            <td>3.5</td>
-            <td>0171111115</td>
-            <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur ullam eius amet consequatur placeat
-                facilis animi dolorum veritatis eaque incidunt?</td>
-        </tr>
-        <tr>
-            <td>103</td>
-            <td>Wakib</td>
-            <td>3.5</td>
-            <td>0171111115</td>
-            <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur ullam eius amet consequatur placeat
-                facilis animi dolorum veritatis eaque incidunt?</td>
-        </tr>
-        <tr>
-            <td>104</td>
-            <td>Joy</td>
-            <td>3.5</td>
-            <td>0171111115</td>
-            <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur ullam eius amet consequatur placeat
-                facilis animi dolorum veritatis eaque incidunt?</td>
-        </tr>
-        <tr>
-            <td>105</td>
-            <td>Babu</td>
-            <td>3.5</td>
-            <td>0171111115</td>
-            <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur ullam eius amet consequatur placeat
-                facilis animi dolorum veritatis eaque incidunt?</td>
-        </tr>
-    </table>
+    <form>
+        <input type="text" name="search" id="search" placeholder="Search">
+
+        <br />
+
+        <label for="fname">First Name</label>
+        <input type="text" name="fname" id="fname">
+
+        <label for="lname">Last Name</label>
+        <input type="text" name="lname" id="lname">
+
+    </form>
 </body>
 
 </html>
