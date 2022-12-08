@@ -5,47 +5,54 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CSS Form</title>
+    <title>List Styling</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-        textarea {
-            resize: none;
-            width: 50%;
+        .course-list {
+            background-color: rgb(216, 28, 28);
             padding: 20px;
-            border: 3px grey solid;
-            border-radius: 10px;
+            color: white;
         }
 
-        input[type="button"] {
-            width: 100px;
-            border: none;
-            background-color: indianred;
-            color: whitesmoke;
-            padding: 10px;
-            cursor: pointer;
+        /* .course-list ul {
+            /* list-style-type: square;
+            list-style-position: inside;
+            list-style-image: url("tick.png"); 
+
+        list-style: url("tick.png") inside circle;
+        }*/
+
+        .course-list ul {
+            list-style-type: none;
         }
 
-        select {
-            width: 20%;
-            padding: 20px;
-            border: none;
-            background-color: tomato;
-            border-radius: 10px;
+        .course-list li {
+            font-size: 1.2rem;
+        }
+
+        .course-list li::before {
+            content: '\f058';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: bold;
+
+            display: inline-block;
+            margin: 10px 5px;
+            font-size: 2rem;
         }
     </style>
 </head>
 
 <body>
-    <form>
-        <select name="subject_name" id="subjects">
-            <option value="C">C</option>
-            <option value="C++">C++</option>
-            <option value="java">Java</option>
-        </select>
-        <br />
-        <textarea cols="30" rows="10">Write Your Comments Here</textarea>
-        <br />
-        <input type="button" value="Submit">
-    </form>
+    <div class="course-list">
+        <ul>
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JS</li>
+            <li>jQuery</li>
+        </ul>
+    </div>
 </body>
 
 </html>
