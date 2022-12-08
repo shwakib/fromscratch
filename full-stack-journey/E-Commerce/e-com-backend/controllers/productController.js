@@ -61,12 +61,6 @@ module.exports.getProductsById = async (req, res) => {
     return res.status(200).send(product);
 }
 
-module.exports.getProductName = async (req, res) => {
-    const productId = req.params.id;
-    const result = await Product.findById(productId).select({ photo: 0 });
-    return res.status(200).send(result.name);
-}
-
 module.exports.getPhoto = async (req, res) => {
     const productId = req.params.id;
     const product = await Product.findById(productId).select({ photo: 1, _id: 0 })
