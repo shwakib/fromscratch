@@ -119,7 +119,7 @@ const Home = () => {
                 <div className='col-sm-4'>
                     <div className='row'>
                         <label style={{ marginRight: 15 }} htmlFor="priceorder" >Choose price Order:</label>
-                        <select defaultValue={"Selected"} name="priceorder" id="priceorder" onChange={(e) => handleFilters(e.target.value, 'order')}>
+                        <select defaultValue={"Selected"} name="priceorder" id="priceorder" onChange={(e) => handleFilters(e.target.value, 'order')} style={{ width: "120px" }}>
                             <option value={"Selected"} disabled="disabled">Select One</option>
                             <option value="asc">Low to High</option>
                             <option value="desc">High to Low</option>

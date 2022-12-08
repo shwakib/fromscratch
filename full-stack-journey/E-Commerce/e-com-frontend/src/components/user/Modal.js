@@ -1,10 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../../utils/CSS/modalStyle.css";
 import { API } from '../../utils/config';
 import { getProductDetails } from '../../api/apiProducts';
 
+const CartItem = ({ item, i }) => {
+    const [productName, setProductName] = useState();
+
+    useEffect(() => {
+        getProductDetails(item.product)
+            .then(res => { setProductName(res.data.name) });
+    }, []);
+
+    return (
+        <tr key={item._id}>
+            <th scope="row">{i + 1}</th>
+            <th><img src={`${API}/product/photo/${item.product}`} alt={item.product.name} width="60px" height="50px" /></th>
+            <td>{productName == undefined ? "Getting Name" : productName}</td>
+            <td align="center">{item.count}</td>
+            <td align="center">৳ {item.price * item.count} </td>
+        </tr>
+    )
+}
+
 const Modal = ({ open, onClose, item }) => {
-    console.log(item.cartItems);
     if (!open) return null;
     return (
         <div onClick={onClose} className='overlay'>
@@ -24,13 +42,7 @@ const Modal = ({ open, onClose, item }) => {
                             </thead>
                             <tbody>
                                 {item.cartItems.map((item, i) =>
-                                    <tr key={item._id}>
-                                        <th scope="row">{i + 1}</th>
-                                        <th><img src={`${API}/product/photo/${item.product}`} alt={item.product.name} width="60px" height="50px" /></th>
-                                        <td>{/*item.product.name ? item.product.name : ""*/getProductDetails(item.product).then(response => console.log(response.data.name))}</td>
-                                        <td align="center">{item.count}</td>
-                                        <td align="center">৳ {item.price * item.count} </td>
-                                    </tr>
+                                    <CartItem item={item} i={i} key={item._id} />
                                 )}
                             </tbody>
                         </table>

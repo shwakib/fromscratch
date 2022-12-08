@@ -4,7 +4,6 @@ import { userInfo } from '../../utils/auth';
 import { purchaseHistory } from '../../api/apiPurchaseHistory';
 import { useEffect, useState } from 'react';
 import OrderHistory from './OrderHistory';
-// import '../../utils/CSS/Modal.css';
 import Modal from './Modal';
 
 const Dashboard = () => {
@@ -26,7 +25,7 @@ const Dashboard = () => {
     };
 
     const ViewDetails = item => () => {
-        console.log(item);
+        // console.log(item);
         toggleModal();
         setPurchasedItems(item);
     }

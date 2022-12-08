@@ -2,6 +2,7 @@ import React from 'react';
 import { API } from '../../utils/config';
 
 const CartItem = ({ item, serial, increaseItem, decreaseItem, removeItem }) => {
+    console.log(item);
     return (
         <tr>
             <th scope="row">{serial}</th>
