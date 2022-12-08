@@ -40,10 +40,10 @@ module.exports.initPayment = async (req, res) => {
     const payment = new PaymentSession(true, process.env.STORE_ID, process.env.STORE_PASSWORD);
 
     payment.setUrls({
-        success: "https://safe-ocean-93615.herokuapp.com/api/payment/success", // If payment Succeed
+        success: "https://e-commerce-backend-api-rzsk.onrender.com/api/payment/success", // If payment Succeed
         fail: "yoursite.com/fail", // If payment failed
         cancel: "yoursite.com/cancel", // If user cancel payment
-        ipn: "https://safe-ocean-93615.herokuapp.com/api/payment/ipn", // SSLCommerz will send http post request in this link
+        ipn: "https://e-commerce-backend-api-rzsk.onrender.com/api/payment/ipn", // SSLCommerz will send http post request in this link
     });
 
     // Set order details
