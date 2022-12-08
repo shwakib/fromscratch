@@ -6,57 +6,45 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CSS Form</title>
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    </link>
     <style>
-        * {
-            box-sizing: border-box;
+        textarea {
+            resize: none;
+            width: 50%;
+            padding: 20px;
+            border: 3px grey solid;
+            border-radius: 10px;
         }
 
-        input[type=text] {
-            width: 100%;
-            padding: 10px 20px;
-            font-size: 1rem;
-            margin: 20px 0;
-            background-color: seagreen;
-            border: 3px solid salmon;
-            border-radius: 5px;
-            /* border: none;
-            border-bottom: 3px solid salmon; */
+        input[type="button"] {
+            width: 100px;
+            border: none;
+            background-color: indianred;
+            color: whitesmoke;
+            padding: 10px;
+            cursor: pointer;
         }
 
-        #search {
-            background-image: url('./search.png');
-            background-repeat: no-repeat;
-            font-size: 1rem;
-            padding: 15px 45px;
-            background-position: 8px 15px;
-            background-color: white;
-            width: 150px;
-
-            transition: width 3s ease-in-out;
-        }
-
-        #search:focus {
-            background-color: sienna;
-            width: 100%;
+        select {
+            width: 20%;
+            padding: 20px;
+            border: none;
+            background-color: tomato;
+            border-radius: 10px;
         }
     </style>
 </head>
 
 <body>
     <form>
-        <input type="text" name="search" id="search" placeholder="Search">
-
+        <select name="subject_name" id="subjects">
+            <option value="C">C</option>
+            <option value="C++">C++</option>
+            <option value="java">Java</option>
+        </select>
         <br />
-
-        <label for="fname">First Name</label>
-        <input type="text" name="fname" id="fname">
-
-        <label for="lname">Last Name</label>
-        <input type="text" name="lname" id="lname">
-
+        <textarea cols="30" rows="10">Write Your Comments Here</textarea>
+        <br />
+        <input type="button" value="Submit">
     </form>
 </body>
 
