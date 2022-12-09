@@ -124,6 +124,13 @@ module.exports.filterProducts = async (req, res) => {
                 }
                 console.log(args);
             }
+            if (key === 'soldunit') {
+                //category:$in['']
+                args['soldUnit'] = {
+                    $gte: 1
+                }
+                console.log(args);
+            }
         }
     }
 

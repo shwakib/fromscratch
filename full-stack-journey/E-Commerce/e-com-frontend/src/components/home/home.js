@@ -78,6 +78,11 @@ const Home = () => {
             newFilters[filterBy] = myfilters;
         }
 
+        if (filterBy === 'soldunit') {
+            // alert(filterBy);
+            newFilters[filterBy] = myfilters;
+        }
+
         if (filterBy === 'price') {
             const data = prices;
             let arr = [];
@@ -117,6 +122,12 @@ const Home = () => {
                     </div>
                 </div>
                 <div className='col-sm-4'>
+                    <div className='row'>
+                        <li className="list-unstyled" style={{ margin: "10px 0 15px 25px" }}>
+                            <input type="checkbox" className="form-check-input" onChange={myfilters => handleFilters(myfilters, 'soldunit')} />
+                            <label className="form-check-label">Show Sold Products</label>
+                        </li>
+                    </div>
                     <div className='row'>
                         <label style={{ marginRight: 15 }} htmlFor="priceorder" >Choose price Order:</label>
                         <select defaultValue={"Selected"} name="priceorder" id="priceorder" onChange={(e) => handleFilters(e.target.value, 'order')} style={{ width: "120px" }}>
