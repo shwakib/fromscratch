@@ -116,6 +116,7 @@ module.exports.filterProducts = async (req, res) => {
                     $gte: filters['price'][0],
                     $lte: filters['price'][1]
                 }
+                console.log(args);
             }
             if (key === 'category') {
                 //category:$in['']
