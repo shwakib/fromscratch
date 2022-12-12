@@ -125,7 +125,7 @@ module.exports.filterProducts = async (req, res) => {
                 }
                 console.log(args);
             }
-            if (key === 'soldunit') {
+            if (key === 'soldUnit') {
                 //category:$in['']
                 args['soldUnit'] = {
                     $gte: 1
