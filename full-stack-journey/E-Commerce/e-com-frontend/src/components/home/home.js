@@ -20,7 +20,8 @@ const Home = () => {
     const [success, setSuccess] = useState(false);
     const [filters, setFilters] = useState({
         category: [],
-        price: []
+        price: [],
+        soldUnit: [1]
     });
 
     useEffect(() => {
@@ -75,12 +76,16 @@ const Home = () => {
         let newOrder = order;
         let newSortBy = sortBy;
         if (filterBy === 'category') {
+            console.log(myfilters);
             newFilters[filterBy] = myfilters;
+            console.log(newFilters[filterBy]);
         }
 
         if (filterBy === 'soldunit') {
             // alert(filterBy);
-            newFilters[filterBy] = myfilters;
+            console.log(myfilters);
+            newFilters[filterBy] = newFilters.soldUnit;
+            console.log(newFilters[filterBy]);
         }
 
         if (filterBy === 'price') {
